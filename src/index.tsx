@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-const App: React.FC = () => <h1> Hello World! </h1>;
+import { App } from './app';
+import '~/style/app.scss'
 
 ReactDOM.render(<App />, document.querySelector('#root'));
