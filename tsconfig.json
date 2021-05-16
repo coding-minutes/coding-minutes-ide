@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["dom"],
+    "target": "es2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "baseUrl": "src",
+    "rootDir": "src",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}
