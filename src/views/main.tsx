@@ -9,7 +9,7 @@ export const MainView: React.FC = () => (
             <img
               src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/random.png"
               alt="Coding Minutes Logo"
-              style={{ height: '50px' }}
+              style={{ height: '40px' }}
             />
             <div className="language-selector">
               <div className="language-selector-placeholder">Select Language</div>
@@ -25,6 +25,19 @@ export const MainView: React.FC = () => (
                 <div className="language-selector__content__item py-2">Python</div>
               </div>
             </div>
+            {/* <div className="language-selector">
+              <select className="language-selector__content">
+                <option className="language-selector__content__item py-2" disabled selected>Select Language</option>
+                <option className="language-selector__content__item py-2">Python</option>
+                <option className="language-selector__content__item py-2">Python</option>
+                <option className="language-selector__content__item py-2">Python</option>
+                <option className="language-selector__content__item py-2">Python</option>
+                <option className="language-selector__content__item py-2">Python</option>
+                <option className="language-selector__content__item py-2">Python</option>
+                <option className="language-selector__content__item py-2">Python</option>
+                <option className="language-selector__content__item py-2">Python</option>
+              </select>
+            </div> */}
           </div>
         </div>
       </div>
@@ -38,9 +51,22 @@ export const MainView: React.FC = () => (
             <div className="tab active">Input</div>
             <div className="tab">Console</div>
           </div>
-          <div className="run-button">
-            <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg" />
+          <div className="run-button__container">
+            <svg height="90" width="90" className="ring-animation">
+              <circle cx="45" cy="45" r="42" />
+            </svg>
+            <div className="run-button run-button--run-code">
+              <div style={{ fontSize: '3rem', fontWeight: 'bold', marginTop: '-8px' }}>
+                &#8250;&#8250;&#8250;
+              </div>
+            </div>
           </div>
+          {/* <div className="run-button run-button--success">
+            <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg" />
+          </div> */}
+          {/* <div className="run-button run-button--error">
+            <img src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cross-white.svg" />
+          </div> */}
         </div>
       </div>
     </div>

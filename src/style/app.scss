@@ -32,22 +32,24 @@ html {
 
   .navbar-top {
     border-bottom: solid 1px $tertiary-dark;
-    height: 110px;
+    height: 90px;
 
     .language-selector {
-      padding: 15px 30px;
+      padding: 10px 20px;
       border: 1px solid $accent-color-green;
-      font-size: 1.5rem;
       font-weight: 500;
       border-radius: 5px;
       cursor: pointer;
       position: absolute;
       right: 3rem;
       top: calc(1.5rem + 2px);
-      // transition: height 0.5s;
 
       &__content {
         height: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
         transition: all 0.25s;
 
         &__item {
@@ -57,14 +59,15 @@ html {
 
       &:hover,
       &:active,
-      &:focus-within {
+      &:focus-within,
+      &:focus {
         background: $tertiary-dark;
-        border: solid 1px $accent-color-purple;
-        padding: 15px 30px;
+        border: solid 1px $accent-color-pink;
+        padding: 10px 20px;
 
         .language-selector__content {
           height: 150px;
-          padding-top: 30px;
+          padding-top: 15px;
           overflow: auto;
 
           scrollbar-width: none;
@@ -83,31 +86,110 @@ html {
         }
       }
     }
+
+    // select {
+    //   -webkit-appearance: none;
+    //   -moz-appearance: none;
+    //   -ms-appearance: none;
+    //   appearance: none;
+    //   outline: 0;
+    //   box-shadow: none;
+    //   background: $primary-dark;
+    //   background-image: none;
+    //   color: #fff;
+    //   cursor: pointer;
+
+    //   &::-ms-expand {
+    //     display: none;
+    //   }
+
+    // 	option {
+    // 		background: $primary-dark;
+    // 		padding: 10px 0;
+    // 	}
+    // }
+
+    // .language-selector__content {
+    //   position: relative;
+    //   border: 1px solid $accent-color-green;
+    //   overflow: hidden;
+    //   border-radius: 5px;
+    // 	padding: 10px 20px;
+    // }
   }
-
-  .run-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    width: 100px;
+  .run-button__container {
     position: fixed;
-    bottom: 1rem;
-    right: 3rem;
-    border-radius: 50px;
-    background: $accent-color-green;
-    border: solid 1px $accent-color-green;
-    cursor: pointer;
+    bottom: calc(1.5rem + 80px);
+    right: calc(3rem + 80px);
     transition: all 0.5s;
-    padding: 20px;
 
-    img {
-      width: 100%;
+    .run-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      width: 80px;
+      border-radius: 50px;
+      cursor: pointer;
+      padding: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      img {
+        width: 100%;
+      }
+
+      &--run-code {
+        background: $accent-color-pink;
+        border: solid 1px $accent-color-pink;
+      }
+
+      &--success {
+        background: $accent-color-green;
+        border: solid 1px $accent-color-green;
+      }
+
+      &--error {
+        background: #ff3030;
+        border: solid 1px #ff3030;
+      }
     }
+
+    .ring-animation {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+			display: none;
+
+      circle {
+        fill: transparent;
+        stroke: $accent-color-green;
+        stroke-width: 4;
+        stroke-dasharray: 250;
+        stroke-dashoffset: 1000;
+      }
+
+      @keyframes rotate {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+    }
+
+		&:hover {
+			.ring-animation {
+				display: block;
+
+				circle {
+          animation: rotate 5s linear infinite;
+        }
+			}
+		}
   }
 
   .main-container {
-    height: calc(100vh - 110px);
+    height: calc(100vh - 90px);
 
     .ide-section {
       flex: 1;
@@ -123,8 +205,8 @@ html {
       &--hidden {
         margin-right: -500px;
 
-        .run-button {
-          bottom: 3rem;
+        .run-button__container {
+          bottom: calc(3rem + 80px);
         }
       }
     }
