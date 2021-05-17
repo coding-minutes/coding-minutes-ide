@@ -2,6 +2,8 @@ $accent-color-green: #7ac25b;
 $accent-color-purple: #7200ff;
 $accent-color-pink: #aa00ff;
 
+$accent-gradient-purple: linear-gradient(to right, $accent-color-purple, $accent-color-pink);
+
 $primary-dark: #1e1e1e;
 $secondary-dark: #404040;
 $tertiary-dark: #5c5c5c;
@@ -15,15 +17,145 @@ $tertiary-light: #adadad;
 //   margin: 0 auto;
 // }
 
+html {
+  font-size: 14px;
+}
+
+.h-inherit {
+  height: inherit;
+}
+
 .ide-container {
   height: 100vh;
   width: 100%;
+  overflow: hidden;
 
   &--dark {
     background: $primary-dark;
+    color: $primary-light;
   }
 
   .navbar-top {
     border-bottom: solid 1px $tertiary-dark;
+    height: 110px;
+
+    .language-selector {
+      padding: 15px 30px;
+      border: 1px solid $accent-color-green;
+      font-size: 1.5rem;
+      font-weight: 500;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+      right: 3rem;
+      top: calc(1.5rem + 2px);
+      // transition: height 0.5s;
+
+      &__content {
+        height: 0;
+        transition: all 0.25s;
+
+        &__item {
+          display: none;
+        }
+      }
+
+      &:hover,
+      &:active {
+        background: $tertiary-dark;
+        border: solid 1px $accent-color-purple;
+        padding: 15px 30px;
+
+        .language-selector__content {
+          height: 150px;
+          padding-top: 30px;
+          overflow: auto;
+
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+
+          &__item {
+            display: block;
+
+						&:hover {
+							color: $accent-color-green;
+						}
+          }
+        }
+      }
+    }
+  }
+
+  .run-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    bottom: 1rem;
+    right: 3rem;
+    border-radius: 50px;
+    background: $accent-color-green;
+    border: solid 1px $accent-color-green;
+    cursor: pointer;
+    transition: all 0.5s;
+    padding: 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .main-container {
+    height: calc(100vh - 110px);
+
+    .ide-section {
+      flex: 1;
+    }
+
+    .io-section {
+      border-left: solid 1px $tertiary-dark;
+      width: 40%;
+      max-width: 500px;
+      position: relative;
+      transition: all 0.5s;
+
+      &--hidden {
+        margin-right: -500px;
+
+        .run-button {
+          bottom: 3rem;
+        }
+      }
+    }
+
+    .io-navigation {
+      display: flex;
+      align-items: center;
+      font-size: 1.25rem;
+      background: $tertiary-dark;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+
+      & .tab {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 15px 25px;
+
+        &:hover,
+        &.active {
+          background: $primary-dark;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+      }
+    }
   }
 }
