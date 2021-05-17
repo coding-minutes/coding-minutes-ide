@@ -1,3 +1,29 @@
-.red {
-    color: red;
+$accent-color-green: #7ac25b;
+$accent-color-purple: #7200ff;
+$accent-color-pink: #aa00ff;
+
+$primary-dark: #1e1e1e;
+$secondary-dark: #404040;
+$tertiary-dark: #5c5c5c;
+
+$primary-light: #ffffff;
+$secondary-light: #d1d1d1;
+$tertiary-light: #adadad;
+
+// .width-limiter {
+//   max-width: 1500px;
+//   margin: 0 auto;
+// }
+
+.ide-container {
+  height: 100vh;
+  width: 100%;
+
+  &--dark {
+    background: $primary-dark;
+  }
+
+  .navbar-top {
+    border-bottom: solid 1px $tertiary-dark;
+  }
 }
