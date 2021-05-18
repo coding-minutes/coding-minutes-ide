@@ -1,8 +1,13 @@
 import React from 'react';
-import { MainView } from './views/main';
+import { Provider } from 'react-redux';
+import { MainView } from '~/views/main';
+
+import { initStore } from '~/store';
+
+const store = initStore();
 
 export const App: React.FC = () => (
-    <> 
-        <MainView />
-    </>
-)
+  <Provider store={store}>
+    <MainView />
+  </Provider>
+);

@@ -71,7 +71,7 @@ html {
     //   &:active,
     //   &:focus-within,
     //   &:focus,
-		// 	&:focus-visible {
+    // 	&:focus-visible {
     //     background: $tertiary-dark;
     //     border: solid 1px $accent-color-pink;
     //     padding: 10px 20px;
@@ -114,17 +114,17 @@ html {
         display: none;
       }
 
-    	option {
-    		background: $primary-dark;
-    		padding: 10px 0;
-    	}
+      option {
+        background: $primary-dark;
+        padding: 10px 0;
+      }
     }
 
     .language-selector {
       border: 1px solid $accent-color-green;
       border-radius: 5px;
-    	padding: 10px 20px;
-			margin-right: 30px;
+      padding: 10px 20px;
+      margin-right: 30px;
     }
   }
   .run-button__container {
@@ -170,11 +170,12 @@ html {
       position: absolute;
       top: -5px;
       left: -5px;
-      visibility: hidden;
-      opacity: 0;
+      visibility: visible;
+      opacity: 1;
       transition: all 0.25s;
 
       circle {
+        animation: rotate 5s linear infinite;
         fill: transparent;
         stroke: $accent-color-green;
         stroke-width: 4;
@@ -185,17 +186,6 @@ html {
       @keyframes rotate {
         to {
           stroke-dashoffset: 0;
-        }
-      }
-    }
-
-    &:hover {
-      .ring-animation {
-        visibility: visible;
-        opacity: 1;
-
-        circle {
-          animation: rotate 5s linear infinite;
         }
       }
     }
