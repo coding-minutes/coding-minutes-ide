@@ -49,7 +49,7 @@ html {
       border-radius: 5px;
       cursor: pointer;
       position: absolute;
-      right: 3rem;
+      right: 5rem;
       top: calc(1.5rem + 2px);
 
       &__content {
@@ -168,7 +168,9 @@ html {
       position: absolute;
       top: -5px;
       left: -5px;
-			display: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.25s;
 
       circle {
         fill: transparent;
@@ -185,15 +187,16 @@ html {
       }
     }
 
-		&:hover {
-			.ring-animation {
-				display: block;
+    &:hover {
+      .ring-animation {
+        visibility: visible;
+        opacity: 1;
 
-				circle {
+        circle {
           animation: rotate 5s linear infinite;
         }
-			}
-		}
+      }
+    }
   }
 
   .main-container {
