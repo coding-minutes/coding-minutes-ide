@@ -51,6 +51,12 @@ html {
       position: absolute;
       right: 5rem;
       top: calc(1.5rem + 2px);
+			min-width: 150px;
+
+			&__active {
+				text-align: center;
+				font-weight: bold;
+			}
 
       &__content {
         height: 0;

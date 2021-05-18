@@ -13,12 +13,12 @@ export const MainView: React.FC = () => (
             />
             <div>
               <div className="language-selector">
-                <div className="language-selector-placeholder">Select Language</div>
+                <div className="language-selector__active">Python</div>
                 <div className="language-selector__content">
                   <div className="language-selector__content__item py-2">Python</div>
                   <div className="language-selector__content__item py-2">Python</div>
                   <div className="language-selector__content__item py-2">Python</div>
-                  <div className="language-selector__content__item py-2">Python</div>
+                  <div className="language-selector__content__item py-2">JavaScript</div>
                   <div className="language-selector__content__item py-2">Python</div>
                   <div className="language-selector__content__item py-2">Python</div>
                   <div className="language-selector__content__item py-2">Python</div>
@@ -52,7 +52,7 @@ export const MainView: React.FC = () => (
           {/* The IDE goes here */}
           {/* <div style={{background: "white", height: "100%", width: "100%"}}></div> */}
         </div>
-        <div className="io-section io-section--hidden">
+        <div className="io-section">
           <div className="io-navigation">
             <div className="tab active">Input</div>
             <div className="tab">Console</div>
