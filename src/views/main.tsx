@@ -12,7 +12,7 @@ export const MainView: React.FC = () => (
               style={{ height: '40px' }}
             />
             <div>
-              <div className="language-selector">
+              {/* <div className="language-selector">
                 <div className="language-selector__active">Python</div>
                 <div className="language-selector__content">
                   <div className="language-selector__content__item py-2">Python</div>
@@ -25,32 +25,24 @@ export const MainView: React.FC = () => (
                   <div className="language-selector__content__item py-2">Python</div>
                   <div className="language-selector__content__item py-2">Python</div>
                 </div>
-              </div>
+              </div> */}
+              <select class="form-select language-selector">
+                <option value="0">Python</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">JavaScript</option>
+              </select>
               <img
                 src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/three-dots-stroke.svg"
-                style={{ height: '40px', cursor: "pointer" }}
+                style={{ height: '40px', cursor: 'pointer' }}
               />
             </div>
-            {/* <div className="language-selector">
-              <select className="language-selector__content">
-                <option className="language-selector__content__item py-2" disabled selected>Select Language</option>
-                <option className="language-selector__content__item py-2">Python</option>
-                <option className="language-selector__content__item py-2">Python</option>
-                <option className="language-selector__content__item py-2">Python</option>
-                <option className="language-selector__content__item py-2">Python</option>
-                <option className="language-selector__content__item py-2">Python</option>
-                <option className="language-selector__content__item py-2">Python</option>
-                <option className="language-selector__content__item py-2">Python</option>
-                <option className="language-selector__content__item py-2">Python</option>
-              </select>
-            </div> */}
           </div>
         </div>
       </div>
       <div className="main-container row no-gutters">
         <div className="flex-1 ide-section">
           {/* The IDE goes here */}
-          {/* <div style={{background: "white", height: "100%", width: "100%"}}></div> */}
         </div>
         <div className="io-section">
           <div className="io-navigation">
