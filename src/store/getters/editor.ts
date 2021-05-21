@@ -2,3 +2,4 @@ export const getSelectedLanguage = () => (state) => state.editor.selectedLanguag
 export const getCurrentSource = () => (state) => state.editor.source;
 export const getStdin = () => (state) => state.editor.stdin;
 export const getStdout = () => (state) => state.editor.stdout;
+export const getReturnCode = () => (state) => state.editor.returnCode;
