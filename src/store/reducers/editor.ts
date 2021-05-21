@@ -11,7 +11,7 @@ export interface EditorState {
   source: string;
   stdin: string;
   stdout: string;
-  return_code: number;
+  returnCode: number;
 }
 
 const initialState: EditorState = {
@@ -19,7 +19,7 @@ const initialState: EditorState = {
   source: '',
   stdin: ' ',
   stdout: '',
-  return_code: null,
+  returnCode: null,
 };
 
 export const editorReducer = (state: EditorState = initialState, action): EditorState => {
@@ -42,7 +42,7 @@ export const editorReducer = (state: EditorState = initialState, action): Editor
     case SET_RETURN_CODE:
       return {
         ...state,
-        stdout: action.payload
+        returnCode: action.payload
       }
     default:
       return state;

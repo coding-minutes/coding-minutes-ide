@@ -8,15 +8,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
 
+
+const getFabStateForReturnCode = (returnCode: number | null): FabState => {
+  if (returnCode === 0) return FabState.correct;
+  
+  if (Number.isInteger(returnCode) && returnCode !== 0) return FabState.error;
+
+  return FabState.idle;
+}
+
 export const MainView: React.FC = () => {
   const dispatch = useDispatch()
   const returnCode = useSelector(getReturnCode());
 
-  const state: FabState = new Array(
-    +returnCode === 0 && FabState.correct,
-    +returnCode !== 0 && FabState.error,
-    returnCode === null && FabState.idle
-  ).reduce((acc, cur) => acc || cur)
+  const state = getFabStateForReturnCode(returnCode)
 
   React.useEffect(() => {
     if (state != FabState.idle) {
