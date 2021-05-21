@@ -59,7 +59,7 @@ export const RunFAB = (props: RunFabProps) => {
     error: 'run-button--error',
   };
   const IconMap = {
-    idle: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg',
+    idle: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/play-white.svg',
     correct: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg',
     error: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cross-white.svg',
   };

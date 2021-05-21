@@ -14,8 +14,8 @@ export const Navbar: React.FC = () => (
         <div>
           <LanguagePicker />
           <img
-            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/three-dots-stroke.svg"
-            style={{ height: '40px', cursor: 'pointer' }}
+            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/terminal.svg"
+            style={{ height: '30px', cursor: 'pointer'}}
           />
         </div>
       </div>
