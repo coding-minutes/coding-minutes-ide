@@ -1,4 +1,4 @@
-import { SET_SELECTED_LANGUAGE, SET_SOURCE } from "~/store/action-types/editor";
+import { SET_SELECTED_LANGUAGE, SET_SOURCE, SET_STDOUT } from "~/store/action-types/editor";
 
 
 export interface Language {
@@ -16,7 +16,7 @@ export interface EditorState {
 const initialState: EditorState = {
   selectedLanguage: null,
   source: '',
-  stdin: '',
+  stdin: ' ',
   stdout: '',
 };
 
@@ -31,6 +31,11 @@ export const editorReducer = (state: EditorState = initialState, action): Editor
       return {
         ...state,
         source: action.payload
+      }
+    case SET_STDOUT:
+      return {
+        ...state,
+        stdout: action.payload
       }
     default:
       return state;
