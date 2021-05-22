@@ -15,7 +15,7 @@ export const IONav: React.FC = () => {
   return (
     <div className="d-flex flex-col io-section">
       <div className="flex-1 io-box">
-        <div className="io-box__info-box"></div>
+        <textarea placeholder="Input goes here..."></textarea>
       </div>
       <div className="io-navigation">
         <div

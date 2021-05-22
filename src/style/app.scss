@@ -48,7 +48,7 @@ html {
 
   .navbar-top {
     border-bottom: solid 1px $tertiary-dark;
-    height: 90px;
+    height: 60px;
 
     // .language-selector {
     //   padding: 10px 20px;
@@ -124,15 +124,15 @@ html {
 
       option {
         background: $primary-dark;
-        padding: 10px 0;
+        padding: 5px 0;
       }
     }
 
     .language-selector {
       border: 1px solid $accent-color-green;
       border-radius: 5px;
-      padding: 10px 20px;
-      margin-right: 30px;
+      padding: 5px 10px;
+      margin-right: 20px;
     }
   }
   .run-button__container {
@@ -200,7 +200,7 @@ html {
   }
 
   .main-container {
-    height: calc(100vh - 90px);
+    height: calc(100vh - 60px);
 
     .ide-section {
       flex: 1;
@@ -223,12 +223,22 @@ html {
     }
 
     .io-box {
-      padding: 20px;
+      padding: 30px;
 
-      &__info-box {
-        border: solid 1px $tertiary-dark;
-        height: 100%;
+      textarea {
+        background: $primary-dark;
+        width: 100%;
+        height: 95%;
         padding: 20px;
+        border: none;
+        resize: none;
+        appearance: none;
+        color: $primary-light;
+
+        &:focus {
+          border: solid 1px $tertiary-dark;
+          border-radius: 5px;
+        }
       }
     }
 

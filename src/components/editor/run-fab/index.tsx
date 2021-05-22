@@ -58,6 +58,7 @@ export const RunFAB = (props: RunFabProps) => {
     correct: 'run-button--success',
     error: 'run-button--error',
   };
+
   const IconMap = {
     idle: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/play-white.svg',
     correct: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg',
@@ -78,7 +79,7 @@ export const RunFAB = (props: RunFabProps) => {
           ''
         )}
         <div className={`run-button ${buttonClass}`}>
-          <img src={icon} />
+          <img src={icon} style={{width: "30px"}}/>
         </div>
       </div>
     </button>
