@@ -222,6 +222,16 @@ html {
       }
     }
 
+    .io-box {
+      padding: 20px;
+
+      &__info-box {
+        border: solid 1px $tertiary-dark;
+        height: 100%;
+        padding: 20px;
+      }
+    }
+
     .io-navigation {
       display: flex;
       align-items: center;
