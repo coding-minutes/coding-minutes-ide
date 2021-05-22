@@ -19,6 +19,8 @@ jobs:
         run: npm install
       - name: Build page
         run: npm run build
+        env:
+          API_HOST: "https://judge-proxy.codingminutes.com"
       - name: Upload Build
         uses: appleboy/scp-action@master
         with:
