@@ -61,7 +61,7 @@ export const RunFAB = (props: RunFabProps) => {
   const IconMap = {
     idle: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/play-white.svg',
     correct: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg',
-    error: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cross-white.svg',
+    error: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/exclamation.svg',
   };
 
   const buttonClass = ButtonClassMap[props.state];
