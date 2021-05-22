@@ -69,18 +69,20 @@ export const RunFAB = (props: RunFabProps) => {
   const icon = IconMap[props.state];
 
   return (
-    <button onClick={() => execute()} disabled={isRunning && props.state === 'idle'}>
-      <div className="run-button__container">
-        {isRunning ? (
-          <svg height="90" width="90" className="ring-animation">
-            <circle cx="45" cy="45" r="42" />
-          </svg>
-        ) : (
-          ''
-        )}
-        <div className={`run-button ${buttonClass}`}>
-          <img src={icon} style={{width: "30px"}}/>
-        </div>
+    <button
+      onClick={() => execute()}
+      disabled={isRunning && props.state === 'idle'}
+      className="run-button__container"
+    >
+      {isRunning ? (
+        <svg height="90" width="90" className="ring-animation">
+          <circle cx="45" cy="45" r="42" />
+        </svg>
+      ) : (
+        ''
+      )}
+      <div className={`run-button ${buttonClass}`}>
+        <img src={icon} style={{ width: '30px' }} />
       </div>
     </button>
   );

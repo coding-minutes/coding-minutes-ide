@@ -11,12 +11,16 @@ export const Navbar: React.FC = () => (
           alt="Coding Minutes Logo"
           style={{ height: '20px' }}
         />
-        <div>
+        <div className="row no-gutters align-items-center">
           <LanguagePicker />
-          <img
-            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/terminal.svg"
-            style={{ height: '20px', cursor: 'pointer'}}
-          />
+          <div className="open-io-button pulse">
+            <div>&gt;_</div>
+            {/* <div>&lt;/&gt;</div> */}
+
+            <div className="open-io-button__tooltip">
+              Toggle I/O pane
+            </div>
+          </div>
         </div>
       </div>
     </div>
