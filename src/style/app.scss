@@ -236,6 +236,14 @@ button {
           border-radius: 5px;
         }
       }
+
+      .output-box {
+        background: $primary-dark;
+      }
+
+      pre {
+        color: $primary-light;
+      }
     }
 
     .io-navigation {

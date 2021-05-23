@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getStdin, getStdout } from '~/store/getters/editor';
+import { getStdout } from '~/store/getters/editor';
+
+import { InputFragment } from './input-fragment';
+import { OutputFragment } from './output-fragment';
 
 enum IOTabs {
   INPUT,
@@ -8,14 +11,14 @@ enum IOTabs {
 }
 
 export const IONav: React.FC = () => {
-  const stdin = useSelector(getStdin());
   const stdout = useSelector(getStdout());
   const [selectedTab, setSelectedTab] = React.useState(stdout ? IOTabs.CONSOLE : IOTabs.INPUT);
 
   return (
     <div className="d-flex flex-col io-section">
       <div className="flex-1 io-box">
-        <textarea placeholder="Input goes here..."></textarea>
+        {selectedTab === IOTabs.INPUT && <InputFragment />}
+        {selectedTab === IOTabs.CONSOLE && <OutputFragment />}
       </div>
       <div className="io-navigation">
         <div

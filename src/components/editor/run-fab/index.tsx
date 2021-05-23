@@ -43,9 +43,9 @@ export const RunFAB = (props: RunFabProps) => {
       yield sleep(1000);
       const submission: Submission = yield pollSubmission(submissionId);
 
-      if (submission.stdout || submission.stderr) {
-        setOutput(submission.stderr || submission.stdout);
-        setCode(submission.stderr ? 1 : 0);
+      if (submission.compile_output || submission.stdout || submission.stderr) {
+        setOutput(submission.compile_output || submission.stderr || submission.stdout);
+        setCode(submission.stderr || submission.compile_output ? 1 : 0);
         return;
       }
     }
@@ -82,7 +82,7 @@ export const RunFAB = (props: RunFabProps) => {
         ''
       )}
       <div className={`run-button ${buttonClass}`}>
-        <img src={icon} style={{ width: '30px' }} />
+        <img src={icon} style={{ height: '100%', width: '100%' }} />
       </div>
     </button>
   );
