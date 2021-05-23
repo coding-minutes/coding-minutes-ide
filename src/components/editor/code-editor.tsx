@@ -20,6 +20,9 @@ export const CodeEditor = () => {
       theme="vs-dark"
       value={source}
       onChange={setEditorSource}
+      options={{
+        automaticLayout: true
+      }}
     />
   );
 };

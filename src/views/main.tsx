@@ -7,6 +7,7 @@ import { FabState, RunFAB } from '~/components/editor/run-fab';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
+import { isIOPaneOpen } from '~/store/getters/ui';
 
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
@@ -20,6 +21,7 @@ const getFabStateForReturnCode = (returnCode: number | null): FabState => {
 export const MainView: React.FC = () => {
   const dispatch = useDispatch()
   const returnCode = useSelector(getReturnCode());
+  const isIOOpen = useSelector(isIOPaneOpen());
 
   const state = getFabStateForReturnCode(returnCode)
 
@@ -41,7 +43,7 @@ export const MainView: React.FC = () => {
               <CodeEditor />
             </div>
           </div>
-          <IONav />
+          {isIOOpen && <IONav />}
           <RunFAB state={state} />
         </div>
       </div>
