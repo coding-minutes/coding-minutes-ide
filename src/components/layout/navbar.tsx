@@ -15,12 +15,11 @@ export const Navbar: React.FC = () => (
         </a>
         <div className="row no-gutters align-items-center">
           <LanguagePicker />
-          <div className="open-io-button pulse">
+          {/* <div className="open-io-button pulse">
             <div>&gt;_</div>
-            {/* <div>&lt;/&gt;</div> */}
 
             <div className="open-io-button__tooltip">Toggle I/O pane</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
