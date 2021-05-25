@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTask } from 'react-use-task';
 
 import { Navbar } from '~/components/layout/navbar';
 import { CodeEditor } from '~/components/editor/code-editor';
@@ -7,6 +8,7 @@ import { FabState, RunFAB } from '~/components/editor/run-fab';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
+import { initalize } from '~/initializers';
 
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
@@ -22,6 +24,12 @@ export const MainView: React.FC = () => {
   const returnCode = useSelector(getReturnCode());
 
   const state = getFabStateForReturnCode(returnCode)
+
+  const [{}, perform] = useTask(initalize);
+
+  React.useEffect(() => {
+    perform(dispatch);
+  }, []);
 
   React.useEffect(() => {
     if (state != FabState.idle) {
