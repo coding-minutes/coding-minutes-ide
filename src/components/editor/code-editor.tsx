@@ -1,5 +1,5 @@
 import React from 'react';
-import MonacoEditor from 'react-monaco-editor';
+import Editor from '@monaco-editor/react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getCurrentSource, getSelectedLanguage } from '~/store/getters/editor';
@@ -15,7 +15,7 @@ export const CodeEditor = () => {
   const setEditorSource = (newSource) => dispatch(setSource(newSource));
 
   return (
-    <MonacoEditor
+    <Editor
       language={editor_code}
       theme="vs-dark"
       value={source}

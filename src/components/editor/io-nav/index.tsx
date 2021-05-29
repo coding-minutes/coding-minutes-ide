@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getStdout } from '~/store/getters/editor';
+import { getReturnCode, getStdout } from '~/store/getters/editor';
 
 import { InputFragment } from './input-fragment';
 import { OutputFragment } from './output-fragment';
@@ -10,12 +10,28 @@ enum IOTabs {
   CONSOLE,
 }
 
-export const IONav: React.FC = () => {
+export interface IONavProps {
+  className: string
+}
+
+export const IONav: React.FC<IONavProps> = (props) => {
+  const { className } = props;
+
   const stdout = useSelector(getStdout());
+  const returnCode = useSelector(getReturnCode());
   const [selectedTab, setSelectedTab] = React.useState(stdout ? IOTabs.CONSOLE : IOTabs.INPUT);
 
+
+  React.useEffect(() => {
+    if (returnCode !== null) {
+      setSelectedTab(IOTabs.CONSOLE);
+    }
+  }, [returnCode]);
+
   return (
-    <div className="d-flex flex-col io-section">
+    <div 
+      className={`d-flex flex-col io-section ${className}`}
+    >
       <div className="flex-1 io-box">
         {selectedTab === IOTabs.INPUT && <InputFragment />}
         {selectedTab === IOTabs.CONSOLE && <OutputFragment />}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTask } from 'react-use-task';
 
 import { Navbar } from '~/components/layout/navbar';
 import { CodeEditor } from '~/components/editor/code-editor';
@@ -8,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
 import { isIOPaneOpen } from '~/store/getters/ui';
+import { initalize } from '~/initializers';
 
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
@@ -24,6 +26,12 @@ export const MainView: React.FC = () => {
   const isIOOpen = useSelector(isIOPaneOpen());
 
   const state = getFabStateForReturnCode(returnCode)
+
+  const [{}, perform] = useTask(initalize);
+
+  React.useEffect(() => {
+    perform(dispatch);
+  }, []);
 
   React.useEffect(() => {
     if (state != FabState.idle) {
@@ -43,7 +51,7 @@ export const MainView: React.FC = () => {
               <CodeEditor />
             </div>
           </div>
-          {isIOOpen && <IONav />}
+          <IONav className={isIOOpen ? '' : 'io-section--hidden'} />
           <RunFAB state={state} />
         </div>
       </div>

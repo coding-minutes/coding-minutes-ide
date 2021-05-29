@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { MainView } from '~/views/main';
 
+import { MainView } from '~/views/main';
 import { initStore } from '~/store';
 
 const store = initStore();
