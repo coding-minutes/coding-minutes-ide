@@ -11,7 +11,7 @@ enum IOTabs {
 }
 
 export interface IONavProps {
-  className: string
+  className: string;
 }
 
 export const IONav: React.FC<IONavProps> = (props) => {
@@ -21,7 +21,6 @@ export const IONav: React.FC<IONavProps> = (props) => {
   const returnCode = useSelector(getReturnCode());
   const [selectedTab, setSelectedTab] = React.useState(stdout ? IOTabs.CONSOLE : IOTabs.INPUT);
 
-
   React.useEffect(() => {
     if (returnCode !== null) {
       setSelectedTab(IOTabs.CONSOLE);
@@ -29,14 +28,14 @@ export const IONav: React.FC<IONavProps> = (props) => {
   }, [returnCode]);
 
   return (
-    <div 
-      className={`d-flex flex-col io-section ${className}`}
-    >
+    <div className={`d-flex flex-col io-section ${className}`}>
       <div className="flex-1 io-box">
-        {selectedTab === IOTabs.INPUT && <InputFragment />}
-        {selectedTab === IOTabs.CONSOLE && <OutputFragment />}
+        <InputFragment />
+        <OutputFragment />
+        {/* {selectedTab === IOTabs.INPUT && <InputFragment />}
+        {selectedTab === IOTabs.CONSOLE && <OutputFragment />} */}
       </div>
-      <div className="io-navigation">
+      {/* <div className="io-navigation">
         <div
           className={`tab ${selectedTab === IOTabs.INPUT && 'active'}`}
           onClick={() => setSelectedTab(IOTabs.INPUT)}
@@ -49,7 +48,7 @@ export const IONav: React.FC<IONavProps> = (props) => {
         >
           Console
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

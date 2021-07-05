@@ -1,8 +1,22 @@
+// Base Classes
+%button-generic {
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 5px;
+}
+
+// Variables
 $accent-color-green: #7ac25b;
-$accent-color-purple: #7200ff;
-$accent-color-pink: #aa00ff;
+$accent-color-purple: #5848ea;
+$accent-color-pink: #9549eb;
 
 $accent-gradient-purple: linear-gradient(to right, $accent-color-purple, $accent-color-pink);
+$button-gradient: linear-gradient(
+  to right,
+  $accent-color-purple,
+  $accent-color-pink,
+  $accent-color-purple
+);
 
 $primary-dark: #1e1e1e;
 $secondary-dark: #404040;
@@ -11,6 +25,18 @@ $tertiary-dark: #5c5c5c;
 $primary-light: #ffffff;
 $secondary-light: #d1d1d1;
 $tertiary-light: #adadad;
+
+@keyframes button-gradient {
+  0% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
 
 html {
   font-size: 14px;
@@ -24,6 +50,17 @@ button {
   background: none;
   border: none;
   padding: unset;
+}
+
+.button-primary {
+  @extend %button-generic;
+  background: $button-gradient;
+  background-size: 200% 200%;
+  color: white;
+
+  &:hover {
+    animation: button-gradient 3s ease infinite;
+  }
 }
 
 .flex-col {
@@ -69,6 +106,17 @@ button {
   .navbar-top {
     border-bottom: solid 1px $tertiary-dark;
     height: 60px;
+
+    &__option {
+      font-size: 1.142rem;
+      color: $primary-light;
+      padding: 0 1rem;
+      cursor: pointer;
+
+      &:hover {
+        color: $accent-color-green;
+      }
+    }
 
     select {
       -webkit-appearance: none;
@@ -155,8 +203,13 @@ button {
       }
 
       &--run-code {
-        background: $accent-color-pink;
-        border: solid 1px $accent-color-pink;
+        background: $button-gradient;
+        border: solid 1px $button-gradient;
+        background-size: 200% 200%;
+
+        &:hover {
+          animation: button-gradient 3s infinite;
+        }
       }
 
       &--success {
@@ -219,13 +272,13 @@ button {
     }
 
     .io-box {
-      padding: 30px;
+      // padding: 30px;
 
       textarea {
         background: $primary-dark;
         width: 100%;
-        height: 95%;
-        padding: 20px;
+        height: 80%;
+        // padding: 20px;
         border: none;
         resize: none;
         appearance: none;
@@ -234,11 +287,27 @@ button {
         &:focus {
           border: solid 1px $tertiary-dark;
           border-radius: 5px;
+          padding: 20px;
         }
       }
 
+      .io-header {
+        font-size: 1.142rem;
+        font-weight: 700;
+      }
+
+      .input-box {
+        padding: 30px;
+        border-bottom: solid 1px $tertiary-dark;
+        height: 50%;
+        overflow: auto;
+      }
+
       .output-box {
+        padding: 30px;
         background: $primary-dark;
+        height: 50%;
+        overflow: auto;
       }
 
       pre {
