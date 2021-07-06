@@ -166,38 +166,6 @@ button {
     }
   }
 
-  .open-io-button {
-    cursor: pointer;
-    font-size: 1.5rem;
-    font-weight: bold;
-    position: absolute;
-    top: 30px;
-    right: 3rem;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    background: $primary-light !important;
-
-    // .open-io-button__tooltip {
-    //   display: none;
-    //   background: rgba($color: $primary-light, $alpha: 0.5);
-    //   border-radius: 5px;
-    //   position: absolute;
-    //   padding: 5px;
-    //   color: $primary-dark;
-    //   font-size: 0.75rem;
-    //   width: 90px;
-    //   bottom: -50px;
-    //   right: -15px;
-    // }
-
-    // &:hover {
-    //   .open-io-button__tooltip {
-    //     display: block;
-    //   }
-    // }
-  }
-
   .run-button__container {
     position: fixed;
     bottom: calc(1.5rem + 80px);
@@ -307,6 +275,15 @@ button {
       &--hidden ~ .ide-section {
         width: calc(100vw - 30px);
       }
+
+      &--hidden ~ .open-io-button {
+        background: $accent-color-green;
+        right: calc(3rem - 10px);
+
+        .open-io-button__icon {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     .io-box {
@@ -321,7 +298,9 @@ button {
         transition: padding 0.25s;
 
         &:focus {
-          border: solid 1px $tertiary-dark;
+          border: solid 1px $tertiary-dark !important;
+          outline: 0 none !important;
+          box-shadow: 0 0 5px rgba($color: $accent-color-green, $alpha: 1) inset !important;
           border-radius: 5px;
           padding: 20px;
         }
@@ -369,6 +348,46 @@ button {
           background: $primary-dark;
         }
       }
+    }
+
+    .open-io-button {
+      cursor: pointer;
+      font-weight: bold;
+      position: fixed;
+      top: 80px;
+      right: 3rem;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      border: 1px solid $accent-color-green;
+      transition: all 0.75s;
+
+      &__icon {
+        transition: all 0.75s;
+      }
+
+      // .open-io-button__tooltip {
+      //   display: none;
+      //   background: rgba($color: $primary-light, $alpha: 0.5);
+      //   border-radius: 5px;
+      //   position: absolute;
+      //   padding: 5px;
+      //   color: $primary-dark;
+      //   font-size: 0.75rem;
+      //   width: 90px;
+      //   bottom: -50px;
+      //   right: -15px;
+      // }
+
+      // &:hover {
+      //   .open-io-button__tooltip {
+      //     display: block;
+      //   }
+      // }
     }
   }
 }

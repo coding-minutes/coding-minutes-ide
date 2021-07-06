@@ -11,9 +11,7 @@ export const InputFragment: React.FC = () => {
 
   return (
     <div className="input-box no-scrollbar">
-      <div className="row no-gutters align-items-center justify-content-between mb-4">
-        <div className="io-header flex-1">Enter Input</div>
-      </div>
+      <div className="io-header mb-4">Enter Input</div>
       <textarea
         placeholder="Input goes here..."
         value={stdin}

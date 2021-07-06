@@ -53,13 +53,13 @@ export const MainView: React.FC = () => {
               <CodeEditor />
             </div>
           </div>
+          <IONav className={isIOOpen ? '' : 'io-section--hidden'} />
+          <RunFAB state={state} />
           <div className="open-io-button" onClick={toggleIO}>
-            <div>&gt;_</div>
+            <div className="open-io-button__icon">&gt;</div>
 
             {/* <div className="open-io-button__tooltip">Toggle I/O pane</div> */}
           </div>
-          <IONav className={isIOOpen ? '' : 'io-section--hidden'} />
-          <RunFAB state={state} />
         </div>
       </div>
     </>
