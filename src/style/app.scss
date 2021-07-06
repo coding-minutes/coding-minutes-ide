@@ -26,24 +26,34 @@ $primary-light: #ffffff;
 $secondary-light: #d1d1d1;
 $tertiary-light: #adadad;
 
+// Animations
 @keyframes button-gradient {
   0% {
-    background-position: 0% 100%;
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 100%;
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 0% 100%;
+    background-position: 0% 50%;
   }
 }
 
+// Classes and Overrides
 html {
   font-size: 14px;
 }
 
 .h-inherit {
   height: inherit;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 button {
@@ -55,6 +65,7 @@ button {
 .button-primary {
   @extend %button-generic;
   background: $button-gradient;
+  cursor: pointer;
   background-size: 200% 200%;
   color: white;
 
@@ -153,37 +164,45 @@ button {
         background: $tertiary-dark;
       }
     }
-
-    .open-io-button {
-      cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: bold;
-
-      .open-io-button__tooltip {
-        display: none;
-        background: rgba($color: $primary-light, $alpha: 0.5);
-        border-radius: 5px;
-        position: absolute;
-        padding: 5px;
-        color: $primary-dark;
-        font-size: 0.75rem;
-        width: 90px;
-        bottom: -50px;
-        right: -15px;
-      }
-
-      &:hover {
-        .open-io-button__tooltip {
-          display: block;
-        }
-      }
-    }
   }
+
+  .open-io-button {
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 30px;
+    right: 3rem;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: $primary-light !important;
+
+    // .open-io-button__tooltip {
+    //   display: none;
+    //   background: rgba($color: $primary-light, $alpha: 0.5);
+    //   border-radius: 5px;
+    //   position: absolute;
+    //   padding: 5px;
+    //   color: $primary-dark;
+    //   font-size: 0.75rem;
+    //   width: 90px;
+    //   bottom: -50px;
+    //   right: -15px;
+    // }
+
+    // &:hover {
+    //   .open-io-button__tooltip {
+    //     display: block;
+    //   }
+    // }
+  }
+
   .run-button__container {
     position: fixed;
     bottom: calc(1.5rem + 80px);
     right: calc(3rem + 80px);
-    transition: all 0.5s;
+    transition: all 0.75s;
 
     .run-button {
       display: flex;
@@ -193,13 +212,15 @@ button {
       width: 80px;
       border-radius: 50px;
       cursor: pointer;
-      padding: 20px;
+      padding: 25px;
       position: absolute;
       top: 0;
       left: 0;
+      transition: all 0.75s;
 
       img {
         width: 100%;
+        margin-right: -5px;
       }
 
       &--run-code {
@@ -250,9 +271,12 @@ button {
 
   .main-container {
     height: calc(100vh - 60px);
+    position: relative;
 
     .ide-section {
       flex: 1;
+      width: 60%;
+      max-width: calc(100vw - 30px);
     }
 
     .io-section {
@@ -260,29 +284,41 @@ button {
       width: 40%;
       max-width: 500px;
       position: relative;
-      transition: all 0.5s;
+      transition: all 0.75s;
 
       &--hidden {
-        margin-right: -500px;
+        width: 30px !important;
+        overflow: hidden;
 
-        .run-button__container {
-          bottom: calc(3rem + 80px);
+        * {
+          visibility: hidden;
         }
+      }
+
+      &--hidden ~ .run-button__container {
+        bottom: calc(3rem + 80px);
+        right: calc(3rem + 80px);
+
+        .run-button {
+          transform: scale(125%);
+        }
+      }
+
+      &--hidden ~ .ide-section {
+        width: calc(100vw - 30px);
       }
     }
 
     .io-box {
-      // padding: 30px;
-
       textarea {
         background: $primary-dark;
         width: 100%;
         height: 80%;
-        // padding: 20px;
         border: none;
         resize: none;
         appearance: none;
         color: $primary-light;
+        transition: padding 0.25s;
 
         &:focus {
           border: solid 1px $tertiary-dark;

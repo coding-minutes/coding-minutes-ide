@@ -10,8 +10,10 @@ export const InputFragment: React.FC = () => {
   const setInput = (input) => dispatch(setStdin(input));
 
   return (
-    <div className="input-box">
-      <div className="io-header mb-4">Enter Input</div>
+    <div className="input-box no-scrollbar">
+      <div className="row no-gutters align-items-center justify-content-between mb-4">
+        <div className="io-header flex-1">Enter Input</div>
+      </div>
       <textarea
         placeholder="Input goes here..."
         value={stdin}

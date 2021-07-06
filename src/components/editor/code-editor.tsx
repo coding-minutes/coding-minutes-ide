@@ -21,7 +21,7 @@ export const CodeEditor = () => {
       value={source}
       onChange={setEditorSource}
       options={{
-        automaticLayout: true
+        automaticLayout: true,
       }}
     />
   );

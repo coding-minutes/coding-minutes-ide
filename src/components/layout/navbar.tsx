@@ -2,12 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { LanguagePicker } from '~/components/editor/language-picker';
-import { toggleIOPane } from '~/store/action/ui';
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
-
-  const toggleIO = () => dispatch(toggleIOPane());
 
   return (
     <div className="navbar-top">
@@ -27,16 +24,6 @@ export const Navbar: React.FC = () => {
           </div>
           <div className="row no-gutters align-items-center">
             <LanguagePicker />
-            {/* <div 
-              className="open-io-button pulse"
-              onClick={toggleIO}  
-            >
-              <div>&gt;_</div>
-  
-              <div className="open-io-button__tooltip">
-                Toggle I/O pane
-              </div>
-            </div> */}
             <button className="button-primary">Login Now</button>
           </div>
         </div>

@@ -7,7 +7,7 @@ export const OutputFragment: React.FC = () => {
   const stdout = stdoutB64 && atob(stdoutB64);
 
   return (
-    <div className="output-box">
+    <div className="output-box no-scrollbar">
       <div className="io-header mb-4">Output</div>
       <pre>{stdout}</pre>
     </div>
