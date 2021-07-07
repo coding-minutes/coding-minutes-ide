@@ -8,9 +8,10 @@ import { FabState, RunFAB } from '~/components/editor/run-fab';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
-import { isIOPaneOpen } from '~/store/getters/ui';
+import { isIOPaneOpen, isModalOverlayVisible } from '~/store/getters/ui';
 import { initalize } from '~/initializers';
 import { toggleIOPane } from '~/store/action/ui';
+import { OverlayModal } from '~/components/layout/overlay-modal';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   if (returnCode === 0) return FabState.correct;
@@ -24,6 +25,7 @@ export const MainView: React.FC = () => {
   const dispatch = useDispatch();
   const returnCode = useSelector(getReturnCode());
   const isIOOpen = useSelector(isIOPaneOpen());
+  const isModalVisible = useSelector(isModalOverlayVisible());
 
   const state = getFabStateForReturnCode(returnCode);
 
@@ -46,6 +48,7 @@ export const MainView: React.FC = () => {
   return (
     <>
       <div className="ide-container ide-container--dark">
+        <OverlayModal className={isModalVisible ? '' : 'overlay--hidden'} />
         <Navbar />
         <div className="main-container row no-gutters">
           <div className="flex-1 ide-section">

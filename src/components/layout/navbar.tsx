@@ -1,10 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { LanguagePicker } from '~/components/editor/language-picker';
+// import { isModalOverlayVisible } from '~/store/getters/ui';
+import { toggleModalOverlay } from '~/store/action/ui';
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
+
+  // const isModalVisible = useSelector(isModalOverlayVisible());
+  const toggleOverlay = () => dispatch(toggleModalOverlay());
 
   return (
     <div className="navbar-top">
@@ -24,7 +29,9 @@ export const Navbar: React.FC = () => {
           </div>
           <div className="row no-gutters align-items-center">
             <LanguagePicker />
-            <button className="button-primary">Login Now</button>
+            <button className="button-primary" onClick={toggleOverlay}>
+              Login Now
+            </button>
           </div>
         </div>
       </div>

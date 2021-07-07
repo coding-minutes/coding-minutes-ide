@@ -1,8 +1,14 @@
 // Base Classes
 %button-generic {
   font-weight: 700;
-  padding: 0.75rem 2rem;
+  padding: 0.5rem 1.75rem;
   border-radius: 5px;
+
+  &:focus {
+    border: unset;
+    box-shadow: unset;
+    outline: unset;
+  }
 }
 
 // Variables
@@ -168,19 +174,19 @@ button {
 
   .run-button__container {
     position: fixed;
-    bottom: calc(1.5rem + 80px);
-    right: calc(3rem + 80px);
+    bottom: calc(1.5rem + 60px);
+    right: calc(3rem + 60px);
     transition: all 0.75s;
 
     .run-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 80px;
-      width: 80px;
+      height: 60px;
+      width: 60px;
       border-radius: 50px;
       cursor: pointer;
-      padding: 25px;
+      padding: 20px;
       position: absolute;
       top: 0;
       left: 0;
@@ -264,8 +270,7 @@ button {
       }
 
       &--hidden ~ .run-button__container {
-        bottom: calc(3rem + 80px);
-        right: calc(3rem + 80px);
+        bottom: calc(3rem + 60px);
 
         .run-button {
           transform: scale(125%);
@@ -388,6 +393,91 @@ button {
       //     display: block;
       //   }
       // }
+    }
+  }
+
+  .overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    background: rgba($color: #363a43, $alpha: 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--hidden {
+      display: none;
+    }
+
+    &__modal {
+      height: fit-content;
+      max-height: 60%;
+      overflow: auto;
+      width: 90vw;
+      max-width: 500px;
+      background: $primary-dark;
+      border-radius: 10px;
+      padding: 50px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .w-100 {
+        text-align: center;
+      }
+
+      &__title {
+        color: $primary-light;
+        font-weight: 700;
+        font-size: 1.285rem;
+      }
+
+      &__divider {
+        background-color: $tertiary-dark;
+        margin: 30px 0;
+        height: 1px;
+        width: 100%;
+      }
+    }
+  }
+
+  .login-card {
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.142rem;
+    width: 60%;
+    min-width: fit-content;
+    color: $primary-light;
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &--google {
+      background: $primary-light;
+      color: $primary-dark;
+      border: 1px solid $primary-light;
+
+      &:hover {
+        color: $primary-light;
+      }
+    }
+
+    &--github {
+      background: #6cc644;
+      border: 1px solid #6cc644;
+    }
+
+    &--linkedin {
+      background: #0077b5;
+      border: 1px solid #0077b5;
+    }
+
+    &:hover {
+      background: transparent;
     }
   }
 }
