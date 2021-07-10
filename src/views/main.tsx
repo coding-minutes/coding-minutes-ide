@@ -13,6 +13,7 @@ import { initalize } from '~/initializers';
 import { toggleIOPane } from '~/store/action/ui';
 import { OverlayModal } from '~/components/layout/overlay-modal';
 import IdeApi from '~/services/ide_api';
+import { useLocation } from 'react-router-dom';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   if (returnCode === 0) return FabState.correct;
@@ -27,6 +28,7 @@ export const MainView: React.FC = () => {
   const returnCode = useSelector(getReturnCode());
   const isIOOpen = useSelector(isIOPaneOpen());
   const isModalVisible = useSelector(isModalOverlayVisible());
+  const location = useLocation();
 
   const state = getFabStateForReturnCode(returnCode);
 
@@ -51,7 +53,6 @@ export const MainView: React.FC = () => {
       try {
         const response = await IdeApi.get(`/${id}`);
 
-        console.log({ response });
         const { data } = response;
         dispatch(setSelectedLanguage(data.lang));
         dispatch(setSource(data.source));
@@ -60,8 +61,9 @@ export const MainView: React.FC = () => {
         console.error('Fetch code error = ', error);
       }
     }
-    const queryParams = new URLSearchParams(window.location.search);
+    const queryParams = new URLSearchParams(location.search);
     const id = queryParams.get('id');
+
     if (!id) {
       return;
     }

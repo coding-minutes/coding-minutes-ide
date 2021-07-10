@@ -7,7 +7,7 @@ import { getIsLoggedIn, getJwt } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
 import IdeClient from '~/services/ide_api';
 import { getCurrentSource, getStdin, getSelectedLanguage } from '~/store/getters/editor';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
@@ -30,20 +30,43 @@ export const Navbar: React.FC = () => {
   };
 
   const saveCode = async () => {
-    console.log({ data });
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get('id');
+
     const config = {
       headers: {
         Authorization: `jwt ${jwt}`,
       },
     };
-    try {
-      const response = await IdeClient.post('/', data, config);
-      console.log({ response });
-      const { id } = response.data;
-      history.push(`/?id=${id}`);
-    } catch (error) {
-      console.error(error);
-      alert('Could not save code');
+
+    if (!id) {
+      // This is a fresh code. Save it as new.
+
+      try {
+        const response = await IdeClient.post('/', data, config);
+        const { id } = response.data;
+        history.push(`/?id=${id}`);
+      } catch (error) {
+        console.error(error);
+        alert('Could not save code');
+      }
+    } else {
+      // This is a previously saved code as the ID exists. The user wants to update this.
+      try {
+        const response = await IdeClient.patch(`/${id}`, data, config);
+        const newId = response.data.id;
+
+        // If the current user is the owner of the code, do nothing
+        // Else update the Id in the URL as this code was saved as new.
+        if (newId == id) {
+          return;
+        } else {
+          history.push(`/?id=${newId}`);
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Could not save code');
+      }
     }
   };
 
