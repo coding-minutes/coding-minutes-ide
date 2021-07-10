@@ -7,11 +7,12 @@ import { IONav } from '~/components/editor/io-nav';
 import { FabState, RunFAB } from '~/components/editor/run-fab';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
-import { setReturnCode } from '~/store/action/editor';
+import { setReturnCode, setSource, setStdin, setSelectedLanguage } from '~/store/action/editor';
 import { isIOPaneOpen, isModalOverlayVisible } from '~/store/getters/ui';
 import { initalize } from '~/initializers';
 import { toggleIOPane } from '~/store/action/ui';
 import { OverlayModal } from '~/components/layout/overlay-modal';
+import IdeApi from '~/services/ide_api';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   if (returnCode === 0) return FabState.correct;
@@ -44,6 +45,29 @@ export const MainView: React.FC = () => {
       }, 2000);
     }
   }, [state]);
+
+  React.useEffect(() => {
+    async function fetchCode(id: number | string) {
+      try {
+        const response = await IdeApi.get(`/${id}`);
+
+        console.log({ response });
+        const { data } = response;
+        dispatch(setSelectedLanguage(data.lang));
+        dispatch(setSource(data.source));
+        dispatch(setStdin(data.input));
+      } catch (error) {
+        console.error('Fetch code error = ', error);
+      }
+    }
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get('id');
+    if (!id) {
+      return;
+    }
+
+    fetchCode(id);
+  }, []);
 
   return (
     <>

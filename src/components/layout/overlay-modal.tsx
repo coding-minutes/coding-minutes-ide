@@ -49,8 +49,7 @@ export const OverlayModal: React.FC<ModalOverlayProps> = (props) => {
   };
 
   const loginFailure = (e) => {
-    e?.preventDefault?.();
-    console.error('Failure = ', e);
+    console.error('Login Failure = ', e);
   };
 
   return (
