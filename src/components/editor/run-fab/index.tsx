@@ -4,7 +4,7 @@ import { useTask } from 'react-use-task';
 
 import { pollSubmission, Submission } from '~/components/editor/run-fab/actions';
 import { sleep } from '~/components/editor/run-fab/utils';
-import api from '~/services/api';
+import api from '~/services/judge_api';
 import { getCurrentSource, getSelectedLanguage, getStdin } from '~/store/getters/editor';
 import { setReturnCode, setStdout } from '~/store/action/editor';
 

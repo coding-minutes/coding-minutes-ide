@@ -1,10 +1,10 @@
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
-import api from "~/services/api";
-import { setCodeStubs } from "~/store/action/editor";
+import api from '~/services/judge_api';
+import { setCodeStubs } from '~/store/action/editor';
 
 export const loadStubs = async (dispatch: Dispatch) => {
-    const response: any = await api.get("stubs");
+  const response: any = await api.get('stubs');
 
-    dispatch(setCodeStubs(response.data.data));
-}
+  dispatch(setCodeStubs(response.data.data));
+};
