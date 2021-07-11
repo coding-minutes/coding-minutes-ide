@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTask } from 'react-use-task';
-
 import { Navbar } from '~/components/layout/navbar';
 import { CodeEditor } from '~/components/editor/code-editor';
 import { IONav } from '~/components/editor/io-nav';
@@ -14,6 +13,8 @@ import { toggleIOPane } from '~/store/action/ui';
 import { OverlayModal } from '~/components/layout/overlay-modal';
 import IdeApi from '~/services/ide_api';
 import { useLocation } from 'react-router-dom';
+import { loginUser } from '~/store/action/auth';
+import AuthClient from '~/services/auth_api';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   if (returnCode === 0) return FabState.correct;
@@ -69,6 +70,42 @@ export const MainView: React.FC = () => {
     }
 
     fetchCode(id);
+  }, []);
+
+  React.useEffect(() => {
+    async function verifyJwt(jwt: string) {
+      try {
+        const response = await AuthClient.post(
+          '/verify',
+          {},
+          {
+            headers: {
+              Authorization: `jwt ${jwt}`,
+            },
+          },
+        );
+
+        const user = response.data;
+        dispatch(
+          loginUser({
+            user,
+            jwt,
+            isLoggedIn: true,
+          }),
+        );
+      } catch (error) {
+        // Invalid JWT
+        localStorage.removeItem('coding-minutes-ide-jwt');
+      }
+    }
+
+    // Check if jwt is present in localstorage. If present, login user.
+    const jwt: string = localStorage.getItem('coding-minutes-ide-jwt');
+    if (!jwt) {
+      return;
+    }
+
+    verifyJwt(jwt);
   }, []);
 
   return (

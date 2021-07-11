@@ -27,6 +27,7 @@ export const Navbar: React.FC = () => {
 
   const logout = () => {
     dispatch(logoutUser());
+    localStorage.removeItem('coding-minutes-ide-jwt');
   };
 
   const saveCode = async () => {

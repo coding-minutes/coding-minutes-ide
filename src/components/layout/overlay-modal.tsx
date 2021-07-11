@@ -35,6 +35,8 @@ export const OverlayModal: React.FC<ModalOverlayProps> = (props) => {
         last_name: basicProfile.getFamilyName(),
       };
 
+      localStorage.setItem('coding-minutes-ide-jwt', jwt);
+
       dispatch(
         loginUser({
           user,
