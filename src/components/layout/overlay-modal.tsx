@@ -10,14 +10,21 @@ export const OverlayModal: React.FC<ModalOverlayProps> = (props) => {
   const dispatch = useDispatch();
 
   const { className } = props;
-  const toggleOverlay = (e) => {
+  const toggleOverlay = () => {
     dispatch(toggleModalOverlay);
   };
 
   return (
     <>
-      <div className={`overlay ${className}`} onKeyDown={toggleOverlay}>
+      <div className={`overlay ${className}`}>
         <div className="overlay__modal">
+          <button onClick={toggleOverlay}>
+            <img
+              src="https://minio.codingminutes.com/assets/cross.svg"
+              alt="X"
+              className="overlay__modal__close-button"
+            />
+          </button>
           <div className="w-100">
             <div className="overlay__modal__title mb-3">Welcome to</div>
             <img

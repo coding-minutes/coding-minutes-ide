@@ -414,7 +414,7 @@ button {
 
     &__modal {
       height: fit-content;
-      max-height: 60%;
+      max-height: 80%;
       overflow: auto;
       width: 90vw;
       max-width: 500px;
@@ -424,6 +424,14 @@ button {
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+
+      &__close-button {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+      }
 
       .w-100 {
         text-align: center;
