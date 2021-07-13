@@ -8,7 +8,7 @@ export const Navbar: React.FC = () => (
       <div className="row no-gutters align-items-center justify-content-between py-2 px-5 h-inherit">
         <a href="https://codingminutes.com/" target="_blank">
           <img
-            src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cm-oneline.svg"
+            src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
             alt="Coding Minutes Logo"
             style={{ height: '20px' }}
           />
