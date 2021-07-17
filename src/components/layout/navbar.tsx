@@ -2,16 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { LanguagePicker } from '~/components/editor/language-picker';
-// import { isModalOverlayVisible } from '~/store/getters/ui';
-import { toggleModalOverlay } from '~/store/action/ui';
 import { getIsLoggedIn } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
+import { setActiveModal } from '~/store/action/ui';
+import { LOGIN_MODAL } from '~/constants/modal';
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
-
-  // const isModalVisible = useSelector(isModalOverlayVisible());
-  const toggleOverlay = () => dispatch(toggleModalOverlay());
+  const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
 
   const logout = () => {
@@ -25,7 +23,7 @@ export const Navbar: React.FC = () => {
           <div className="row no-gutters align-items-center">
             <a href="https://codingminutes.com/" target="_blank" className="mr-5">
               <img
-                src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cm-oneline.svg"
+                src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
                 alt="Coding Minutes Logo"
                 style={{ height: '20px' }}
               />
