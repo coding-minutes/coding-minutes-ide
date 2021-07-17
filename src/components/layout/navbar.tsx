@@ -1,20 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
-// import { isModalOverlayVisible } from '~/store/getters/ui';
-import { toggleModalOverlay } from '~/store/action/ui';
 import { getIsLoggedIn, getJwt } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
+import { setActiveModal } from '~/store/action/ui';
 import IdeClient from '~/services/ide_api';
+import { LOGIN_MODAL } from '~/constants/modal';
 import { getCurrentSource, getStdin, getSelectedLanguage } from '~/store/getters/editor';
 import { useHistory, useLocation } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  // const isModalVisible = useSelector(isModalOverlayVisible());
-  const toggleOverlay = () => dispatch(toggleModalOverlay());
+  const openLoginModal = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
 
   const data = {
@@ -78,7 +76,7 @@ export const Navbar: React.FC = () => {
           <div className="row no-gutters align-items-center">
             <a href="https://codingminutes.com/" target="_blank" className="mr-5">
               <img
-                src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cm-oneline.svg"
+                src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
                 alt="Coding Minutes Logo"
                 style={{ height: '20px' }}
               />
@@ -99,7 +97,7 @@ export const Navbar: React.FC = () => {
               </button>
             )}
             {!isLoggedIn && (
-              <button className="button-primary" onClick={toggleOverlay}>
+              <button className="button-primary" onClick={openLoginModal}>
                 Login Now
               </button>
             )}

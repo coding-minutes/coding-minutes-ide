@@ -1,2 +1,2 @@
 export const TOGGLE_IO_PANE = 'ui/TOGGLE_IO_PANE';
-export const TOGGLE_MODAL_OVERLAY = 'ui/TOGGLE_MODAL_OVERLAY';
+export const SET_ACTIVE_MODAL = 'ui/SET_ACTIVE_MODAL';

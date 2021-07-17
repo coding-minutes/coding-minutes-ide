@@ -60,9 +60,9 @@ export const RunFAB = (props: RunFabProps) => {
   };
 
   const IconMap = {
-    idle: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/play-white.svg',
-    correct: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg',
-    error: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/exclamation.svg',
+    idle: 'https://minio.codingminutes.com/assets/play-white.svg',
+    correct: 'https://minio.codingminutes.com/assets/play-white.svg',
+    error: 'https://minio.codingminutes.com/assets/play-white.svg',
   };
 
   const buttonClass = ButtonClassMap[props.state];

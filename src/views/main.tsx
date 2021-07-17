@@ -7,12 +7,12 @@ import { FabState, RunFAB } from '~/components/editor/run-fab';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode, setSource, setStdin, setSelectedLanguage } from '~/store/action/editor';
-import { isIOPaneOpen, isModalOverlayVisible } from '~/store/getters/ui';
+import { isIOPaneOpen } from '~/store/getters/ui';
 import { initalize } from '~/initializers';
 import { toggleIOPane } from '~/store/action/ui';
-import { OverlayModal } from '~/components/layout/overlay-modal';
 import IdeApi from '~/services/ide_api';
 import { useLocation } from 'react-router-dom';
+import { LoginModal } from '~/components/auth/login-modal';
 import { loginUser } from '~/store/action/auth';
 import AuthClient from '~/services/auth_api';
 
@@ -28,7 +28,6 @@ export const MainView: React.FC = () => {
   const dispatch = useDispatch();
   const returnCode = useSelector(getReturnCode());
   const isIOOpen = useSelector(isIOPaneOpen());
-  const isModalVisible = useSelector(isModalOverlayVisible());
   const location = useLocation();
 
   const state = getFabStateForReturnCode(returnCode);
@@ -111,7 +110,7 @@ export const MainView: React.FC = () => {
   return (
     <>
       <div className="ide-container ide-container--dark">
-        <OverlayModal className={isModalVisible ? '' : 'overlay--hidden'} />
+        <LoginModal />
         <Navbar />
         <div className="main-container row no-gutters">
           <div className="flex-1 ide-section">

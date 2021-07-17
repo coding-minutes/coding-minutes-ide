@@ -45,7 +45,7 @@ export const editorReducer = (state: EditorState = initialState, action): Editor
         ...state,
         sourceLanguageMap: {
           ...state.sourceLanguageMap,
-          [state.selectedLanguage?.id || -1]: action.payload,
+          [state.selectedLanguage.id]: action.payload,
         },
       };
     case SET_STDOUT:
