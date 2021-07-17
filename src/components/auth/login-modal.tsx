@@ -8,7 +8,7 @@ export const LoginModal: React.FC = () => {
         <BaseModal name={LOGIN_MODAL} >
             <div className="overlay__modal__title mb-3">Welcome to</div>
             <img
-              src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cm-oneline.svg"
+              src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
               alt="Coding Minutes Logo"
               style={{ height: '20px' }}
             />
