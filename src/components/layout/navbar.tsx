@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
           <div className="row no-gutters align-items-center">
             <a href="https://codingminutes.com/" target="_blank" className="mr-5">
               <img
-                src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cm-oneline.svg"
+                src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
                 alt="Coding Minutes Logo"
                 style={{ height: '20px' }}
               />
