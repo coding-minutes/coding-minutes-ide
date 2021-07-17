@@ -1,15 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { LanguagePicker } from '~/components/editor/language-picker';
-// import { isModalOverlayVisible } from '~/store/getters/ui';
-import { toggleModalOverlay } from '~/store/action/ui';
+import { setActiveModal } from '~/store/action/ui';
+import { LOGIN_MODAL } from '~/constants/modal'
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
-
-  // const isModalVisible = useSelector(isModalOverlayVisible());
-  const toggleOverlay = () => dispatch(toggleModalOverlay());
+  const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
 
   return (
     <div className="navbar-top">

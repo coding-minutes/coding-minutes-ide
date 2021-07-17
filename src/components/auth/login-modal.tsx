@@ -1,24 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { toggleModalOverlay } from '~/store/action/ui';
+import { BaseModal } from '~/components/base/modal';
+import { LOGIN_MODAL } from '~/constants/modal';
 
-export interface ModalOverlayProps {
-  className: string;
-}
 
-export const OverlayModal: React.FC<ModalOverlayProps> = (props) => {
-  const dispatch = useDispatch();
-
-  const { className } = props;
-  const toggleOverlay = (e) => {
-    dispatch(toggleModalOverlay);
-  };
-
-  return (
-    <>
-      <div className={`overlay ${className}`} onKeyDown={toggleOverlay}>
-        <div className="overlay__modal">
-          <div className="w-100">
+export const LoginModal: React.FC = () => {
+    return (
+        <BaseModal name={LOGIN_MODAL} >
             <div className="overlay__modal__title mb-3">Welcome to</div>
             <img
               src="https://cb-thumbnails.s3.ap-south-1.amazonaws.com/cm-oneline.svg"
@@ -30,7 +17,7 @@ export const OverlayModal: React.FC<ModalOverlayProps> = (props) => {
             <div className="login-card login-card--google mb-4">
               <div className="row no-gutters align-items-center">
                 <img src="https://minio.codingminutes.com/assets/google-logo.svg" alt="Google" />
-                <div className="flex-1">Continue with Google</div>
+                <button className="flex-1">Continue with Google</button>
               </div>
             </div>
             <div className="login-card login-card--github mb-4">
@@ -48,9 +35,6 @@ export const OverlayModal: React.FC<ModalOverlayProps> = (props) => {
                 <div className="flex-1">Continue with Linkedin</div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+        </BaseModal>
+    )
+}
