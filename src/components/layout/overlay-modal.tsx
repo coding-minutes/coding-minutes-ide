@@ -11,7 +11,7 @@ export const OverlayModal: React.FC<ModalOverlayProps> = (props) => {
 
   const { className } = props;
   const toggleOverlay = () => {
-    dispatch(toggleModalOverlay);
+    dispatch(toggleModalOverlay());
   };
 
   return (
