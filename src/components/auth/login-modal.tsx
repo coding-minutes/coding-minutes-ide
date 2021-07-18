@@ -5,19 +5,20 @@ import { LOGIN_MODAL } from '~/constants/modal';
 import { loginUser } from '~/store/action/auth';
 import { GoogleLogin } from 'react-google-login';
 import Config from '~/config';
-import AuthClient from '~/services/auth_api';
+import { loginWithToken } from '~/services/auth';
 import { setActiveModal } from '~/store/action/ui';
+import { setJwt } from '~/utils/jwt';
 
 export const LoginModal: React.FC = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
 
   const loginGoogleSuccess = async (response) => {
     try {
+      setLoading(true);
       const token = response.getAuthResponse().id_token;
-      const res = await AuthClient.post('/login', {
-        token,
-      });
-      const { jwt } = res.data;
+      const res = await loginWithToken(token);
+      const { jwt } = res;
 
       const basicProfile = response.getBasicProfile();
       const user = {
@@ -34,8 +35,11 @@ export const LoginModal: React.FC = () => {
         }),
       );
       dispatch(setActiveModal(null));
+      setJwt(jwt);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,19 +58,22 @@ export const LoginModal: React.FC = () => {
       />
       <div className="overlay__modal__divider"></div>
       <div className="overlay__modal__title mb-4">Login to your account</div>
-      <div className="login-card login-card--google mb-4">
-        <GoogleLogin
-          clientId={Config.GOOGLE_CLIENT_ID}
-          onSuccess={loginGoogleSuccess}
-          onFailure={loginFailure}
-          render={(renderProps) => (
-            <div className="row no-gutters align-items-center" onClick={renderProps.onClick}>
-              <img src="https://minio.codingminutes.com/assets/google-logo.svg" alt="Google" />
-              <div className="flex-1">Continue with Google</div>
-            </div>
-          )}
-        />
-      </div>
+      {loading && <p style={{ height: '20px' }}>Loading...</p>}
+      {!loading && (
+        <div className="login-card login-card--google mb-4">
+          <GoogleLogin
+            clientId={Config.GOOGLE_CLIENT_ID}
+            onSuccess={loginGoogleSuccess}
+            onFailure={loginFailure}
+            render={(renderProps) => (
+              <div className="row no-gutters align-items-center" onClick={renderProps.onClick}>
+                <img src="https://minio.codingminutes.com/assets/google-logo.svg" alt="Google" />
+                <div className="flex-1">Continue with Google</div>
+              </div>
+            )}
+          />
+        </div>
+      )}
     </BaseModal>
   );
 };

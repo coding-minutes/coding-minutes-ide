@@ -4,7 +4,7 @@ import { useTask } from 'react-use-task';
 
 import { pollSubmission, Submission } from '~/components/editor/run-fab/actions';
 import { sleep } from '~/components/editor/run-fab/utils';
-import api from '~/services/judge_api';
+import { runCode } from '~/services/judge';
 import { getCurrentSource, getSelectedLanguage, getStdin } from '~/store/getters/editor';
 import { setReturnCode, setStdout } from '~/store/action/editor';
 
@@ -30,7 +30,7 @@ export const RunFAB = (props: RunFabProps) => {
   const setCode = (returnCode) => dispatch(setReturnCode(returnCode));
 
   const [{ isRunning }, perform] = useTask(function* (source, language, input) {
-    const response: any = yield api.post('run', {
+    const response: any = yield runCode({
       source_code: btoa(source),
       language_id: language,
       stdin: btoa(input),

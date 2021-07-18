@@ -1,20 +1,45 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { LanguagePicker } from '~/components/editor/language-picker';
 import { getIsLoggedIn } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
 import { setActiveModal } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
+import { getCurrentSource, getStdin, getSelectedLanguage } from '~/store/getters/editor';
+import { clearJwt } from '~/utils/jwt';
+import { saveUpdateCode } from '~/tasks/save-update-code';
 
 export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const data = {
+    lang: JSON.stringify(useSelector(getSelectedLanguage())),
+    source: useSelector(getCurrentSource()),
+    input: useSelector(getStdin()),
+  };
+
+  const history = useHistory();
 
   const logout = () => {
     dispatch(logoutUser());
+    clearJwt();
   };
+
+  async function saveCode() {
+    const queryParams = new URLSearchParams(window.location.search);
+    const id = queryParams.get('id');
+    const response = await saveUpdateCode(data, id);
+    if (id != response?.id) {
+      return history.push(`/?id=${response.id}`);
+    }
+  }
+
+  function copyCode() {
+    const sourceCode = data.source;
+    navigator.clipboard.writeText(sourceCode);
+  }
 
   return (
     <div className="navbar-top">
@@ -28,8 +53,14 @@ export const Navbar: React.FC = () => {
                 style={{ height: '20px' }}
               />
             </a>
-            <div className="navbar-top__option">Save</div>
-            <div className="navbar-top__option">Copy Code</div>
+            {isLoggedIn && (
+              <div className="navbar-top__option" onClick={saveCode}>
+                Save
+              </div>
+            )}
+            <div className="navbar-top__option" onClick={copyCode}>
+              Copy Code
+            </div>
             <div className="navbar-top__option">Share</div>
           </div>
           <div className="row no-gutters align-items-center">

@@ -1,5 +1,5 @@
 import { loadStubs } from './stubs';
 
-export const initalize = function* (dispatch) {
+export const initialize = function* (dispatch) {
   yield loadStubs(dispatch);
 };

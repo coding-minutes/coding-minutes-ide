@@ -1,17 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTask } from 'react-use-task';
-
-import api from '~/services/judge_api';
 import { getSelectedLanguage } from '~/store/getters/editor';
 import { setSelectedLanguage } from '~/store/action/editor';
+import { getLanguages } from '~/services/judge';
 
 export const LanguagePicker: React.FC = () => {
   const dispatch = useDispatch();
   const selectedLanguage = useSelector(getSelectedLanguage());
 
   const [{ isRunning, lastSuccessful }, fetchLanguages] = useTask(function* () {
-    const response: any = yield api.get('languages');
+    const response: any = yield getLanguages();
 
     return response.data.data;
   });
