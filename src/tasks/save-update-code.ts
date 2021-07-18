@@ -7,6 +7,7 @@ interface codeData {
 }
 
 export async function saveUpdateCode(data: codeData, id?: string) {
+  data.source = btoa(data.source);
   if (!id) {
     // This is a fresh code. Save it as new.
     try {
