@@ -36,8 +36,7 @@ export const MainView: React.FC = () => {
 
   React.useEffect(() => {
     fetchCodeFromIdParam(dispatch);
-  }),
-    [];
+  }, []);
 
   React.useEffect(() => {
     getUserFromJwt(dispatch);

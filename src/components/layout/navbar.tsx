@@ -11,6 +11,7 @@ import { clearJwt } from '~/utils/jwt';
 import { saveUpdateCode } from '~/tasks/save-update-code';
 
 export const Navbar: React.FC = () => {
+  const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
@@ -28,11 +29,18 @@ export const Navbar: React.FC = () => {
   };
 
   async function saveCode() {
+    setLoading(true);
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get('id');
-    const response = await saveUpdateCode(data, id);
-    if (id != response?.id) {
-      return history.push(`/?id=${response.id}`);
+    try {
+      const response = await saveUpdateCode(data, id);
+      if (id != response?.id) {
+        return history.push(`/?id=${response.id}`);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -54,9 +62,15 @@ export const Navbar: React.FC = () => {
               />
             </a>
             {isLoggedIn && (
-              <div className="navbar-top__option" onClick={saveCode}>
-                Save
-              </div>
+              <button
+                className="navbar-top__option"
+                onClick={saveCode}
+                disabled={loading}
+                style={{ outline: 'none' }}
+              >
+                {!loading && <>Save</>}
+                {loading && <>Saving</>}
+              </button>
             )}
             <div className="navbar-top__option" onClick={copyCode}>
               Copy Code
