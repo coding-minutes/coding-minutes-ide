@@ -35,14 +35,6 @@ export const MainView: React.FC = () => {
   const [{}, perform] = useTask(initialize);
 
   React.useEffect(() => {
-    fetchCodeFromIdParam(dispatch);
-  }, []);
-
-  React.useEffect(() => {
-    getUserFromJwt(dispatch);
-  }, []);
-
-  React.useEffect(() => {
     perform(dispatch);
   }, []);
 

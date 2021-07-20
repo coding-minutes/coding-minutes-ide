@@ -5,7 +5,10 @@ import {
   SET_STDIN,
   SET_STDOUT,
   SET_STUBS,
+  SET_LANGUAGES,
+  SET_SELECTED_LANGUAGE_BY_ID,
 } from '~/store/action-types/editor';
+import { listToMap } from '~/utils/store';
 
 export interface Language {
   id: number;
@@ -18,6 +21,7 @@ export interface EditorState {
   stdin: string;
   stdout: string;
   returnCode: number;
+  languages: { [id: number]: Language };
 }
 
 const initialState: EditorState = {
@@ -26,6 +30,7 @@ const initialState: EditorState = {
   stdin: '',
   stdout: '',
   returnCode: null,
+  languages: {},
 };
 
 export const editorReducer = (state: EditorState = initialState, action): EditorState => {
@@ -62,6 +67,22 @@ export const editorReducer = (state: EditorState = initialState, action): Editor
       return {
         ...state,
         stdin: action.payload,
+      };
+    case SET_LANGUAGES:
+      return {
+        ...state,
+        languages: listToMap(action.payload),
+        // Set default language when no language is selected.
+        ...(!state.selectedLanguage
+          ? {
+              selectedLanguage: action.payload[0],
+            }
+          : {}),
+      };
+    case SET_SELECTED_LANGUAGE_BY_ID:
+      return {
+        ...state,
+        selectedLanguage: state.languages[action.payload],
       };
     default:
       return state;

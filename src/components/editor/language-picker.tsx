@@ -1,34 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useTask } from 'react-use-task';
-import { getSelectedLanguage } from '~/store/getters/editor';
+import { getSelectedLanguage, getLanguages } from '~/store/getters/editor';
 import { setSelectedLanguage } from '~/store/action/editor';
-import { getLanguages } from '~/services/judge';
+import { Language } from '~/store/reducers/editor';
 
 export const LanguagePicker: React.FC = () => {
   const dispatch = useDispatch();
+  const languages = useSelector(getLanguages());
   const selectedLanguage = useSelector(getSelectedLanguage());
-
-  const [{ isRunning, lastSuccessful }, fetchLanguages] = useTask(function* () {
-    const response: any = yield getLanguages();
-
-    return response.data.data;
-  });
-  const languages: any = lastSuccessful?.value || [];
-
-  React.useEffect(() => {
-    fetchLanguages();
-  }, []);
-
   const selectLanguage = (language) => dispatch(setSelectedLanguage(language));
   const selectLanguageById = (id) =>
-    selectLanguage(languages.find((language) => language.id === +id));
-
-  React.useEffect(() => {
-    if (languages.length) {
-      selectLanguage(languages[0]);
-    }
-  }, [languages]);
+    selectLanguage(languages.find((language: Language) => language.id === +id));
 
   return (
     <select
@@ -36,7 +18,7 @@ export const LanguagePicker: React.FC = () => {
       value={selectedLanguage?.id}
       onChange={(e) => selectLanguageById(e.target.value)}
     >
-      {languages.map((language) => (
+      {languages.map((language: Language) => (
         <option key={language.id} value={language.id}>
           {language.name}
         </option>

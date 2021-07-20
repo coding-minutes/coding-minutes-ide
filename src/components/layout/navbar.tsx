@@ -15,8 +15,9 @@ export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const currentLanguage = useSelector(getSelectedLanguage());
   const data = {
-    lang: JSON.stringify(useSelector(getSelectedLanguage())),
+    lang: currentLanguage?.id || -1,
     source: useSelector(getCurrentSource()),
     input: useSelector(getStdin()),
   };
@@ -75,7 +76,7 @@ export const Navbar: React.FC = () => {
             <div className="navbar-top__option" onClick={copyCode}>
               Copy Code
             </div>
-            <div className="navbar-top__option">Share</div>
+            {/* <div className="navbar-top__option">Share</div> */}
           </div>
           <div className="row no-gutters align-items-center">
             <LanguagePicker />

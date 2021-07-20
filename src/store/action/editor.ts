@@ -2,10 +2,12 @@ import { Language } from '~/store/reducers/editor';
 import {
   SET_RETURN_CODE,
   SET_SELECTED_LANGUAGE,
+  SET_SELECTED_LANGUAGE_BY_ID,
   SET_SOURCE,
   SET_STDIN,
   SET_STDOUT,
   SET_STUBS,
+  SET_LANGUAGES,
 } from '~/store/action-types/editor';
 import { listToMap } from '~/utils/store';
 
@@ -42,4 +44,14 @@ export const setReturnCode = (returnCode: number) => ({
 export const setCodeStubs = (codeStubs: Array<CodeStub>) => ({
   type: SET_STUBS,
   payload: listToMap(codeStubs, 'language_id', (obj) => obj.stub),
+});
+
+export const setLanguages = (languages: Array<Language>) => ({
+  type: SET_LANGUAGES,
+  payload: languages,
+});
+
+export const setLanguageById = (id: string | number) => ({
+  type: SET_SELECTED_LANGUAGE_BY_ID,
+  payload: id,
 });
