@@ -1,8 +1,28 @@
+// Base Classes
+%button-generic {
+  font-weight: 700;
+  padding: 0.5rem 1.75rem;
+  border-radius: 5px;
+
+  &:focus {
+    border: unset;
+    box-shadow: unset;
+    outline: unset;
+  }
+}
+
+// Variables
 $accent-color-green: #7ac25b;
-$accent-color-purple: #7200ff;
-$accent-color-pink: #aa00ff;
+$accent-color-purple: #5848ea;
+$accent-color-pink: #9549eb;
 
 $accent-gradient-purple: linear-gradient(to right, $accent-color-purple, $accent-color-pink);
+$button-gradient: linear-gradient(
+  to right,
+  $accent-color-purple,
+  $accent-color-pink,
+  $accent-color-purple
+);
 
 $primary-dark: #1e1e1e;
 $secondary-dark: #404040;
@@ -12,6 +32,20 @@ $primary-light: #ffffff;
 $secondary-light: #d1d1d1;
 $tertiary-light: #adadad;
 
+// Animations
+@keyframes button-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Classes and Overrides
 html {
   font-size: 14px;
 }
@@ -20,10 +54,30 @@ html {
   height: inherit;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 button {
   background: none;
   border: none;
   padding: unset;
+}
+
+.button-primary {
+  @extend %button-generic;
+  background: $button-gradient;
+  cursor: pointer;
+  background-size: 200% 200%;
+  color: white;
+
+  &:hover {
+    animation: button-gradient 3s ease infinite;
+  }
 }
 
 .flex-col {
@@ -70,6 +124,17 @@ button {
     border-bottom: solid 1px $tertiary-dark;
     height: 60px;
 
+    &__option {
+      font-size: 1.142rem;
+      color: $primary-light;
+      padding: 0 1rem;
+      cursor: pointer;
+
+      &:hover {
+        color: $accent-color-green;
+      }
+    }
+
     select {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -105,58 +170,41 @@ button {
         background: $tertiary-dark;
       }
     }
-
-    .open-io-button {
-      cursor: pointer;
-      font-size: 1.5rem;
-      font-weight: bold;
-
-      .open-io-button__tooltip {
-        display: none;
-        background: rgba($color: $primary-light, $alpha: 0.5);
-        border-radius: 5px;
-        position: absolute;
-        padding: 5px;
-        color: $primary-dark;
-        font-size: 0.75rem;
-        width: 90px;
-        bottom: -50px;
-        right: -15px;
-      }
-
-      &:hover {
-        .open-io-button__tooltip {
-          display: block;
-        }
-      }
-    }
   }
+
   .run-button__container {
     position: fixed;
-    bottom: calc(1.5rem + 80px);
-    right: calc(3rem + 80px);
-    transition: all 0.5s;
+    bottom: calc(1.5rem + 60px);
+    right: calc(3rem + 60px);
+    transition: all 0.75s;
 
     .run-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 80px;
-      width: 80px;
+      height: 60px;
+      width: 60px;
       border-radius: 50px;
       cursor: pointer;
       padding: 20px;
       position: absolute;
       top: 0;
       left: 0;
+      transition: all 0.75s;
 
       img {
         width: 100%;
+        margin-right: -5px;
       }
 
       &--run-code {
-        background: $accent-color-pink;
-        border: solid 1px $accent-color-pink;
+        background: $button-gradient;
+        border: solid 1px $button-gradient;
+        background-size: 200% 200%;
+
+        &:hover {
+          animation: button-gradient 3s infinite;
+        }
       }
 
       &--success {
@@ -197,9 +245,12 @@ button {
 
   .main-container {
     height: calc(100vh - 60px);
+    position: relative;
 
     .ide-section {
       flex: 1;
+      width: 60%;
+      max-width: calc(100vw - 30px);
     }
 
     .io-section {
@@ -207,38 +258,76 @@ button {
       width: 40%;
       max-width: 500px;
       position: relative;
-      transition: all 0.5s;
+      transition: all 0.75s;
 
       &--hidden {
-        margin-right: -500px;
+        width: 30px !important;
+        overflow: hidden;
 
-        .run-button__container {
-          bottom: calc(3rem + 80px);
+        * {
+          visibility: hidden;
+        }
+      }
+
+      &--hidden ~ .run-button__container {
+        bottom: calc(3rem + 60px);
+
+        .run-button {
+          transform: scale(125%);
+        }
+      }
+
+      &--hidden ~ .ide-section {
+        width: calc(100vw - 30px);
+      }
+
+      &--hidden ~ .open-io-button {
+        background: $accent-color-green;
+        right: calc(3rem - 10px);
+
+        .open-io-button__icon {
+          transform: rotate(180deg);
         }
       }
     }
 
     .io-box {
-      padding: 30px;
-
       textarea {
         background: $primary-dark;
         width: 100%;
-        height: 95%;
-        padding: 20px;
+        height: 80%;
         border: none;
         resize: none;
         appearance: none;
         color: $primary-light;
+        transition: padding 0.25s;
 
         &:focus {
-          border: solid 1px $tertiary-dark;
+          border: solid 1px $tertiary-dark !important;
+          outline: 0 none !important;
+          box-shadow: 0 0 5px rgba($color: $accent-color-green, $alpha: 1) inset !important;
           border-radius: 5px;
+          padding: 20px;
         }
       }
 
+      .io-header {
+        font-size: 1.142rem;
+        font-weight: 700;
+      }
+
+      .input-box {
+        padding: 30px;
+        border-bottom: solid 1px $tertiary-dark;
+        height: 50%;
+        overflow: auto;
+      }
+
       .output-box {
+        padding: 30px;
         background: $primary-dark;
+        height: 50%;
+        overflow: auto;
       }
 
       pre {
@@ -264,6 +353,139 @@ button {
           background: $primary-dark;
         }
       }
+    }
+
+    .open-io-button {
+      cursor: pointer;
+      font-weight: bold;
+      position: fixed;
+      top: 80px;
+      right: 3rem;
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      border: 1px solid $accent-color-green;
+      transition: all 0.75s;
+
+      &__icon {
+        transition: all 0.75s;
+      }
+
+      // .open-io-button__tooltip {
+      //   display: none;
+      //   background: rgba($color: $primary-light, $alpha: 0.5);
+      //   border-radius: 5px;
+      //   position: absolute;
+      //   padding: 5px;
+      //   color: $primary-dark;
+      //   font-size: 0.75rem;
+      //   width: 90px;
+      //   bottom: -50px;
+      //   right: -15px;
+      // }
+
+      // &:hover {
+      //   .open-io-button__tooltip {
+      //     display: block;
+      //   }
+      // }
+    }
+  }
+
+  .overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    background: rgba($color: #363a43, $alpha: 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--hidden {
+      display: none;
+    }
+
+    &__modal {
+      height: fit-content;
+      max-height: 80%;
+      overflow: auto;
+      width: 90vw;
+      max-width: 500px;
+      background: $primary-dark;
+      border-radius: 10px;
+      padding: 50px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      &__close-button {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        cursor: pointer;
+      }
+
+      .w-100 {
+        text-align: center;
+      }
+
+      &__title {
+        color: $primary-light;
+        font-weight: 700;
+        font-size: 1.285rem;
+      }
+
+      &__divider {
+        background-color: $tertiary-dark;
+        margin: 30px 0;
+        height: 1px;
+        width: 100%;
+      }
+    }
+  }
+
+  .login-card {
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    font-size: 1.142rem;
+    width: 60%;
+    min-width: fit-content;
+    color: $primary-light;
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.5s ease;
+
+    &--google {
+      background: $primary-light;
+      color: $primary-dark;
+      border: 1px solid $primary-light;
+
+      &:hover {
+        color: $primary-light;
+      }
+    }
+
+    &--github {
+      background: #6cc644;
+      border: 1px solid #6cc644;
+    }
+
+    &--linkedin {
+      background: #0077b5;
+      border: 1px solid #0077b5;
+    }
+
+    &:hover {
+      background: transparent;
     }
   }
 }
