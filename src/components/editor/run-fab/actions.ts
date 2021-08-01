@@ -1,4 +1,4 @@
-import api from '~/services/judge_api';
+import { getSubmission } from '~/services/judge';
 
 export interface Submission {
   time: string;
@@ -9,4 +9,4 @@ export interface Submission {
 }
 
 export const pollSubmission = (submissionId: string): Promise<Submission> =>
-  api.get(`submissions/${submissionId}`).then((response) => response.data.data);
+  getSubmission(submissionId).then((response) => response.data.data);

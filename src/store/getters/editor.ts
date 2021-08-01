@@ -4,3 +4,4 @@ export const getCurrentSource = () => (state) =>
 export const getStdin = () => (state) => state.editor.stdin;
 export const getStdout = () => (state) => state.editor.stdout;
 export const getReturnCode = () => (state) => state.editor.returnCode;
+export const getLanguages = () => (state) => Object.values(state.editor.languages);
