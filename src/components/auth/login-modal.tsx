@@ -1,40 +1,79 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { BaseModal } from '~/components/base/modal';
 import { LOGIN_MODAL } from '~/constants/modal';
-
+import { loginUser } from '~/store/action/auth';
+import { GoogleLogin } from 'react-google-login';
+import Config from '~/config';
+import { loginWithToken } from '~/services/auth';
+import { setActiveModal } from '~/store/action/ui';
+import { setJwt } from '~/utils/jwt';
 
 export const LoginModal: React.FC = () => {
-    return (
-        <BaseModal name={LOGIN_MODAL} >
-            <div className="overlay__modal__title mb-3">Welcome to</div>
-            <img
-              src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
-              alt="Coding Minutes Logo"
-              style={{ height: '20px' }}
-            />
-            <div className="overlay__modal__divider"></div>
-            <div className="overlay__modal__title mb-4">Login to your account</div>
-            <div className="login-card login-card--google mb-4">
-              <div className="row no-gutters align-items-center">
+  const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
+
+  const loginGoogleSuccess = async (response) => {
+    try {
+      setLoading(true);
+      const token = response.getAuthResponse().id_token;
+      const res = await loginWithToken(token);
+      const { jwt } = res;
+
+      const basicProfile = response.getBasicProfile();
+      const user = {
+        email: basicProfile.getEmail(),
+        first_name: basicProfile.getGivenName(),
+        last_name: basicProfile.getFamilyName(),
+      };
+
+      dispatch(
+        loginUser({
+          user,
+          jwt,
+          isLoggedIn: true,
+        }),
+      );
+      dispatch(setActiveModal(null));
+      setJwt(jwt);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginFailure = (e) => {
+    e?.preventDefault?.();
+    console.error('Failure = ', e);
+  };
+
+  return (
+    <BaseModal name={LOGIN_MODAL}>
+      <div className="overlay__modal__title mb-3">Welcome to</div>
+      <img
+        src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
+        alt="Coding Minutes Logo"
+        style={{ height: '20px' }}
+      />
+      <div className="overlay__modal__divider"></div>
+      <div className="overlay__modal__title mb-4">Login to your account</div>
+      {loading && <p style={{ height: '20px' }}>Loading...</p>}
+      {!loading && (
+        <div className="login-card login-card--google mb-4">
+          <GoogleLogin
+            clientId={Config.GOOGLE_CLIENT_ID}
+            onSuccess={loginGoogleSuccess}
+            onFailure={loginFailure}
+            render={(renderProps) => (
+              <div className="row no-gutters align-items-center" onClick={renderProps.onClick}>
                 <img src="https://minio.codingminutes.com/assets/google-logo.svg" alt="Google" />
-                <button className="flex-1">Continue with Google</button>
+                <div className="flex-1">Continue with Google</div>
               </div>
-            </div>
-            <div className="login-card login-card--github mb-4">
-              <div className="row no-gutters align-items-center">
-                <img src="https://minio.codingminutes.com/assets/github-logo.svg" alt="Github" />
-                <div className="flex-1">Continue with Github</div>
-              </div>
-            </div>
-            <div className="login-card login-card--linkedin">
-              <div className="row no-gutters align-items-center">
-                <img
-                  src="https://minio.codingminutes.com/assets/linkedin-logo.svg"
-                  alt="Linkedin"
-                />
-                <div className="flex-1">Continue with Linkedin</div>
-              </div>
-            </div>
-        </BaseModal>
-    )
-}
+            )}
+          />
+        </div>
+      )}
+    </BaseModal>
+  );
+};

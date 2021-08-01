@@ -1,1 +1,1 @@
-export const LOGIN_MODAL = 'login-modal'
+export const LOGIN_MODAL = 'login-modal';

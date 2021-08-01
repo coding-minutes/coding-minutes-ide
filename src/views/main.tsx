@@ -9,9 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
 import { isIOPaneOpen } from '~/store/getters/ui';
-import { initalize } from '~/initializers';
+import { initialize } from '~/initializers';
+import { fetchCodeFromIdParam } from '~/initializers/code';
 import { toggleIOPane } from '~/store/action/ui';
 import { LoginModal } from '~/components/auth/login-modal';
+import { getUserFromJwt } from '~/initializers/user';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   if (returnCode === 0) return FabState.correct;
@@ -30,7 +32,7 @@ export const MainView: React.FC = () => {
 
   const toggleIO = () => dispatch(toggleIOPane());
 
-  const [{}, perform] = useTask(initalize);
+  const [{}, perform] = useTask(initialize);
 
   React.useEffect(() => {
     perform(dispatch);

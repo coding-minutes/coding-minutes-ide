@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const mode = process.env.NODE_ENV || 'development';
 
+require('dotenv').config();
+
 module.exports = {
   entry: './src/index.tsx',
   mode,
@@ -14,7 +16,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-        '~': __dirname + '/src'
+      '~': __dirname + '/src',
     },
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -41,7 +43,10 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': Object.keys(process.env).reduce((acc, curr) => { acc[curr] = JSON.stringify(process.env[curr]); return acc }, {})
+      'process.env': Object.keys(process.env).reduce((acc, curr) => {
+        acc[curr] = JSON.stringify(process.env[curr]);
+        return acc;
+      }, {}),
     }),
     new HtmlWebpackPlugin({
       template: __dirname + '/src/index.html',
