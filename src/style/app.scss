@@ -117,6 +117,7 @@ button {
   height: calc(100vh - $banner-height);
   width: 100%;
   overflow: hidden;
+  position: relative;
 
   &--dark {
     background: $primary-dark;
@@ -361,8 +362,8 @@ button {
     .open-io-button {
       cursor: pointer;
       font-weight: bold;
-      position: fixed;
-      top: 80px;
+      position: absolute;
+      top: 20px;
       right: 3rem;
       height: 40px;
       width: 40px;
