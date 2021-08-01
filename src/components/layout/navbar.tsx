@@ -66,6 +66,15 @@ export const Navbar: React.FC = () => {
               />
             </a>
 
+            <a
+              className="navbar-top__option"
+              href="https://ide.codingminutes.com/"
+              rel="noopener"
+              target="_blank"
+            >
+              New
+            </a>
+
             <button
               className="navbar-top__option"
               onClick={saveCode}

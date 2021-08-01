@@ -133,6 +133,7 @@ button {
       color: $primary-light;
       padding: 0 1rem;
       cursor: pointer;
+      text-decoration: none;
 
       &:hover {
         color: $accent-color-green;
