@@ -8,10 +8,12 @@ import { FabState, RunFAB } from '~/components/editor/run-fab';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
-import { isIOPaneOpen, isModalOverlayVisible } from '~/store/getters/ui';
-import { initalize } from '~/initializers';
+import { isIOPaneOpen } from '~/store/getters/ui';
+import { initialize } from '~/initializers';
+import { fetchCodeFromIdParam } from '~/initializers/code';
 import { toggleIOPane } from '~/store/action/ui';
-import { OverlayModal } from '~/components/layout/overlay-modal';
+import { LoginModal } from '~/components/auth/login-modal';
+import { getUserFromJwt } from '~/initializers/user';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   if (returnCode === 0) return FabState.correct;
@@ -25,13 +27,12 @@ export const MainView: React.FC = () => {
   const dispatch = useDispatch();
   const returnCode = useSelector(getReturnCode());
   const isIOOpen = useSelector(isIOPaneOpen());
-  const isModalVisible = useSelector(isModalOverlayVisible());
 
   const state = getFabStateForReturnCode(returnCode);
 
   const toggleIO = () => dispatch(toggleIOPane());
 
-  const [{}, perform] = useTask(initalize);
+  const [{}, perform] = useTask(initialize);
 
   React.useEffect(() => {
     perform(dispatch);
@@ -48,7 +49,7 @@ export const MainView: React.FC = () => {
   return (
     <>
       <div className="ide-container ide-container--dark">
-        <OverlayModal className={isModalVisible ? '' : 'overlay--hidden'} />
+        <LoginModal />
         <Navbar />
         <div className="main-container row no-gutters">
           <div className="flex-1 ide-section">

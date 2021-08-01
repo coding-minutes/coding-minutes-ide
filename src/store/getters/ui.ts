@@ -1,2 +1,2 @@
 export const isIOPaneOpen = () => (state) => state.ui.io_pane_open;
-export const isModalOverlayVisible = () => (state) => state.ui.modal_overlay_visible;
+export const getActiveModalName = () => (state) => state.ui.active_modal;

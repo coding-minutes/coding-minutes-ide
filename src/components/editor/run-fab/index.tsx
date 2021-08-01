@@ -4,7 +4,7 @@ import { useTask } from 'react-use-task';
 
 import { pollSubmission, Submission } from '~/components/editor/run-fab/actions';
 import { sleep } from '~/components/editor/run-fab/utils';
-import api from '~/services/api';
+import { runCode } from '~/services/judge';
 import { getCurrentSource, getSelectedLanguage, getStdin } from '~/store/getters/editor';
 import { setReturnCode, setStdout } from '~/store/action/editor';
 
@@ -30,7 +30,7 @@ export const RunFAB = (props: RunFabProps) => {
   const setCode = (returnCode) => dispatch(setReturnCode(returnCode));
 
   const [{ isRunning }, perform] = useTask(function* (source, language, input) {
-    const response: any = yield api.post('run', {
+    const response: any = yield runCode({
       source_code: btoa(source),
       language_id: language,
       stdin: btoa(input),
@@ -60,9 +60,9 @@ export const RunFAB = (props: RunFabProps) => {
   };
 
   const IconMap = {
-    idle: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/play-white.svg',
-    correct: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/tick-white.svg',
-    error: 'https://cb-thumbnails.s3.ap-south-1.amazonaws.com/exclamation.svg',
+    idle: 'https://minio.codingminutes.com/assets/play-white.svg',
+    correct: 'https://minio.codingminutes.com/assets/play-white.svg',
+    error: 'https://minio.codingminutes.com/assets/play-white.svg',
   };
 
   const buttonClass = ButtonClassMap[props.state];

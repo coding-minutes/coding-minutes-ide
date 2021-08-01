@@ -1,11 +1,12 @@
-import api from '~/services/api';
+import { getSubmission } from '~/services/judge';
 
 export interface Submission {
-    time: string;
-    memory: number;
-    stdout: string;
-    stderr: string;
-    compile_output: string;
+  time: string;
+  memory: number;
+  stdout: string;
+  stderr: string;
+  compile_output: string;
 }
 
-export const pollSubmission = (submissionId: string): Promise<Submission> => api.get(`submissions/${submissionId}`).then(response => response.data.data)
+export const pollSubmission = (submissionId: string): Promise<Submission> =>
+  getSubmission(submissionId).then((response) => response.data.data);
