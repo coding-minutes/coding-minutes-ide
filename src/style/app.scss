@@ -32,6 +32,9 @@ $primary-light: #ffffff;
 $secondary-light: #d1d1d1;
 $tertiary-light: #adadad;
 
+$banner-height: 5vh;
+$banner-background: #25282e;
+
 // Animations
 @keyframes button-gradient {
   0% {
@@ -111,7 +114,7 @@ button {
 }
 
 .ide-container {
-  height: 100vh;
+  height: calc(100vh - $banner-height);
   width: 100%;
   overflow: hidden;
 
@@ -488,6 +491,29 @@ button {
       background: transparent;
     }
   }
+}
+
+.top-banner {
+  // position: absolute;
+  padding: 10px 30px;
+  height: $banner-height;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $banner-background;
+  color: $primary-light;
+}
+
+.top-banner .top-banner--cross {
+  align-self: flex-start;
+  color: $primary-light;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.top-banner .banner--green-text {
+  color: $accent-color-green;
 }
 
 // REUSE LATER
