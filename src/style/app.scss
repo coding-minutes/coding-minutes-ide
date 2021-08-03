@@ -297,6 +297,7 @@ button {
     }
 
     .io-box {
+      max-height: 100vh;
       textarea {
         background: $primary-dark;
         width: 100%;
