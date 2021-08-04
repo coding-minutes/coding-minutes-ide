@@ -30,6 +30,9 @@ export const Navbar: React.FC = () => {
   };
 
   async function saveCode() {
+    if (!isLoggedIn) {
+      return toggleOverlay();
+    }
     setLoading(true);
     const queryParams = new URLSearchParams(window.location.search);
     const id = queryParams.get('id');
@@ -62,17 +65,26 @@ export const Navbar: React.FC = () => {
                 style={{ height: '20px' }}
               />
             </a>
-            {isLoggedIn && (
-              <button
-                className="navbar-top__option"
-                onClick={saveCode}
-                disabled={loading}
-                style={{ outline: 'none' }}
-              >
-                {!loading && <>Save</>}
-                {loading && <>Saving</>}
-              </button>
-            )}
+
+            <a
+              className="navbar-top__option"
+              href="https://ide.codingminutes.com/"
+              rel="noopener"
+              target="_blank"
+            >
+              New
+            </a>
+
+            <button
+              className="navbar-top__option"
+              onClick={saveCode}
+              disabled={loading}
+              style={{ outline: 'none' }}
+            >
+              {!loading && <>Save</>}
+              {loading && <>Saving</>}
+            </button>
+
             <div className="navbar-top__option" onClick={copyCode}>
               Copy Code
             </div>

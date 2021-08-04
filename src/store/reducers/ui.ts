@@ -1,13 +1,15 @@
-import { TOGGLE_IO_PANE, SET_ACTIVE_MODAL } from '~/store/action-types/ui';
+import { TOGGLE_IO_PANE, SET_ACTIVE_MODAL, TOGGLE_BANNER } from '~/store/action-types/ui';
 
 export interface UIState {
   io_pane_open: boolean;
   active_modal: string | null;
+  isBannerVisible: boolean;
 }
 
 const initialState: UIState = {
   io_pane_open: true,
   active_modal: null,
+  isBannerVisible: true,
 };
 
 export const uiReducer = (state: UIState = initialState, action): UIState => {
@@ -21,6 +23,12 @@ export const uiReducer = (state: UIState = initialState, action): UIState => {
       return {
         ...state,
         active_modal: action.payload,
+      };
+
+    case TOGGLE_BANNER:
+      return {
+        ...state,
+        isBannerVisible: !state.isBannerVisible,
       };
     default:
       return state;
