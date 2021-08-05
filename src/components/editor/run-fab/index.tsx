@@ -75,12 +75,18 @@ export const RunFAB = (props: RunFabProps) => {
       className="run-button__container"
     >
       {isRunning ? (
-        <svg height="90" width="90" className="ring-animation">
-          <circle cx="45" cy="45" r="42" />
-        </svg>
+        <>
+          <svg height="70" width="70" className="ring-animation ring-animation--small">
+            <circle cx="35" cy="35" r="32" />
+          </svg>
+          <svg height="85" width="85" className="ring-animation ring-animation--large">
+            <circle cx="42.5" cy="42.5" r="39.5" />
+          </svg>
+        </>
       ) : (
         ''
       )}
+
       <div className={`run-button ${buttonClass}`}>
         <img src={icon} style={{ height: '100%', width: '100%' }} />
       </div>

@@ -225,11 +225,20 @@ button {
 
     .ring-animation {
       position: absolute;
-      top: -5px;
-      left: -5px;
       visibility: visible;
       opacity: 1;
       transition: all 0.25s;
+
+      &--small {
+        top: -5px;
+        left: -5px;
+      }
+
+      &--large {
+        top: -12.5px;
+        left: -12.5px;
+        display: none;
+      }
 
       circle {
         animation: rotate 5s linear infinite;
@@ -279,6 +288,16 @@ button {
 
         .run-button {
           transform: scale(125%);
+        }
+
+        .ring-animation {
+          &--large {
+            display: block;
+          }
+
+          &--small {
+            display: none;
+          }
         }
       }
 
