@@ -5,11 +5,14 @@ import { getActiveModalName } from '~/store/getters/ui';
 
 export interface BaseModalProps {
   name: string;
+  className: string;
 }
 
 export const BaseModal: React.FC<BaseModalProps> = (props) => {
   const dispatch = useDispatch();
   const activeModalName = useSelector(getActiveModalName());
+
+  const { className } = props;
 
   const toggleOverlay = (e) => {
     if (e.target === e.currentTarget) {
@@ -19,7 +22,7 @@ export const BaseModal: React.FC<BaseModalProps> = (props) => {
   const overlayClassName = activeModalName === props.name ? '' : 'overlay--hidden';
 
   return (
-    <div className={`overlay ${overlayClassName}`} onClick={toggleOverlay}>
+    <div className={`overlay ${overlayClassName} ${className}`} onClick={toggleOverlay}>
       <div className="overlay__modal">
         <div className="w-100">{props.children}</div>
       </div>

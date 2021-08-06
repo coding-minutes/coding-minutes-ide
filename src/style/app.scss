@@ -114,10 +114,12 @@ button {
 }
 
 .ide-container {
-  height: calc(100vh - $banner-height);
+  height: 100vh;
   width: 100%;
   overflow: hidden;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   &--dark {
     background: $primary-dark;
@@ -127,6 +129,7 @@ button {
   .navbar-top {
     border-bottom: solid 1px $tertiary-dark;
     height: 60px;
+    padding: 0 30px;
 
     &__option {
       font-size: 1.142rem;
@@ -134,6 +137,8 @@ button {
       padding: 0 1rem;
       cursor: pointer;
       text-decoration: none;
+      display: flex;
+      align-items: center;
 
       &:hover {
         color: $accent-color-green;
@@ -225,11 +230,20 @@ button {
 
     .ring-animation {
       position: absolute;
-      top: -5px;
-      left: -5px;
       visibility: visible;
       opacity: 1;
       transition: all 0.25s;
+
+      &--small {
+        top: -5px;
+        left: -5px;
+      }
+
+      &--large {
+        top: -12.5px;
+        left: -12.5px;
+        display: none;
+      }
 
       circle {
         animation: rotate 5s linear infinite;
@@ -251,6 +265,7 @@ button {
   .main-container {
     height: calc(100vh - 60px);
     position: relative;
+    flex: 1;
 
     .ide-section {
       flex: 1;
@@ -279,6 +294,16 @@ button {
 
         .run-button {
           transform: scale(125%);
+        }
+
+        .ring-animation {
+          &--large {
+            display: block;
+          }
+
+          &--small {
+            display: none;
+          }
         }
       }
 
@@ -509,7 +534,6 @@ button {
 }
 
 .top-banner .top-banner--cross {
-  align-self: flex-start;
   color: $primary-light;
   font-size: 20px;
   cursor: pointer;

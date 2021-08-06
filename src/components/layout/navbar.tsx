@@ -56,9 +56,9 @@ export const Navbar: React.FC = () => {
   return (
     <div className="navbar-top">
       <div className="h-inherit">
-        <div className="row no-gutters align-items-center justify-content-between py-2 px-5 h-inherit">
+        <div className="row no-gutters align-items-center justify-content-between py-2 h-inherit">
           <div className="row no-gutters align-items-center">
-            <a href="https://codingminutes.com/" target="_blank" className="mr-5">
+            <a href="https://codingminutes.com/" target="_blank" className="mr-4">
               <img
                 src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
                 alt="Coding Minutes Logo"
@@ -72,7 +72,12 @@ export const Navbar: React.FC = () => {
               rel="noopener"
               target="_blank"
             >
-              New
+              <img
+                src="https://minio.codingminutes.com/assets/new.svg"
+                className="d-lg-none d-block"
+                style={{ height: '25px' }}
+              />
+              <span className="d-lg-block d-none">New</span>
             </a>
 
             <button
@@ -81,12 +86,24 @@ export const Navbar: React.FC = () => {
               disabled={loading}
               style={{ outline: 'none' }}
             >
-              {!loading && <>Save</>}
-              {loading && <>Saving</>}
+              <img
+                src="https://minio.codingminutes.com/assets/save.svg"
+                className="d-lg-none d-block"
+                style={{ height: '25px' }}
+              />
+              <span className="d-lg-block d-none">
+                {!loading && <>Save</>}
+                {loading && <>Saving</>}
+              </span>
             </button>
 
             <div className="navbar-top__option" onClick={copyCode}>
-              Copy Code
+              <img
+                src="https://minio.codingminutes.com/assets/copy_code.svg"
+                className="d-lg-none d-block"
+                style={{ height: '25px' }}
+              />
+              <span className="d-lg-block d-none">Copy Code</span>
             </div>
             {/* <div className="navbar-top__option">Share</div> */}
           </div>
