@@ -49,7 +49,7 @@ export const LoginModal: React.FC = () => {
   };
 
   return (
-    <BaseModal name={LOGIN_MODAL}>
+    <BaseModal name={LOGIN_MODAL} className="">
       <div className="overlay__modal__title mb-3">Welcome to</div>
       <img
         src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"

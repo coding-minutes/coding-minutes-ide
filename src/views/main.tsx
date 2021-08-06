@@ -13,6 +13,7 @@ import { initialize } from '~/initializers';
 import { fetchCodeFromIdParam } from '~/initializers/code';
 import { toggleIOPane } from '~/store/action/ui';
 import { LoginModal } from '~/components/auth/login-modal';
+import { ScreenSizeModal } from '~/components/layout/screen-size-modal';
 import { getUserFromJwt } from '~/initializers/user';
 import { Banner } from '~/components/layout/banner';
 
@@ -50,9 +51,10 @@ export const MainView: React.FC = () => {
 
   return (
     <>
-      {showBanner && <Banner />}
       <div className="ide-container ide-container--dark">
+        {showBanner && <Banner />}
         <LoginModal />
+        <ScreenSizeModal />
         <Navbar />
         <div className="main-container row no-gutters">
           <div className="flex-1 ide-section">
