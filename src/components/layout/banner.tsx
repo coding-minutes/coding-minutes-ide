@@ -1,10 +1,14 @@
 import React from 'react';
 import { toggleBanner } from '~/store/action/ui';
 import { useDispatch } from 'react-redux';
+import Markdown from 'markdown-to-jsx';
 
-interface Props {}
+interface Props {
+  content: string;
+  link: string;
+}
 
-export const Banner: React.FC<Props> = (props) => {
+export const Banner: React.FC<Props> = ({ link, content }) => {
   const dispatch = useDispatch();
 
   function closeBanner() {
@@ -15,10 +19,9 @@ export const Banner: React.FC<Props> = (props) => {
     <>
       <div className="top-banner">
         <div />
-        <div>
-          🎉 Coding Minutes IDE 2.0 is live.{' '}
-          <span className="banner--green-text">Try out the new exciting features.</span>
-        </div>
+        <a href={link || 'https://codingminutes.com/'} target="_blank" rel="noopener">
+          <Markdown>{content}</Markdown>
+        </a>
         <div onClick={closeBanner} className="top-banner--cross">
           ✕
         </div>

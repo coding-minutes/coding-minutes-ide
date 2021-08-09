@@ -16,6 +16,7 @@ import { LoginModal } from '~/components/auth/login-modal';
 import { ScreenSizeModal } from '~/components/layout/screen-size-modal';
 import { getUserFromJwt } from '~/initializers/user';
 import { Banner } from '~/components/layout/banner';
+import banner_data from '~/data/banner.json';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   if (returnCode === 0) return FabState.correct;
@@ -25,11 +26,17 @@ const getFabStateForReturnCode = (returnCode: number | null): FabState => {
   return FabState.idle;
 };
 
+function pickRandomBannerData(data) {
+  const keys = Object.keys(data);
+  return data[keys[(keys.length * Math.random()) << 0]];
+}
+
 export const MainView: React.FC = () => {
   const dispatch = useDispatch();
   const returnCode = useSelector(getReturnCode());
   const isIOOpen = useSelector(isIOPaneOpen());
   const showBanner = useSelector(isBannerVisible());
+  const bannerContent = pickRandomBannerData(banner_data);
 
   const state = getFabStateForReturnCode(returnCode);
 
@@ -52,7 +59,7 @@ export const MainView: React.FC = () => {
   return (
     <>
       <div className="ide-container ide-container--dark">
-        {showBanner && <Banner />}
+        {showBanner && <Banner content={bannerContent.content} link={bannerContent.link} />}
         <LoginModal />
         <ScreenSizeModal />
         <Navbar />

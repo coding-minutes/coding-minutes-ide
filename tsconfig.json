@@ -15,7 +15,8 @@
     "rootDir": "src",
     "paths": {
       "~/*": ["*"]
-    }
+    },
+    "resolveJsonModule": true
   },
   "include": ["src"]
 }
