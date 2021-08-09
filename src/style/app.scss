@@ -531,6 +531,11 @@ button {
   justify-content: space-between;
   background-color: $banner-background;
   color: $primary-light;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 .top-banner .top-banner--cross {
