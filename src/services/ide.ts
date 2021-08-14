@@ -1,4 +1,5 @@
 import Api from './api';
+import useSWR from 'swr';
 const BASE_URL = '/code';
 
 export function saveCode(data) {
@@ -11,4 +12,9 @@ export async function getCodeById(id: string) {
 
 export async function updateCode(id: string, data) {
   return Api.patch(`${BASE_URL}/${id}`, data);
+}
+
+export async function getSavedCodes(page: number = 1, query = '') {
+  const { data } = useSWR(`${BASE_URL}/saved?page=${page}&query=${query}`, (url) => Api.get(url));
+  return data;
 }
