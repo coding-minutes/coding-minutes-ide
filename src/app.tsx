@@ -3,20 +3,26 @@ import { Provider } from 'react-redux';
 
 import { MainView } from '~/views/main';
 import { ProfileView } from '~/views/profile';
-import { initStore } from '~/store';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { initialize } from '~/initializers';
+import { useTask } from 'react-use-task';
 
-const store = initStore();
+export const App: React.FC = () => {
+  const dispatch = useDispatch();
 
-export const App: React.FC = () => (
-  <Provider store={store}>
-    <Router>
-      <Switch>
-        <Route path="/profile">
-          <ProfileView />
-        </Route>
-        <MainView />
-      </Switch>
-    </Router>
-  </Provider>
-);
+  const [{}, perform] = useTask(initialize);
+
+  React.useEffect(() => {
+    perform(dispatch);
+  }, []);
+
+  return (
+    <Switch>
+      <Route path="/profile">
+        <ProfileView />
+      </Route>
+      <MainView />
+    </Switch>
+  );
+};

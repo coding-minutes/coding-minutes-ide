@@ -13,6 +13,8 @@ import {
 } from '~/store/getters/savelist';
 import { fetchSavedCodes } from '~/tasks/savecodelist';
 import { setCurrentPage } from '~/store/action/savelist';
+import { getLanguageMap } from '~/store/getters/editor';
+
 export const ProfileView: React.FC = () => {
   const [query, setQuery] = React.useState('');
   const dispatch = useDispatch();
@@ -21,7 +23,9 @@ export const ProfileView: React.FC = () => {
   const totalPages = useSelector(getTotalPages());
   const previousPage = useSelector(getPreviousPageNumber());
   const nextPage = useSelector(getNextPageNumber());
+  const languageMap = useSelector(getLanguageMap());
 
+  const showBanner = useSelector(isBannerVisible());
   fetchSavedCodes(dispatch, currentPageNumber, query);
 
   function changePageNumber(page) {
@@ -31,7 +35,7 @@ export const ProfileView: React.FC = () => {
   return (
     <>
       <div className="ide-container ide-container--dark">
-        {/* {showBanner && <Banner content={bannerContent.content} link={bannerContent.link} />} */}
+        {showBanner && <Banner />}
         <ScreenSizeModal />
         <Navbar />
         <div className="main-container row no-gutters">
@@ -70,7 +74,7 @@ export const ProfileView: React.FC = () => {
                   savelist.map((code) => (
                     <tr key={code.id}>
                       <td>{code.title}</td>
-                      <td>{code.lang}</td>
+                      <td>{languageMap[code.lang]?.name}</td>
                       <td>{code.created_at}</td>
                       <td>{code.updated_at}</td>
                       <td>

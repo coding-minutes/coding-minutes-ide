@@ -2,13 +2,15 @@ import React from 'react';
 import { toggleBanner } from '~/store/action/ui';
 import { useDispatch } from 'react-redux';
 import Markdown from 'markdown-to-jsx';
+import banner_data from '~/data/banner.json';
 
-interface Props {
-  content: string;
-  link: string;
+function pickRandomBannerData(data) {
+  const keys = Object.keys(data);
+  return data[keys[(keys.length * Math.random()) << 0]];
 }
 
-export const Banner: React.FC<Props> = ({ link, content }) => {
+export const Banner: React.FC = () => {
+  const { content, link } = pickRandomBannerData(banner_data);
   const dispatch = useDispatch();
 
   function closeBanner() {

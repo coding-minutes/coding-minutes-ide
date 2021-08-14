@@ -3,11 +3,12 @@ import { Dispatch } from 'redux';
 import { setCurrentPage, updateSavelist, setPageMetaData } from '~/store/action/savelist';
 
 export async function fetchSavedCodes(dispatch: Dispatch, page: number = 1, query = '') {
-  const response = (await getSavedCodes(page, query))?.data;
+  const response = await getSavedCodes(page, query);
+  if (response?.data) {
+    const data = response.data;
 
-  //   console.log(response);
-
-  dispatch(setCurrentPage(page));
-  dispatch(updateSavelist(response.data));
-  dispatch(setPageMetaData(response.count, response.next, response.previous, response.total_pages));
+    dispatch(setCurrentPage(page));
+    dispatch(updateSavelist(data.data));
+    dispatch(setPageMetaData(data.count, data.next, data.previous, data.total_pages));
+  }
 }
