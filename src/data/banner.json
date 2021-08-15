@@ -1,10 +1,10 @@
 {
   "INDEPENDENCE_DAY_MEGA_SALE": {
-    "content": "🎉 Independence day Mega Sale & Giveaway 9-13th Aug. <span className='banner--green-text'>All Courses @ Rs.360 </span> 🎉",
+    "content": "🎉 Independence day Mega Sale. <span className='banner--green-text'>All Courses @ Rs.385 </span> 🎉",
     "link": "https://codingminutes.com/#course_gallery"
   },
-  "FREEDOM_GIVEAWAY": {
-    "content": "🇮🇳 Freedom Giveaway - Get <span className='banner--green-text'>Game Theory Course</span> for Free on 15th August. Sign up now! 🇮🇳",
-    "link": "https://codingminutes.com/game-theory-competitive-programming.html"
+  "IDE_NEW_FEATURES": {
+    "content": "🎉 New features in <span className='banner--green-text'>IDE</span> coming soon. ",
+    "link": "https://ide.codingminutes.com/"
   }
 }
