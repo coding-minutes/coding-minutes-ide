@@ -1,7 +1,6 @@
 import { Language } from '~/store/reducers/editor';
 import {
   SET_RETURN_CODE,
-  SET_SELECTED_LANGUAGE,
   SET_SELECTED_LANGUAGE_BY_ID,
   SET_SOURCE,
   SET_STDIN,
@@ -10,16 +9,12 @@ import {
   SET_LANGUAGES,
 } from '~/store/action-types/editor';
 import { listToMap } from '~/utils/store';
+import { setSettings } from '~/utils/settings';
 
 interface CodeStub {
   language_id: number;
   stub: string;
 }
-
-export const setSelectedLanguage = (language: Language) => ({
-  type: SET_SELECTED_LANGUAGE,
-  payload: language,
-});
 
 export const setSource = (source: string) => ({
   type: SET_SOURCE,
@@ -51,7 +46,10 @@ export const setLanguages = (languages: Array<Language>) => ({
   payload: languages,
 });
 
-export const setLanguageById = (id: string | number) => ({
-  type: SET_SELECTED_LANGUAGE_BY_ID,
-  payload: id,
-});
+export const setLanguageById = (id: string | number) => {
+  setSettings({ lang_id: id });
+  return {
+    type: SET_SELECTED_LANGUAGE_BY_ID,
+    payload: id,
+  };
+};

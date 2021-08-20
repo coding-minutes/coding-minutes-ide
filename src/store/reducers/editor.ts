@@ -1,6 +1,5 @@
 import {
   SET_RETURN_CODE,
-  SET_SELECTED_LANGUAGE,
   SET_SOURCE,
   SET_STDIN,
   SET_STDOUT,
@@ -35,11 +34,6 @@ const initialState: EditorState = {
 
 export const editorReducer = (state: EditorState = initialState, action): EditorState => {
   switch (action.type) {
-    case SET_SELECTED_LANGUAGE:
-      return {
-        ...state,
-        selectedLanguage: action.payload,
-      };
     case SET_STUBS:
       return {
         ...state,

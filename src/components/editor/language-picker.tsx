@@ -1,16 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSelectedLanguage, getLanguages } from '~/store/getters/editor';
-import { setSelectedLanguage } from '~/store/action/editor';
+import { setLanguageById } from '~/store/action/editor';
 import { Language } from '~/store/reducers/editor';
 
 export const LanguagePicker: React.FC = () => {
   const dispatch = useDispatch();
   const languages = useSelector(getLanguages());
   const selectedLanguage = useSelector(getSelectedLanguage());
-  const selectLanguage = (language) => dispatch(setSelectedLanguage(language));
-  const selectLanguageById = (id) =>
-    selectLanguage(languages.find((language: Language) => language.id === +id));
+  const selectLanguageById = (id) => dispatch(setLanguageById(id));
 
   return (
     <select
