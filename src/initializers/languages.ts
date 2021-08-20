@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { getLanguages } from '~/services/judge';
-import { setLanguages, setSelectedLanguage } from '~/store/action/editor';
+import { setLanguages } from '~/store/action/editor';
 
 export const loadLanguages = async (dispatch: Dispatch) => {
   const response: any = await getLanguages();

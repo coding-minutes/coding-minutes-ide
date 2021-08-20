@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { getCodeById } from '~/services/ide';
-import { setSource, setStdin, setSelectedLanguage, setLanguageById } from '~/store/action/editor';
+import { setSource, setStdin, setLanguageById } from '~/store/action/editor';
 
 export async function fetchCodeFromIdParam(dispatch: Dispatch) {
   const queryParams = new URLSearchParams(location.search);
