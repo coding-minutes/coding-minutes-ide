@@ -9,7 +9,7 @@ import {
   SET_LANGUAGES,
 } from '~/store/action-types/editor';
 import { listToMap } from '~/utils/store';
-import { setSettings } from '~/utils/settings';
+import { setSettings } from '~/services/settings';
 
 interface CodeStub {
   language_id: number;

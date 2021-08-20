@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { getSettings } from '~/utils/settings';
+import { getSettings } from '~/services/settings';
 import { setLanguageById } from '~/store/action/editor';
 
 export const loadSettings = (dispatch: Dispatch) => {
