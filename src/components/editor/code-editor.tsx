@@ -2,7 +2,7 @@ import React from 'react';
 import Editor from '@monaco-editor/react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getCurrentSource, getSelectedLanguage } from '~/store/getters/editor';
+import { getCurrentSource, getSelectedLanguage, getFontSize } from '~/store/getters/editor';
 import { setSource } from '~/store/action/editor';
 
 export const CodeEditor = () => {
@@ -10,6 +10,7 @@ export const CodeEditor = () => {
 
   const selectedLanguage = useSelector(getSelectedLanguage());
   const source = useSelector(getCurrentSource());
+  const fontSize = useSelector(getFontSize());
   const editor_code = selectedLanguage?.editor_code || '';
 
   const setEditorSource = (newSource) => dispatch(setSource(newSource));
@@ -22,6 +23,7 @@ export const CodeEditor = () => {
       onChange={setEditorSource}
       options={{
         automaticLayout: true,
+        fontSize: fontSize,
       }}
     />
   );
