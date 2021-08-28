@@ -7,6 +7,7 @@ import {
   SET_STDOUT,
   SET_STUBS,
   SET_LANGUAGES,
+  SET_FONT_SIZE,
 } from '~/store/action-types/editor';
 import { listToMap } from '~/utils/store';
 import { setSettings } from '~/services/settings';
@@ -51,5 +52,13 @@ export const setLanguageById = (id: string | number) => {
   return {
     type: SET_SELECTED_LANGUAGE_BY_ID,
     payload: id,
+  };
+};
+
+export const setFontSize = (size: string) => {
+  setSettings({ fontSize: size });
+  return {
+    type: SET_FONT_SIZE,
+    payload: size,
   };
 };
