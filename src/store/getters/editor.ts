@@ -6,3 +6,4 @@ export const getStdout = () => (state) => state.editor.stdout;
 export const getReturnCode = () => (state) => state.editor.returnCode;
 export const getLanguages = () => (state) => Object.values(state.editor.languages);
 export const getFontSize = () => (state) => state.editor.fontSize;
+export const getLanguageMap = () => (state) => state.editor.languages;

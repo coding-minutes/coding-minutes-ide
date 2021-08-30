@@ -4,6 +4,7 @@ import { getReturnCode, getStdout } from '~/store/getters/editor';
 
 import { InputFragment } from './input-fragment';
 import { OutputFragment } from './output-fragment';
+import Savelist from './savelist';
 
 enum IOTabs {
   INPUT,
@@ -29,12 +30,13 @@ export const IONav: React.FC<IONavProps> = (props) => {
 
   return (
     <div className={`d-flex flex-col io-section ${className}`}>
-      <div className="flex-1 io-box">
+      <Savelist />
+      {/* <div className="flex-1 io-box">
         <InputFragment />
-        <OutputFragment />
-        {/* {selectedTab === IOTabs.INPUT && <InputFragment />}
+        <OutputFragment /> */}
+      {/* {selectedTab === IOTabs.INPUT && <InputFragment />}
         {selectedTab === IOTabs.CONSOLE && <OutputFragment />} */}
-      </div>
+      {/* </div> */}
       {/* <div className="io-navigation">
         <div
           className={`tab ${selectedTab === IOTabs.INPUT && 'active'}`}
