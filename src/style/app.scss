@@ -65,6 +65,14 @@ html {
   }
 }
 
+.width-fit {
+  width: fit-content;
+}
+
+.w-100 {
+  width: 100%;
+}
+
 button {
   background: none;
   border: none;
@@ -319,6 +327,15 @@ button {
           transform: rotate(180deg);
         }
       }
+
+      .saved-list-section {
+        padding: 30px;
+      }
+
+      .io-header {
+        font-size: 1.142rem;
+        font-weight: 700;
+      }
     }
 
     .io-box {
@@ -340,11 +357,6 @@ button {
           border-radius: 5px;
           padding: 20px;
         }
-      }
-
-      .io-header {
-        font-size: 1.142rem;
-        font-weight: 700;
       }
 
       .input-box {
@@ -546,6 +558,41 @@ button {
 
 .top-banner .banner--green-text {
   color: $accent-color-green;
+}
+
+.input-container {
+  position: relative;
+
+  .transparent-input {
+    appearance: none;
+    background: transparent;
+    padding: 10px 40px 10px 20px;
+    border-radius: 50px;
+    border: 1px solid $tertiary-dark;
+    color: $tertiary-light;
+
+    &:focus-visible {
+      outline: unset;
+    }
+
+    &::placeholder {
+      opacity: 1;
+      color: $tertiary-light;
+    }
+
+    // &::after {
+    //   content: url(https://minio.codingminutes.com/assets/search.svg);
+    //   position: absolute;
+    //   right: 30px;
+    //   top: 0;
+    // }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 15px;
+    top: 7.5px;
+  }
 }
 
 // REUSE LATER

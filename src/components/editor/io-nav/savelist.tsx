@@ -29,21 +29,33 @@ const Savelist = (props) => {
 
   return (
     <>
-      <div className="main-container row no-gutters">
+      <div className="saved-list-section">
         <div>
           <div>
-            <h3>Saved Codes</h3>
-            <input
-              value={query}
-              placeholder="Search code by filename"
-              type="text"
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            {previousPage && <span onClick={() => changePageNumber(previousPage)}> &lt; Prev</span>}
-            <p>
-              Showing {currentPageNumber} of {totalPages}
-            </p>
-            {nextPage && <span onClick={() => changePageNumber(nextPage)}>Next &gt;</span>}
+            <div className="io-header">Saved Codes</div>
+            <div className="row no-gutters justify-content-between align-items-center mt-4">
+              <div className="input-container flex-1">
+                <input
+                  value={query}
+                  placeholder="Search code by filename"
+                  type="text"
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="transparent-input w-100"
+                />
+                <div className="input-container__icon">
+                  <img src="https://minio.codingminutes.com/assets/search.svg" />
+                </div>
+              </div>
+              <div className="t-align-r width-fit ml-4">
+                {previousPage && (
+                  <span onClick={() => changePageNumber(previousPage)}> &lt; Prev</span>
+                )}
+                <div>
+                  Showing {currentPageNumber} of {totalPages}
+                </div>
+                {nextPage && <span onClick={() => changePageNumber(nextPage)}>Next &gt;</span>}
+              </div>
+            </div>
           </div>
         </div>
 
