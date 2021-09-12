@@ -72,7 +72,9 @@ export const MainView: React.FC = () => {
           <IONav className={isIOOpen ? '' : 'io-section--hidden'} />
           <RunFAB state={state} />
           <div className="open-io-button" onClick={toggleIO}>
-            <div className="open-io-button__icon">&gt;</div>
+            <div className="open-io-button__icon">
+              <img src="https://minio.codingminutes.com/assets/right.svg" />
+            </div>
 
             {/* <div className="open-io-button__tooltip">Toggle I/O pane</div> */}
           </div>
