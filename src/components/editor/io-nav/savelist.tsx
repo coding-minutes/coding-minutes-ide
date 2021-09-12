@@ -33,7 +33,7 @@ const Savelist = (props) => {
         <div>
           <div>
             <div className="io-header">Saved Codes</div>
-            <div className="row no-gutters justify-content-between align-items-center my-5">
+            <div className="row no-gutters justify-content-between align-items-center my-lg-5 my-4">
               <div className="input-container flex-1">
                 <input
                   value={query}
@@ -79,6 +79,12 @@ const Savelist = (props) => {
                     ></a>
                   </tr>
                 ))}
+              <tr>
+                <td className="py-2">Kuchh toh badi si bakchodi</td>
+                <td className="py-2">Jai mata di ki jai krte hue</td>
+                <td className="py-2">yo yo yo yo yo honey singh ooh</td>
+                <a href={`kamaal`} className="row-link"></a>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -90,7 +96,7 @@ const Savelist = (props) => {
           >
             &lt; Prev
           </button>
-          <div className="mx-3">
+          <div className="mx-lg-3 mx-2 page-count">
             Showing {currentPageNumber} of {totalPages}
           </div>
           <button
