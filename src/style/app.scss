@@ -240,6 +240,7 @@ button {
         color: $primary-light;
         border-radius: 5px;
         padding: 5px 15px;
+        cursor: pointer;
       }
 
       .floating-menu {
@@ -695,6 +696,10 @@ button {
     right: 15px;
     top: 7.5px;
   }
+}
+
+.savelist-pagination-buttons {
+  color: white;
 }
 
 // REUSE LATER

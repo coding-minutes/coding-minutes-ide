@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
 import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
-import { setActiveModal } from '~/store/action/ui';
+import { setActiveModal, setActivePanel, toggleOptionsMenu } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
 import {
   getCurrentSource,
@@ -15,6 +15,8 @@ import {
 import { clearJwt } from '~/utils/jwt';
 import { saveUpdateCode } from '~/tasks/save-update-code';
 import { setFilename } from '~/store/action/editor';
+import { getActivePanel, isOptionsMenuOpen } from '~/store/getters/ui';
+import { IO_PANEL, SAVELIST_PANEL } from '~/constants/panel';
 
 export const Navbar: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -30,8 +32,18 @@ export const Navbar: React.FC = () => {
     input: useSelector(getStdin()),
     title: filename,
   };
+  const isMenuOpen = useSelector(isOptionsMenuOpen());
+  const activePanel = useSelector(getActivePanel());
 
   const history = useHistory();
+
+  function toggleMenu() {
+    dispatch(toggleOptionsMenu());
+  }
+
+  function changePanel(panel) {
+    dispatch(setActivePanel(panel));
+  }
 
   const logout = () => {
     dispatch(logoutUser());
@@ -123,18 +135,36 @@ export const Navbar: React.FC = () => {
             <LanguagePicker />
             {isLoggedIn && (
               <div className="logged-in-user-menu">
-                <div className="row no-gutters align-items-center justify-content-between logged-in-user-box">
+                <div
+                  className="row no-gutters align-items-center justify-content-between logged-in-user-box"
+                  onClick={toggleMenu}
+                >
                   <div className="mr-4">
                     Hi, {user.first_name} {user.last_name}
                   </div>
                   <div className="icon">&gt;</div>
                 </div>
-                <div className="floating-menu floating-menu--hidden">
-                  <a className="row no-gutters align-items-center mb-3">
-                    <div>Saved Codes</div>
-                  </a>
-                  <button onClick={logout}>Log Out</button>
-                </div>
+                {isMenuOpen && (
+                  <div className="floating-menu floating-menu--hidden">
+                    {activePanel != SAVELIST_PANEL && (
+                      <a
+                        className="row no-gutters align-items-center mb-3"
+                        onClick={() => changePanel(SAVELIST_PANEL)}
+                      >
+                        <div>Saved Codes</div>
+                      </a>
+                    )}
+                    {activePanel != IO_PANEL && (
+                      <a
+                        className="row no-gutters align-items-center mb-3"
+                        onClick={() => changePanel(IO_PANEL)}
+                      >
+                        <div>Input/Output</div>
+                      </a>
+                    )}
+                    <button onClick={logout}>Log Out</button>
+                  </div>
+                )}
               </div>
             )}
             {!isLoggedIn && (

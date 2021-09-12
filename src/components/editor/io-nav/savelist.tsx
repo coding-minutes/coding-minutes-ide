@@ -46,6 +46,25 @@ const Savelist = (props) => {
                   <img src="https://minio.codingminutes.com/assets/search.svg" />
                 </div>
               </div>
+              <div className="t-align-r width-fit ml-4">
+                <button
+                  className="savelist-pagination-buttons"
+                  disabled={!previousPage}
+                  onClick={() => changePageNumber(previousPage)}
+                >
+                  &lt; Prev
+                </button>
+                <div>
+                  Showing {currentPageNumber} of {totalPages}
+                </div>
+                <button
+                  className="savelist-pagination-buttons"
+                  disabled={!nextPage}
+                  onClick={() => changePageNumber(nextPage)}
+                >
+                  Next &gt;
+                </button>
+              </div>
             </div>
           </div>
         </div>
