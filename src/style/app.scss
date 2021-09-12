@@ -152,6 +152,10 @@ button {
     height: 60px;
     padding: 0 30px;
 
+    .cm-logo {
+      height: 20px;
+    }
+
     &__option {
       font-size: 1.142rem;
       color: $primary-light;
@@ -161,8 +165,16 @@ button {
       display: flex;
       align-items: center;
 
+      &__icon {
+        height: 18px;
+      }
+
       &:hover {
         color: $accent-color-green;
+      }
+
+      &:first-child:focus-visible &:not(:first-child) {
+        display: none;
       }
     }
 
@@ -183,7 +195,7 @@ button {
         &:focus-visible {
           outline: unset;
           color: $primary-light;
-          width: 400px;
+          width: 300px;
         }
 
         &::placeholder {
@@ -237,6 +249,10 @@ button {
         border: 1px solid $accent-color-purple;
         background: $tertiary-dark;
       }
+
+      @media screen and (max-width: 1199px) {
+        margin-right: 20px;
+      }
     }
 
     .logged-in-user-menu {
@@ -280,6 +296,59 @@ button {
 
           &:hover {
             color: $accent-color-green;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 1199px) {
+      .save-button-container {
+        input {
+          width: 125px;
+
+          &:focus-visible {
+            width: 200px;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 991px) {
+      padding: 0 20px;
+
+      .cm-logo {
+        height: 15px;
+      }
+
+      &__option {
+        font-size: 0.857rem;
+        padding: 0.5rem;
+
+        &__icon {
+          height: 15px;
+        }
+      }
+
+      .language-selector {
+        font-size: 0.857rem;
+      }
+
+      .logged-in-user-menu {
+        .logged-in-user-box {
+          font-size: 0.857rem;
+        }
+
+        .floating-menu {
+          font-size: 0.7857rem;
+        }
+      }
+
+      .save-button-container {
+        input {
+          width: 75px;
+
+          &:focus-visible {
+            width: 125px;
           }
         }
       }
@@ -364,6 +433,10 @@ button {
         }
       }
     }
+
+    @media screen and (max-width: 991px) {
+      right: calc(2rem + 60px);
+    }
   }
 
   .main-container {
@@ -445,9 +518,17 @@ button {
             width: 30%;
           }
 
-          tr:hover {
+          tr {
             td {
-              color: $accent-color-green;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            &:hover {
+              td {
+                color: $accent-color-green;
+              }
             }
           }
         }
@@ -456,11 +537,40 @@ button {
           position: absolute;
           bottom: 30px;
           left: 30px;
+          font-size: 1rem;
 
           .savelist-pagination-buttons {
+            font-weight: 600;
+
             &:hover {
               color: $accent-color-green;
               cursor: pointer;
+            }
+          }
+        }
+
+        @media screen and (max-width: 991px) {
+          padding: 20px;
+
+          &__navigation {
+            font-size: 0.785rem;
+          }
+
+          table {
+            thead {
+              font-size: 0.857rem;
+            }
+
+            tbody {
+              font-size: 0.785rem;
+            }
+
+            .main-key {
+              width: 35%;
+            }
+
+            .sub-key {
+              width: 32.5%;
             }
           }
         }
@@ -469,6 +579,16 @@ button {
       .io-header {
         font-size: 1.142rem;
         font-weight: 700;
+      }
+
+      @media screen and (max-width: 991px) {
+        &--hidden ~ .open-io-button {
+          right: calc(2rem - 10px);
+        }
+
+        .io-header {
+          font-size: 1rem;
+        }
       }
     }
 
@@ -509,6 +629,16 @@ button {
 
       pre {
         color: $primary-light;
+      }
+
+      @media screen and (max-width: 991px) {
+        .input-box {
+          padding: 20px;
+        }
+
+        .output-box {
+          padding: 20px;
+        }
       }
     }
 
@@ -552,24 +682,10 @@ button {
         transition: all 0.75s;
       }
 
-      // .open-io-button__tooltip {
-      //   display: none;
-      //   background: rgba($color: $primary-light, $alpha: 0.5);
-      //   border-radius: 5px;
-      //   position: absolute;
-      //   padding: 5px;
-      //   color: $primary-dark;
-      //   font-size: 0.75rem;
-      //   width: 90px;
-      //   bottom: -50px;
-      //   right: -15px;
-      // }
-
-      // &:hover {
-      //   .open-io-button__tooltip {
-      //     display: block;
-      //   }
-      // }
+      @media screen and (max-width: 991px) {
+        right: 2rem;
+        top: 10px;
+      }
     }
   }
 

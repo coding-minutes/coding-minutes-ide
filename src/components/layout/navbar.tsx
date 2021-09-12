@@ -89,7 +89,7 @@ export const Navbar: React.FC = () => {
               <img
                 src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
                 alt="Coding Minutes Logo"
-                style={{ height: '20px' }}
+                className="cm-logo"
               />
             </a>
 
@@ -103,10 +103,9 @@ export const Navbar: React.FC = () => {
               >
                 <img
                   src="https://minio.codingminutes.com/assets/save.svg"
-                  className="d-lg-none d-block"
-                  style={{ height: '25px' }}
+                  className="d-xl-none d-block navbar-top__option__icon"
                 />
-                <span className="d-lg-block d-none">
+                <span className="d-xl-block d-none">
                   {!loading && <>Save</>}
                   {loading && <>Saving</>}
                 </span>
@@ -121,19 +120,17 @@ export const Navbar: React.FC = () => {
             >
               <img
                 src="https://minio.codingminutes.com/assets/new.svg"
-                className="d-lg-none d-block"
-                style={{ height: '25px' }}
+                className="d-xl-none d-block navbar-top__option__icon"
               />
-              <span className="d-lg-block d-none">New</span>
+              <span className="d-xl-block d-none">New</span>
             </a>
 
             <div className="navbar-top__option" onClick={copyCode}>
               <img
                 src="https://minio.codingminutes.com/assets/copy_code.svg"
-                className="d-lg-none d-block"
-                style={{ height: '25px' }}
+                className="d-xl-none d-block navbar-top__option__icon"
               />
-              <span className="d-lg-block d-none">Copy Code</span>
+              <span className="d-xl-block d-none">Copy Code</span>
             </div>
             {/* <div className="navbar-top__option">Share</div> */}
           </div>
@@ -158,7 +155,7 @@ export const Navbar: React.FC = () => {
                       >
                         <img
                           src="https://minio.codingminutes.com/assets/saved-codes.svg"
-                          className="mr-3"
+                          className="mr-2"
                         />
                         <div>Saved Codes</div>
                       </a>
@@ -174,7 +171,7 @@ export const Navbar: React.FC = () => {
                     <button onClick={logout} className="floating-menu__option">
                       <img
                         src="https://minio.codingminutes.com/assets/logout.svg"
-                        className="mr-3"
+                        className="mr-2"
                       />
                       Log Out
                     </button>
