@@ -17,7 +17,6 @@ export const LoginModal: React.FC = () => {
     try {
       setLoading(true);
       const token = response.getAuthResponse().id_token;
-      console.log(token);
       const res = await loginWithToken(token);
       const { jwt } = res;
 

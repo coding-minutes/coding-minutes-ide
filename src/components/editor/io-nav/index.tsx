@@ -40,23 +40,6 @@ export const IONav: React.FC<IONavProps> = (props) => {
           <OutputFragment />
         </div>
       )}
-      {/* {selectedTab === IOTabs.INPUT && <InputFragment />}
-        {selectedTab === IOTabs.CONSOLE && <OutputFragment />} */}
-      {/* </div> */}
-      {/* <div className="io-navigation">
-        <div
-          className={`tab ${selectedTab === IOTabs.INPUT && 'active'}`}
-          onClick={() => setSelectedTab(IOTabs.INPUT)}
-        >
-          Input
-        </div>
-        <div
-          className={`tab ${selectedTab === IOTabs.CONSOLE && 'active'}`}
-          onClick={() => setSelectedTab(IOTabs.CONSOLE)}
-        >
-          Console
-        </div>
-      </div> */}
     </div>
   );
 };
