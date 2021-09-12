@@ -7,6 +7,7 @@ import {
   SET_LANGUAGES,
   SET_SELECTED_LANGUAGE_BY_ID,
   SET_FONT_SIZE,
+  SET_FILENAME,
 } from '~/store/action-types/editor';
 import { listToMap } from '~/utils/store';
 
@@ -23,6 +24,7 @@ export interface EditorState {
   returnCode: number;
   languages: { [id: number]: Language };
   fontSize: string;
+  filename: string;
 }
 
 const initialState: EditorState = {
@@ -33,6 +35,7 @@ const initialState: EditorState = {
   returnCode: null,
   languages: {},
   fontSize: '12px',
+  filename: 'Untitled',
 };
 
 export const editorReducer = (state: EditorState = initialState, action): EditorState => {
@@ -86,6 +89,13 @@ export const editorReducer = (state: EditorState = initialState, action): Editor
         ...state,
         fontSize: action.payload,
       };
+
+    case SET_FILENAME:
+      return {
+        ...state,
+        filename: action.payload,
+      };
+
     default:
       return state;
   }

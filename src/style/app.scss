@@ -25,6 +25,7 @@ $button-gradient: linear-gradient(
 );
 
 $primary-dark: #1e1e1e;
+$overlay-dark: #25282e;
 $secondary-dark: #404040;
 $tertiary-dark: #5c5c5c;
 
@@ -63,6 +64,14 @@ html {
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+.width-fit {
+  width: fit-content;
+}
+
+.w-100 {
+  width: 100%;
 }
 
 button {
@@ -113,6 +122,18 @@ button {
   }
 }
 
+.row-link-container {
+  position: relative;
+
+  .row-link {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
 .ide-container {
   height: 100vh;
   width: 100%;
@@ -142,6 +163,43 @@ button {
 
       &:hover {
         color: $accent-color-green;
+      }
+    }
+
+    .save-button-container {
+      position: relative;
+      padding: 5px 1rem;
+      border-radius: 50px;
+      border: 1px solid $tertiary-dark;
+
+      input {
+        appearance: none;
+        background: transparent;
+        border: unset;
+        color: $tertiary-light;
+        transition: all 0.5s;
+        width: 175px;
+
+        &:focus-visible {
+          outline: unset;
+          color: $primary-light;
+          width: 400px;
+        }
+
+        &::placeholder {
+          opacity: 1;
+          color: $tertiary-light;
+        }
+      }
+
+      button {
+        color: $primary-light;
+        cursor: pointer;
+
+        &:focus,
+        &:hover {
+          color: $accent-color-green;
+        }
       }
     }
 
@@ -178,6 +236,52 @@ button {
       &:focus {
         border: 1px solid $accent-color-purple;
         background: $tertiary-dark;
+      }
+    }
+
+    .logged-in-user-menu {
+      position: relative;
+
+      .logged-in-user-box {
+        font-size: 1.142rem;
+        font-weight: 600;
+        background: $overlay-dark;
+        color: $primary-light;
+        border-radius: 5px;
+        padding: 5px 20px;
+        cursor: pointer;
+      }
+
+      .floating-menu {
+        position: absolute;
+        width: 100%;
+        bottom: -6rem;
+        left: 0;
+        background: $overlay-dark;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        z-index: 10000;
+        color: $primary-light;
+
+        &--hidden {
+          display: none;
+        }
+
+        a,
+        button {
+          cursor: pointer;
+          color: $primary-light;
+        }
+
+        &__option {
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            color: $accent-color-green;
+          }
+        }
       }
     }
   }
@@ -319,6 +423,53 @@ button {
           transform: rotate(180deg);
         }
       }
+
+      .saved-list-section {
+        padding: 30px;
+        position: relative;
+
+        .table-container {
+          max-height: 55%;
+          overflow: auto;
+        }
+
+        table {
+          width: 100%;
+          table-layout: fixed;
+
+          .main-key {
+            width: 40%;
+          }
+
+          .sub-key {
+            width: 30%;
+          }
+
+          tr:hover {
+            td {
+              color: $accent-color-green;
+            }
+          }
+        }
+
+        &__navigation {
+          position: absolute;
+          bottom: 30px;
+          left: 30px;
+
+          .savelist-pagination-buttons {
+            &:hover {
+              color: $accent-color-green;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .io-header {
+        font-size: 1.142rem;
+        font-weight: 700;
+      }
     }
 
     .io-box {
@@ -340,11 +491,6 @@ button {
           border-radius: 5px;
           padding: 20px;
         }
-      }
-
-      .io-header {
-        font-size: 1.142rem;
-        font-weight: 700;
       }
 
       .input-box {
@@ -546,6 +692,45 @@ button {
 
 .top-banner .banner--green-text {
   color: $accent-color-green;
+}
+
+.input-container {
+  position: relative;
+
+  .transparent-input {
+    appearance: none;
+    background: transparent;
+    padding: 10px 40px 10px 20px;
+    border-radius: 50px;
+    border: 1px solid $tertiary-dark;
+    color: $tertiary-light;
+
+    &:focus-visible {
+      outline: unset;
+    }
+
+    &::placeholder {
+      opacity: 1;
+      color: $tertiary-light;
+    }
+
+    // &::after {
+    //   content: url(https://minio.codingminutes.com/assets/search.svg);
+    //   position: absolute;
+    //   right: 30px;
+    //   top: 0;
+    // }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 15px;
+    top: 7.5px;
+  }
+}
+
+.savelist-pagination-buttons {
+  color: white;
 }
 
 // REUSE LATER

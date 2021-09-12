@@ -2,27 +2,49 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
-import { getIsLoggedIn } from '~/store/getters/auth';
+import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
-import { setActiveModal } from '~/store/action/ui';
+import { setActiveModal, setActivePanel, toggleOptionsMenu } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
-import { getCurrentSource, getStdin, getSelectedLanguage } from '~/store/getters/editor';
+import {
+  getCurrentSource,
+  getStdin,
+  getSelectedLanguage,
+  getFilename,
+} from '~/store/getters/editor';
 import { clearJwt } from '~/utils/jwt';
 import { saveUpdateCode } from '~/tasks/save-update-code';
+import { setFilename } from '~/store/action/editor';
+import { getActivePanel, isOptionsMenuOpen } from '~/store/getters/ui';
+import { IO_PANEL, SAVELIST_PANEL } from '~/constants/panel';
 
 export const Navbar: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
   const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const user = useSelector(getUser());
   const currentLanguage = useSelector(getSelectedLanguage());
+  const filename = useSelector(getFilename());
   const data = {
     lang: currentLanguage?.id || -1,
     source: useSelector(getCurrentSource()),
     input: useSelector(getStdin()),
+    title: filename,
   };
+  const isMenuOpen = useSelector(isOptionsMenuOpen());
+  const activePanel = useSelector(getActivePanel());
 
   const history = useHistory();
+
+  function toggleMenu() {
+    dispatch(toggleOptionsMenu());
+  }
+
+  function changePanel(panel) {
+    dispatch(setActivePanel(panel));
+    toggleMenu();
+  }
 
   const logout = () => {
     dispatch(logoutUser());
@@ -53,6 +75,11 @@ export const Navbar: React.FC = () => {
     navigator.clipboard.writeText(sourceCode);
   }
 
+  function changeFilename(event) {
+    const value = event?.target?.value;
+    dispatch(setFilename(value));
+  }
+
   return (
     <div className="navbar-top">
       <div className="h-inherit">
@@ -65,6 +92,26 @@ export const Navbar: React.FC = () => {
                 style={{ height: '20px' }}
               />
             </a>
+
+            <div className="save-button-container navbar-top__option">
+              <input type="text" name="save-code-text" onChange={changeFilename} value={filename} />
+              <button
+                onClick={saveCode}
+                disabled={loading}
+                style={{ outline: 'none' }}
+                className="ml-2"
+              >
+                <img
+                  src="https://minio.codingminutes.com/assets/save.svg"
+                  className="d-lg-none d-block"
+                  style={{ height: '25px' }}
+                />
+                <span className="d-lg-block d-none">
+                  {!loading && <>Save</>}
+                  {loading && <>Saving</>}
+                </span>
+              </button>
+            </div>
 
             <a
               className="navbar-top__option"
@@ -80,23 +127,6 @@ export const Navbar: React.FC = () => {
               <span className="d-lg-block d-none">New</span>
             </a>
 
-            <button
-              className="navbar-top__option"
-              onClick={saveCode}
-              disabled={loading}
-              style={{ outline: 'none' }}
-            >
-              <img
-                src="https://minio.codingminutes.com/assets/save.svg"
-                className="d-lg-none d-block"
-                style={{ height: '25px' }}
-              />
-              <span className="d-lg-block d-none">
-                {!loading && <>Save</>}
-                {loading && <>Saving</>}
-              </span>
-            </button>
-
             <div className="navbar-top__option" onClick={copyCode}>
               <img
                 src="https://minio.codingminutes.com/assets/copy_code.svg"
@@ -110,9 +140,47 @@ export const Navbar: React.FC = () => {
           <div className="row no-gutters align-items-center">
             <LanguagePicker />
             {isLoggedIn && (
-              <button className="button-primary" onClick={logout}>
-                Log Out
-              </button>
+              <div className="logged-in-user-menu">
+                <div
+                  className="row no-gutters align-items-center justify-content-between logged-in-user-box"
+                  onClick={toggleMenu}
+                >
+                  <div className="">
+                    Hi, {user.first_name} {user.last_name}
+                  </div>
+                </div>
+                {isMenuOpen && (
+                  <div className="floating-menu">
+                    {activePanel != SAVELIST_PANEL && (
+                      <a
+                        className="row no-gutters align-items-center mb-3 floating-menu__option"
+                        onClick={() => changePanel(SAVELIST_PANEL)}
+                      >
+                        <img
+                          src="https://minio.codingminutes.com/assets/saved-codes.svg"
+                          className="mr-3"
+                        />
+                        <div>Saved Codes</div>
+                      </a>
+                    )}
+                    {activePanel != IO_PANEL && (
+                      <a
+                        className="row no-gutters align-items-center mb-3 floating-menu__option"
+                        onClick={() => changePanel(IO_PANEL)}
+                      >
+                        <div>I/O Pane</div>
+                      </a>
+                    )}
+                    <button onClick={logout} className="floating-menu__option">
+                      <img
+                        src="https://minio.codingminutes.com/assets/logout.svg"
+                        className="mr-3"
+                      />
+                      Log Out
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
             {!isLoggedIn && (
               <button className="button-primary" onClick={toggleOverlay}>

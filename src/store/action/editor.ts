@@ -8,6 +8,7 @@ import {
   SET_STUBS,
   SET_LANGUAGES,
   SET_FONT_SIZE,
+  SET_FILENAME,
 } from '~/store/action-types/editor';
 import { listToMap } from '~/utils/store';
 import { setSettings } from '~/services/settings';
@@ -62,3 +63,8 @@ export const setFontSize = (size: string) => {
     payload: size,
   };
 };
+
+export const setFilename = (filename: string) => ({
+  type: SET_FILENAME,
+  payload: filename,
+});
