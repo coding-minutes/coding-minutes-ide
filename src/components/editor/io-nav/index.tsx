@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { getReturnCode, getStdout } from '~/store/getters/editor';
+import { getActivePanel } from '~/store/getters/ui';
+import { IO_PANEL, SAVELIST_PANEL } from '~/constants/panel';
 
 import { InputFragment } from './input-fragment';
 import { OutputFragment } from './output-fragment';
@@ -21,6 +23,7 @@ export const IONav: React.FC<IONavProps> = (props) => {
   const stdout = useSelector(getStdout());
   const returnCode = useSelector(getReturnCode());
   const [selectedTab, setSelectedTab] = React.useState(stdout ? IOTabs.CONSOLE : IOTabs.INPUT);
+  const activePanel = useSelector(getActivePanel());
 
   React.useEffect(() => {
     if (returnCode !== null) {
@@ -30,10 +33,13 @@ export const IONav: React.FC<IONavProps> = (props) => {
 
   return (
     <div className={`d-flex flex-col io-section ${className}`}>
-      <Savelist />
-      {/* <div className="flex-1 io-box">
-        <InputFragment />
-        <OutputFragment /> */}
+      {activePanel == SAVELIST_PANEL && <Savelist />}
+      {activePanel == IO_PANEL && (
+        <div className="flex-1 io-box">
+          <InputFragment />
+          <OutputFragment />
+        </div>
+      )}
       {/* {selectedTab === IOTabs.INPUT && <InputFragment />}
         {selectedTab === IOTabs.CONSOLE && <OutputFragment />} */}
       {/* </div> */}

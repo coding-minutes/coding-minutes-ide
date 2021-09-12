@@ -47,13 +47,23 @@ const Savelist = (props) => {
                 </div>
               </div>
               <div className="t-align-r width-fit ml-4">
-                {previousPage && (
-                  <span onClick={() => changePageNumber(previousPage)}> &lt; Prev</span>
-                )}
+                <button
+                  className="savelist-pagination-buttons"
+                  disabled={!previousPage}
+                  onClick={() => changePageNumber(previousPage)}
+                >
+                  &lt; Prev
+                </button>
                 <div>
                   Showing {currentPageNumber} of {totalPages}
                 </div>
-                {nextPage && <span onClick={() => changePageNumber(nextPage)}>Next &gt;</span>}
+                <button
+                  className="savelist-pagination-buttons"
+                  disabled={!nextPage}
+                  onClick={() => changePageNumber(nextPage)}
+                >
+                  Next &gt;
+                </button>
               </div>
             </div>
           </div>
