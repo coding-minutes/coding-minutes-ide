@@ -25,6 +25,7 @@ $button-gradient: linear-gradient(
 );
 
 $primary-dark: #1e1e1e;
+$overlay-dark: #25282e;
 $secondary-dark: #404040;
 $tertiary-dark: #5c5c5c;
 
@@ -198,6 +199,38 @@ button {
       &:focus {
         border: 1px solid $accent-color-purple;
         background: $tertiary-dark;
+      }
+    }
+
+    .logged-in-user-menu {
+      position: relative;
+
+      .logged-in-user-box {
+        font-size: 1.142rem;
+        font-weight: 600;
+        background: $overlay-dark;
+        color: $primary-light;
+        border-radius: 5px;
+        padding: 5px 15px;
+      }
+
+      .floating-menu {
+        position: absolute;
+        width: 100%;
+        bottom: -6rem;
+        left: 0;
+        background: $overlay-dark;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        z-index: 10000;
+        color: $primary-light;
+
+        a,
+        button {
+          cursor: pointer;
+          color: $primary-light;
+        }
       }
     }
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
-import { getIsLoggedIn } from '~/store/getters/auth';
+import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
 import { setActiveModal } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
@@ -15,6 +15,7 @@ export const Navbar: React.FC = () => {
   const dispatch = useDispatch();
   const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
+  const user = useSelector(getUser());
   const currentLanguage = useSelector(getSelectedLanguage());
   const data = {
     lang: currentLanguage?.id || -1,
@@ -108,9 +109,20 @@ export const Navbar: React.FC = () => {
           <div className="row no-gutters align-items-center">
             <LanguagePicker />
             {isLoggedIn && (
-              <button className="button-primary" onClick={logout}>
-                Log Out
-              </button>
+              <div className="logged-in-user-menu">
+                <div className="row no-gutters align-items-center justify-content-between logged-in-user-box">
+                  <div className="mr-4">
+                    Hi, {user.first_name} {user.last_name}
+                  </div>
+                  <div className="icon">&gt;</div>
+                </div>
+                <div className="floating-menu">
+                  <a className="row no-gutters align-items-center mb-3">
+                    <div>Saved Codes</div>
+                  </a>
+                  <button onClick={logout}>Log Out</button>
+                </div>
+              </div>
             )}
             {!isLoggedIn && (
               <button className="button-primary" onClick={toggleOverlay}>
