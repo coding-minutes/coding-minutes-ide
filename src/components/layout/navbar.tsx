@@ -155,7 +155,7 @@ export const Navbar: React.FC = () => {
                       >
                         <img
                           src="https://minio.codingminutes.com/assets/saved-codes.svg"
-                          className="mr-2"
+                          className="mr-lg-3 mr-2"
                         />
                         <div>Saved Codes</div>
                       </a>
@@ -171,7 +171,7 @@ export const Navbar: React.FC = () => {
                     <button onClick={logout} className="floating-menu__option">
                       <img
                         src="https://minio.codingminutes.com/assets/logout.svg"
-                        className="mr-2"
+                        className="mr-lg-3 mr-2"
                       />
                       Log Out
                     </button>

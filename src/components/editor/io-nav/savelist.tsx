@@ -67,19 +67,18 @@ const Savelist = (props) => {
             <tbody>
               {savelist &&
                 savelist.map((code) => (
-                  <tr key={code.id}>
+                  <tr key={code.id} className="row-link-container">
                     <td className="py-2">{code.title}</td>
                     <td className="py-2">{languageMap[code.lang]?.name}</td>
-                    <td className="py-2">{code.updated_at}</td>
-                    <a href={`http://ide.codingminutes/?id=${code.id}`} className="row-link"></a>
+                    <td className="py-2">{new Date(code.updated_at).toLocaleString()}</td>
+                    <a
+                      href={`/?id=${code.id}`}
+                      className="row-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    ></a>
                   </tr>
                 ))}
-              <tr>
-                <td className="py-2">Kuchh toh badi si bakchodi</td>
-                <td className="py-2">Jai mata di ki jai krte hue</td>
-                <td className="py-2">yo yo yo yo yo honey singh ooh</td>
-                <a href={`kamaal`} className="row-link"></a>
-              </tr>
             </tbody>
           </table>
         </div>

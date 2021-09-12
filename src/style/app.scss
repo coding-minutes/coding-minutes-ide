@@ -215,6 +215,43 @@ button {
       }
     }
 
+    .save-button-container {
+      position: relative;
+      padding: 5px 1rem;
+      border-radius: 50px;
+      border: 1px solid $tertiary-dark;
+
+      input {
+        appearance: none;
+        background: transparent;
+        border: unset;
+        color: $tertiary-light;
+        transition: all 0.5s;
+        width: 175px;
+
+        &:focus-visible {
+          outline: unset;
+          color: $primary-light;
+          width: 400px;
+        }
+
+        &::placeholder {
+          opacity: 1;
+          color: $tertiary-light;
+        }
+      }
+
+      button {
+        color: $primary-light;
+        cursor: pointer;
+
+        &:focus,
+        &:hover {
+          color: $accent-color-green;
+        }
+      }
+    }
+
     select {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -349,6 +386,52 @@ button {
 
           &:focus-visible {
             width: 125px;
+          }
+        }
+      }
+    }
+
+    .logged-in-user-menu {
+      position: relative;
+
+      .logged-in-user-box {
+        font-size: 1.142rem;
+        font-weight: 600;
+        background: $overlay-dark;
+        color: $primary-light;
+        border-radius: 5px;
+        padding: 5px 20px;
+        cursor: pointer;
+      }
+
+      .floating-menu {
+        position: absolute;
+        width: 100%;
+        bottom: -6rem;
+        left: 0;
+        background: $overlay-dark;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        z-index: 10000;
+        color: $primary-light;
+
+        &--hidden {
+          display: none;
+        }
+
+        a,
+        button {
+          cursor: pointer;
+          color: $primary-light;
+        }
+
+        &__option {
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            color: $accent-color-green;
           }
         }
       }
