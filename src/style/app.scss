@@ -226,6 +226,10 @@ button {
         z-index: 10000;
         color: $primary-light;
 
+        &--hidden {
+          display: none;
+        }
+
         a,
         button {
           cursor: pointer;
@@ -376,9 +380,22 @@ button {
       .saved-list-section {
         padding: 30px;
 
+        .table-container {
+          max-height: 58%;
+          overflow: auto;
+        }
+
         table {
           width: 100%;
           table-layout: fixed;
+
+          .main-key {
+            width: 40%;
+          }
+
+          .sub-key {
+            width: 30%;
+          }
         }
       }
 

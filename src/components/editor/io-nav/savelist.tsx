@@ -46,26 +46,22 @@ const Savelist = (props) => {
                   <img src="https://minio.codingminutes.com/assets/search.svg" />
                 </div>
               </div>
-              <div className="t-align-r width-fit ml-4">
-                {previousPage && (
-                  <span onClick={() => changePageNumber(previousPage)}> &lt; Prev</span>
-                )}
-                <div>
-                  Showing {currentPageNumber} of {totalPages}
-                </div>
-                {nextPage && <span onClick={() => changePageNumber(nextPage)}>Next &gt;</span>}
-              </div>
             </div>
           </div>
         </div>
 
-        <div>
+        <div className="table-container">
           <table className="w-100">
+            <colgroup>
+              <col className="main-key" />
+              <col className="sub-key" />
+              <col className="sub-key" />
+            </colgroup>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Language</th>
-                <th>Last Updated</th>
+                <th className="pb-3">Name</th>
+                <th className="pb-3">Language</th>
+                <th className="pb-3">Last Updated</th>
               </tr>
             </thead>
             <tbody>
@@ -73,9 +69,9 @@ const Savelist = (props) => {
                 savelist.map((code) => (
                   <a href={`http://ide.codingminutes/?id=${code.id}`}>
                     <tr key={code.id}>
-                      <td>{code.title}</td>
-                      <td>{languageMap[code.lang]?.name}</td>
-                      <td>{code.updated_at}</td>
+                      <td className="py-2">{code.title}</td>
+                      <td className="py-2">{languageMap[code.lang]?.name}</td>
+                      <td className="py-2">{code.updated_at}</td>
                       {/* <td>
                       <a href={`http://ide.codingminutes/?id=${code.id}`}>View Code</a>
                     </td> */}
@@ -83,9 +79,9 @@ const Savelist = (props) => {
                   </a>
                 ))}
               <tr className="row-link-container">
-                <td>Some Code</td>
-                <td>Python</td>
-                <td>Today</td>
+                <td className="py-2">Some Code</td>
+                <td className="py-2">Python</td>
+                <td className="py-2">Today</td>
                 <a href={`http://www.youtube.com`} className="row-link"></a>
               </tr>
             </tbody>

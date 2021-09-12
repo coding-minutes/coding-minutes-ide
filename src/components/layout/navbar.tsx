@@ -116,7 +116,7 @@ export const Navbar: React.FC = () => {
                   </div>
                   <div className="icon">&gt;</div>
                 </div>
-                <div className="floating-menu">
+                <div className="floating-menu floating-menu--hidden">
                   <a className="row no-gutters align-items-center mb-3">
                     <div>Saved Codes</div>
                   </a>
