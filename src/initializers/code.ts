@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { getCodeById } from '~/services/ide';
-import { setSource, setStdin, setLanguageById } from '~/store/action/editor';
+import { setSource, setStdin, setLanguageById, setFilename } from '~/store/action/editor';
 
 export async function fetchCodeFromIdParam(dispatch: Dispatch) {
   const queryParams = new URLSearchParams(location.search);
@@ -17,6 +17,7 @@ export async function fetchCodeFromIdParam(dispatch: Dispatch) {
     dispatch(setLanguageById(data.lang));
     dispatch(setSource(source));
     dispatch(setStdin(data.input));
+    dispatch(setFilename(data.title || 'Untitled'));
   } catch (error) {
     console.error('Fetch code error = ', error);
   }

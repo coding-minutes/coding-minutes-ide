@@ -6,9 +6,15 @@ import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
 import { setActiveModal } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
-import { getCurrentSource, getStdin, getSelectedLanguage } from '~/store/getters/editor';
+import {
+  getCurrentSource,
+  getStdin,
+  getSelectedLanguage,
+  getFilename,
+} from '~/store/getters/editor';
 import { clearJwt } from '~/utils/jwt';
 import { saveUpdateCode } from '~/tasks/save-update-code';
+import { setFilename } from '~/store/action/editor';
 
 export const Navbar: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -17,10 +23,12 @@ export const Navbar: React.FC = () => {
   const isLoggedIn = useSelector(getIsLoggedIn());
   const user = useSelector(getUser());
   const currentLanguage = useSelector(getSelectedLanguage());
+  const filename = useSelector(getFilename());
   const data = {
     lang: currentLanguage?.id || -1,
     source: useSelector(getCurrentSource()),
     input: useSelector(getStdin()),
+    title: filename,
   };
 
   const history = useHistory();
@@ -54,6 +62,11 @@ export const Navbar: React.FC = () => {
     navigator.clipboard.writeText(sourceCode);
   }
 
+  function changeFilename(event) {
+    const value = event?.target?.value;
+    dispatch(setFilename(value));
+  }
+
   return (
     <div className="navbar-top">
       <div className="h-inherit">
@@ -68,7 +81,7 @@ export const Navbar: React.FC = () => {
             </a>
 
             <div className="save-container navbar-top__option">
-              <input type="text" name="save-code-text" />
+              <input type="text" name="save-code-text" onChange={changeFilename} value={filename} />
               <button onClick={saveCode} disabled={loading} style={{ outline: 'none' }}>
                 <img
                   src="https://minio.codingminutes.com/assets/save.svg"
