@@ -121,6 +121,18 @@ button {
   }
 }
 
+.row-link-container {
+  position: relative;
+
+  .row-link {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
 .ide-container {
   height: 100vh;
   width: 100%;
@@ -330,6 +342,11 @@ button {
 
       .saved-list-section {
         padding: 30px;
+
+        table {
+          width: 100%;
+          table-layout: fixed;
+        }
       }
 
       .io-header {

@@ -33,7 +33,7 @@ const Savelist = (props) => {
         <div>
           <div>
             <div className="io-header">Saved Codes</div>
-            <div className="row no-gutters justify-content-between align-items-center mt-4">
+            <div className="row no-gutters justify-content-between align-items-center my-4">
               <div className="input-container flex-1">
                 <input
                   value={query}
@@ -60,29 +60,34 @@ const Savelist = (props) => {
         </div>
 
         <div>
-          <table>
+          <table className="w-100">
             <thead>
               <tr>
-                <th>Name of File</th>
-                <th>Language used</th>
-                <th>Date Created</th>
-                <th>Date Updated</th>
-                <th></th>
+                <th>Name</th>
+                <th>Language</th>
+                <th>Last Updated</th>
               </tr>
             </thead>
             <tbody>
               {savelist &&
                 savelist.map((code) => (
-                  <tr key={code.id}>
-                    <td>{code.title}</td>
-                    <td>{languageMap[code.lang]?.name}</td>
-                    <td>{code.created_at}</td>
-                    <td>{code.updated_at}</td>
-                    <td>
+                  <a href={`http://ide.codingminutes/?id=${code.id}`}>
+                    <tr key={code.id}>
+                      <td>{code.title}</td>
+                      <td>{languageMap[code.lang]?.name}</td>
+                      <td>{code.updated_at}</td>
+                      {/* <td>
                       <a href={`http://ide.codingminutes/?id=${code.id}`}>View Code</a>
-                    </td>
-                  </tr>
+                    </td> */}
+                    </tr>
+                  </a>
                 ))}
+              <tr className="row-link-container">
+                <td>Some Code</td>
+                <td>Python</td>
+                <td>Today</td>
+                <a href={`http://www.youtube.com`} className="row-link"></a>
+              </tr>
             </tbody>
           </table>
         </div>

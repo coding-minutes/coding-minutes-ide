@@ -66,6 +66,21 @@ export const Navbar: React.FC = () => {
               />
             </a>
 
+            <div className="save-container navbar-top__option">
+              <input type="text" name="save-code-text" />
+              <button onClick={saveCode} disabled={loading} style={{ outline: 'none' }}>
+                <img
+                  src="https://minio.codingminutes.com/assets/save.svg"
+                  className="d-lg-none d-block"
+                  style={{ height: '25px' }}
+                />
+                <span className="d-lg-block d-none">
+                  {!loading && <>Save</>}
+                  {loading && <>Saving</>}
+                </span>
+              </button>
+            </div>
+
             <a
               className="navbar-top__option"
               href="https://ide.codingminutes.com/"
@@ -79,23 +94,6 @@ export const Navbar: React.FC = () => {
               />
               <span className="d-lg-block d-none">New</span>
             </a>
-
-            <button
-              className="navbar-top__option"
-              onClick={saveCode}
-              disabled={loading}
-              style={{ outline: 'none' }}
-            >
-              <img
-                src="https://minio.codingminutes.com/assets/save.svg"
-                className="d-lg-none d-block"
-                style={{ height: '25px' }}
-              />
-              <span className="d-lg-block d-none">
-                {!loading && <>Save</>}
-                {loading && <>Saving</>}
-              </span>
-            </button>
 
             <div className="navbar-top__option" onClick={copyCode}>
               <img
