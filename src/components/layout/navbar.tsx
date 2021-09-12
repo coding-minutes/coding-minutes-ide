@@ -145,7 +145,7 @@ export const Navbar: React.FC = () => {
                   <div className="icon">&gt;</div>
                 </div>
                 {isMenuOpen && (
-                  <div className="floating-menu">
+                  <div className="floating-menu floating-menu--hidden">
                     {activePanel != SAVELIST_PANEL && (
                       <a
                         className="row no-gutters align-items-center mb-3"
