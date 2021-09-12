@@ -166,6 +166,34 @@ button {
       }
     }
 
+    .save-button-container {
+      position: relative;
+      padding: 5px 1rem;
+      border-radius: 50px;
+      border: 1px solid $tertiary-dark;
+
+      input {
+        appearance: none;
+        background: transparent;
+        border: unset;
+        color: $tertiary-light;
+
+        &:focus-visible {
+          outline: unset;
+          color: $primary-light;
+        }
+
+        &::placeholder {
+          opacity: 1;
+          color: $tertiary-light;
+        }
+      }
+
+      button {
+        color: $primary-light;
+      }
+    }
+
     select {
       -webkit-appearance: none;
       -moz-appearance: none;

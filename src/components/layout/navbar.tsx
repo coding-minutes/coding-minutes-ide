@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
               />
             </a>
 
-            <div className="save-container navbar-top__option">
+            <div className="save-button-container navbar-top__option">
               <input type="text" name="save-code-text" onChange={changeFilename} value={filename} />
               <button onClick={saveCode} disabled={loading} style={{ outline: 'none' }}>
                 <img
