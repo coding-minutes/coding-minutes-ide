@@ -79,12 +79,6 @@ const Savelist = (props) => {
                     ></a>
                   </tr>
                 ))}
-              <tr>
-                <td className="py-2">Kuchh toh badi si bakchodi</td>
-                <td className="py-2">Jai mata di ki jai krte hue</td>
-                <td className="py-2">yo yo yo yo yo honey singh ooh</td>
-                <a href={`kamaal`} className="row-link"></a>
-              </tr>
             </tbody>
           </table>
         </div>
