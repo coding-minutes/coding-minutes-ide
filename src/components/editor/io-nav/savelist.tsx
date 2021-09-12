@@ -67,23 +67,13 @@ const Savelist = (props) => {
             <tbody>
               {savelist &&
                 savelist.map((code) => (
-                  <a href={`http://ide.codingminutes/?id=${code.id}`}>
-                    <tr key={code.id}>
-                      <td className="py-2">{code.title}</td>
-                      <td className="py-2">{languageMap[code.lang]?.name}</td>
-                      <td className="py-2">{code.updated_at}</td>
-                      {/* <td>
-                      <a href={`http://ide.codingminutes/?id=${code.id}`}>View Code</a>
-                    </td> */}
-                    </tr>
-                  </a>
+                  <tr key={code.id}>
+                    <td className="py-2">{code.title}</td>
+                    <td className="py-2">{languageMap[code.lang]?.name}</td>
+                    <td className="py-2">{code.updated_at}</td>
+                    <a href={`http://ide.codingminutes/?id=${code.id}`} className="row-link"></a>
+                  </tr>
                 ))}
-              {/* <tr className="row-link-container">
-                <td className="py-2">Some Code</td>
-                <td className="py-2">Python</td>
-                <td className="py-2">Today</td>
-                <a href={`http://www.youtube.com`} className="row-link"></a>
-              </tr> */}
             </tbody>
           </table>
         </div>
