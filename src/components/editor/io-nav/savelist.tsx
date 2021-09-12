@@ -29,7 +29,7 @@ const Savelist = (props) => {
 
   return (
     <>
-      <div className="saved-list-section">
+      <div className="saved-list-section flex-1">
         <div>
           <div>
             <div className="io-header">Saved Codes</div>
@@ -86,6 +86,13 @@ const Savelist = (props) => {
               </tr>
             </tbody>
           </table>
+        </div>
+        <div className="width-fit saved-list-section__navigation">
+          {previousPage && <span onClick={() => changePageNumber(previousPage)}> &lt; Prev</span>}
+          <div>
+            Showing {currentPageNumber} of {totalPages}
+          </div>
+          {nextPage && <span onClick={() => changePageNumber(nextPage)}>Next &gt;</span>}
         </div>
       </div>
     </>
