@@ -33,7 +33,7 @@ const Savelist = (props) => {
         <div>
           <div>
             <div className="io-header">Saved Codes</div>
-            <div className="row no-gutters justify-content-between align-items-center my-4">
+            <div className="row no-gutters justify-content-between align-items-center my-5">
               <div className="input-container flex-1">
                 <input
                   value={query}
@@ -45,25 +45,6 @@ const Savelist = (props) => {
                 <div className="input-container__icon">
                   <img src="https://minio.codingminutes.com/assets/search.svg" />
                 </div>
-              </div>
-              <div className="t-align-r width-fit ml-4">
-                <button
-                  className="savelist-pagination-buttons"
-                  disabled={!previousPage}
-                  onClick={() => changePageNumber(previousPage)}
-                >
-                  &lt; Prev
-                </button>
-                <div>
-                  Showing {currentPageNumber} of {totalPages}
-                </div>
-                <button
-                  className="savelist-pagination-buttons"
-                  disabled={!nextPage}
-                  onClick={() => changePageNumber(nextPage)}
-                >
-                  Next &gt;
-                </button>
               </div>
             </div>
           </div>
@@ -97,21 +78,33 @@ const Savelist = (props) => {
                     </tr>
                   </a>
                 ))}
-              <tr className="row-link-container">
+              {/* <tr className="row-link-container">
                 <td className="py-2">Some Code</td>
                 <td className="py-2">Python</td>
                 <td className="py-2">Today</td>
                 <a href={`http://www.youtube.com`} className="row-link"></a>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>
-        <div className="width-fit saved-list-section__navigation">
-          {previousPage && <span onClick={() => changePageNumber(previousPage)}> &lt; Prev</span>}
-          <div>
+        <div className="t-align-r saved-list-section__navigation row no-gutters">
+          <button
+            className="savelist-pagination-buttons"
+            disabled={!previousPage}
+            onClick={() => changePageNumber(previousPage)}
+          >
+            &lt; Prev
+          </button>
+          <div className="mx-3">
             Showing {currentPageNumber} of {totalPages}
           </div>
-          {nextPage && <span onClick={() => changePageNumber(nextPage)}>Next &gt;</span>}
+          <button
+            className="savelist-pagination-buttons"
+            disabled={!nextPage}
+            onClick={() => changePageNumber(nextPage)}
+          >
+            Next &gt;
+          </button>
         </div>
       </div>
     </>

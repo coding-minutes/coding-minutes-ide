@@ -43,6 +43,7 @@ export const Navbar: React.FC = () => {
 
   function changePanel(panel) {
     dispatch(setActivePanel(panel));
+    toggleMenu();
   }
 
   const logout = () => {
@@ -94,7 +95,12 @@ export const Navbar: React.FC = () => {
 
             <div className="save-button-container navbar-top__option">
               <input type="text" name="save-code-text" onChange={changeFilename} value={filename} />
-              <button onClick={saveCode} disabled={loading} style={{ outline: 'none' }}>
+              <button
+                onClick={saveCode}
+                disabled={loading}
+                style={{ outline: 'none' }}
+                className="ml-2"
+              >
                 <img
                   src="https://minio.codingminutes.com/assets/save.svg"
                   className="d-lg-none d-block"
@@ -139,30 +145,39 @@ export const Navbar: React.FC = () => {
                   className="row no-gutters align-items-center justify-content-between logged-in-user-box"
                   onClick={toggleMenu}
                 >
-                  <div className="mr-4">
+                  <div className="">
                     Hi, {user.first_name} {user.last_name}
                   </div>
-                  <div className="icon">&gt;</div>
                 </div>
                 {isMenuOpen && (
-                  <div className="floating-menu floating-menu--hidden">
+                  <div className="floating-menu">
                     {activePanel != SAVELIST_PANEL && (
                       <a
-                        className="row no-gutters align-items-center mb-3"
+                        className="row no-gutters align-items-center mb-3 floating-menu__option"
                         onClick={() => changePanel(SAVELIST_PANEL)}
                       >
+                        <img
+                          src="https://minio.codingminutes.com/assets/saved-codes.svg"
+                          className="mr-3"
+                        />
                         <div>Saved Codes</div>
                       </a>
                     )}
                     {activePanel != IO_PANEL && (
                       <a
-                        className="row no-gutters align-items-center mb-3"
+                        className="row no-gutters align-items-center mb-3 floating-menu__option"
                         onClick={() => changePanel(IO_PANEL)}
                       >
-                        <div>Input/Output</div>
+                        <div>I/O Pane</div>
                       </a>
                     )}
-                    <button onClick={logout}>Log Out</button>
+                    <button onClick={logout} className="floating-menu__option">
+                      <img
+                        src="https://minio.codingminutes.com/assets/logout.svg"
+                        className="mr-3"
+                      />
+                      Log Out
+                    </button>
                   </div>
                 )}
               </div>

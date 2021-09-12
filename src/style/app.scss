@@ -177,10 +177,13 @@ button {
         background: transparent;
         border: unset;
         color: $tertiary-light;
+        transition: all 0.5s;
+        width: 175px;
 
         &:focus-visible {
           outline: unset;
           color: $primary-light;
+          width: 400px;
         }
 
         &::placeholder {
@@ -191,6 +194,12 @@ button {
 
       button {
         color: $primary-light;
+        cursor: pointer;
+
+        &:focus,
+        &:hover {
+          color: $accent-color-green;
+        }
       }
     }
 
@@ -239,7 +248,7 @@ button {
         background: $overlay-dark;
         color: $primary-light;
         border-radius: 5px;
-        padding: 5px 15px;
+        padding: 5px 20px;
         cursor: pointer;
       }
 
@@ -263,6 +272,15 @@ button {
         button {
           cursor: pointer;
           color: $primary-light;
+        }
+
+        &__option {
+          display: flex;
+          align-items: center;
+
+          &:hover {
+            color: $accent-color-green;
+          }
         }
       }
     }
@@ -411,7 +429,7 @@ button {
         position: relative;
 
         .table-container {
-          max-height: 58%;
+          max-height: 55%;
           overflow: auto;
         }
 
@@ -426,12 +444,25 @@ button {
           .sub-key {
             width: 30%;
           }
+
+          tr:hover {
+            td {
+              color: $accent-color-green;
+            }
+          }
         }
 
         &__navigation {
           position: absolute;
           bottom: 30px;
           left: 30px;
+
+          .savelist-pagination-buttons {
+            &:hover {
+              color: $accent-color-green;
+              cursor: pointer;
+            }
+          }
         }
       }
 
