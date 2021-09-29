@@ -43,7 +43,7 @@ export const RunFAB = (props: RunFabProps) => {
       yield sleep(1000);
       const submission: Submission = yield pollSubmission(submissionId);
 
-      if (submission.time) {
+      if (submission.time || submission.compile_output || submission.stderr || submission.stdout) {
         setOutput(submission.compile_output || submission.stderr || submission.stdout);
         setCode(submission.stderr || submission.compile_output ? 1 : 0);
         return;
