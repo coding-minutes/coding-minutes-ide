@@ -255,6 +255,15 @@ button {
       }
     }
 
+    .fontsize-selector {
+      @extend .language-selector;
+      font-weight: 700;
+
+      option {
+        padding: 5px 10px;
+      }
+    }
+
     .logged-in-user-menu {
       position: relative;
 

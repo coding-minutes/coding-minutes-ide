@@ -6,6 +6,7 @@ import { setActivePanel } from '~/store/action/ui';
 
 export const loadSettings = (dispatch: Dispatch) => {
   const settings = getSettings();
+  console.log(settings);
   if (settings?.lang_id) {
     dispatch(setLanguageById(settings.lang_id));
   }

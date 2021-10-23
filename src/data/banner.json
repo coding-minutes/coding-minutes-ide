@@ -1,10 +1,10 @@
 {
-  "BIG_SALE_360": {
-    "content": "🎉 Biggest Sale of the Season is here! <span class='banner--green-text'>Grab all courses @Rs. 360/- using coupon 'BIGSALE360'</span>🔥",
+  "SUPER_SALE": {
+    "content": "🎉 Super Sale. <span className='banner--green-text'>All Courses @ Rs.490 </span> 🎉",
     "link": "https://codingminutes.com/#course_gallery"
   },
-  "DUSSHERA": {
-    "content": "<span class='banner--green-text'>Happy Dusshera!</span>🎉 Grab biggest discounts on our courses 15-20 Oct!",
-    "link": "https://codingminutes.com/#course_gallery"
+  "IDE_NEW_FEATURES": {
+    "content": "🎉 New features in <span className='banner--green-text'>IDE</span> coming soon. ",
+    "link": "https://ide.codingminutes.com/"
   }
 }

@@ -17,6 +17,7 @@ import { saveUpdateCode } from '~/tasks/save-update-code';
 import { setFilename } from '~/store/action/editor';
 import { getActivePanel, isOptionsMenuOpen } from '~/store/getters/ui';
 import { IO_PANEL, SAVELIST_PANEL } from '~/constants/panel';
+import { FontsizePicker } from '~/components/editor/fontsize-picker';
 
 export const Navbar: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -136,6 +137,7 @@ export const Navbar: React.FC = () => {
             {/* <div className="navbar-top__option">Share</div> */}
           </div>
           <div className="row no-gutters align-items-center">
+            <FontsizePicker />
             <LanguagePicker />
             {isLoggedIn && (
               <div className="logged-in-user-menu">
