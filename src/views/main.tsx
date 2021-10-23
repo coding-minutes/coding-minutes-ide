@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTask } from 'react-use-task';
-
 import { Navbar } from '~/components/layout/navbar';
 import { CodeEditor } from '~/components/editor/code-editor';
 import { IONav } from '~/components/editor/io-nav';
@@ -10,12 +9,11 @@ import { getReturnCode } from '~/store/getters/editor';
 import { setReturnCode } from '~/store/action/editor';
 import { isIOPaneOpen, isBannerVisible } from '~/store/getters/ui';
 import { initialize } from '~/initializers';
-import { fetchCodeFromIdParam } from '~/initializers/code';
 import { toggleIOPane } from '~/store/action/ui';
 import { LoginModal } from '~/components/auth/login-modal';
 import { ScreenSizeModal } from '~/components/layout/screen-size-modal';
-import { getUserFromJwt } from '~/initializers/user';
 import { Banner } from '~/components/layout/banner';
+import { Toast } from '~/components/base/toast';
 import banner_data from '~/data/banner.json';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
@@ -60,6 +58,7 @@ export const MainView: React.FC = () => {
     <>
       <div className="ide-container ide-container--dark">
         {showBanner && <Banner content={bannerContent.content} link={bannerContent.link} />}
+        <Toast />
         <LoginModal />
         <ScreenSizeModal />
         <Navbar />

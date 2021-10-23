@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
 import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
-import { setActiveModal, setActivePanel, toggleOptionsMenu } from '~/store/action/ui';
+import { setActiveModal, setActivePanel, setToast, toggleOptionsMenu } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
 import {
   getCurrentSource,
@@ -17,6 +17,7 @@ import { saveUpdateCode } from '~/tasks/save-update-code';
 import { setFilename } from '~/store/action/editor';
 import { getActivePanel, isOptionsMenuOpen } from '~/store/getters/ui';
 import { IO_PANEL, SAVELIST_PANEL } from '~/constants/panel';
+import { FontsizePicker } from '~/components/editor/fontsize-picker';
 
 export const Navbar: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -67,6 +68,11 @@ export const Navbar: React.FC = () => {
       console.error(error);
     } finally {
       setLoading(false);
+      dispatch(
+        setToast({
+          message: 'Code saved successfully',
+        }),
+      );
     }
   }
 
@@ -135,6 +141,7 @@ export const Navbar: React.FC = () => {
             {/* <div className="navbar-top__option">Share</div> */}
           </div>
           <div className="row no-gutters align-items-center">
+            <FontsizePicker />
             <LanguagePicker />
             {isLoggedIn && (
               <div className="logged-in-user-menu">

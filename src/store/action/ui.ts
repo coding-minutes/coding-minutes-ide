@@ -4,7 +4,9 @@ import {
   TOGGLE_BANNER,
   TOGGLE_OPTIONS_MENU,
   SET_ACTIVE_PANEL,
+  SET_TOAST,
 } from '~/store/action-types/ui';
+import { Toast, ToastType } from '~/store/reducers/ui';
 
 export const toggleIOPane = () => ({
   type: TOGGLE_IO_PANE,
@@ -27,3 +29,18 @@ export const setActivePanel = (panel?: string) => ({
   type: SET_ACTIVE_PANEL,
   payload: panel || null,
 });
+
+export const setToast = (toast: Partial<Toast>) => {
+  const payload = toast
+    ? {
+        message: '',
+        timeout: 3000,
+        type: ToastType.SUCCESS,
+        ...toast,
+      }
+    : null;
+  return {
+    type: SET_TOAST,
+    payload,
+  };
+};

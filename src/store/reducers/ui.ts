@@ -4,7 +4,21 @@ import {
   TOGGLE_BANNER,
   TOGGLE_OPTIONS_MENU,
   SET_ACTIVE_PANEL,
+  SET_TOAST,
 } from '~/store/action-types/ui';
+
+export enum ToastType {
+  DANGER,
+  SUCCESS,
+  WARNING,
+  INFO,
+}
+
+export interface Toast {
+  message: string;
+  type: ToastType;
+  timeout: number;
+}
 
 export interface UIState {
   io_pane_open: boolean;
@@ -12,6 +26,7 @@ export interface UIState {
   isBannerVisible: boolean;
   isOptionsMenuOpen: boolean;
   active_panel: string | null;
+  toast: Toast | null;
 }
 
 const initialState: UIState = {
@@ -20,6 +35,7 @@ const initialState: UIState = {
   isBannerVisible: true,
   isOptionsMenuOpen: false,
   active_panel: '',
+  toast: null,
 };
 
 export const uiReducer = (state: UIState = initialState, action): UIState => {
@@ -49,6 +65,12 @@ export const uiReducer = (state: UIState = initialState, action): UIState => {
       return {
         ...state,
         active_panel: action.payload,
+      };
+
+    case SET_TOAST:
+      return {
+        ...state,
+        toast: action.payload,
       };
     default:
       return state;

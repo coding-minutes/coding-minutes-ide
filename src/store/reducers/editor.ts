@@ -10,6 +10,7 @@ import {
   SET_FILENAME,
 } from '~/store/action-types/editor';
 import { listToMap } from '~/utils/store';
+import { FONTSIZE_MAP } from '~/constants/fontsizes';
 
 export interface Language {
   id: number;
@@ -34,7 +35,7 @@ const initialState: EditorState = {
   stdout: '',
   returnCode: null,
   languages: {},
-  fontSize: '12px',
+  fontSize: FONTSIZE_MAP.SMALL,
   filename: 'Untitled',
 };
 
