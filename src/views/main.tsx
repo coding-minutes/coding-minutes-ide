@@ -13,7 +13,7 @@ import { toggleIOPane } from '~/store/action/ui';
 import { LoginModal } from '~/components/auth/login-modal';
 import { ScreenSizeModal } from '~/components/layout/screen-size-modal';
 import { Banner } from '~/components/layout/banner';
-import { Toast } from '~/components/layout/toast';
+import { Toast } from '~/components/base/toast';
 import banner_data from '~/data/banner.json';
 
 const getFabStateForReturnCode = (returnCode: number | null): FabState => {
