@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
 import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
-import { setActiveModal, setActivePanel, toggleOptionsMenu } from '~/store/action/ui';
+import { setActiveModal, setActivePanel, setShowToast, toggleOptionsMenu } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
 import {
   getCurrentSource,
@@ -67,6 +67,7 @@ export const Navbar: React.FC = () => {
       console.error(error);
     } finally {
       setLoading(false);
+      dispatch(setShowToast(true));
     }
   }
 

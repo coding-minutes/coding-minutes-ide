@@ -849,6 +849,33 @@ button {
   color: white;
 }
 
+.toast {
+  position: absolute;
+  bottom: -100px;
+  left: 45vw;
+
+  min-height: 30px;
+  min-width: 10vw;
+
+  border-radius: 10px;
+  background: $button-gradient;
+  background-size: 200% 200%;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  z-index: 1000;
+
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    animation: button-gradient 3s ease infinite;
+  }
+
+  &.active {
+    bottom: 20px;
+  }
+}
+
 // REUSE LATER
 
 // .language-selector {

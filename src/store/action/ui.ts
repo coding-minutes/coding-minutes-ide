@@ -4,6 +4,7 @@ import {
   TOGGLE_BANNER,
   TOGGLE_OPTIONS_MENU,
   SET_ACTIVE_PANEL,
+  SHOW_TOAST,
 } from '~/store/action-types/ui';
 
 export const toggleIOPane = () => ({
@@ -26,4 +27,9 @@ export const toggleOptionsMenu = () => ({
 export const setActivePanel = (panel?: string) => ({
   type: SET_ACTIVE_PANEL,
   payload: panel || null,
+});
+
+export const setShowToast = (show: boolean) => ({
+  type: SHOW_TOAST,
+  payload: show,
 });

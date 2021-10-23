@@ -3,3 +3,4 @@ export const SET_ACTIVE_MODAL = 'ui/SET_ACTIVE_MODAL';
 export const TOGGLE_BANNER = 'ui/TOGGLE_BANNER';
 export const TOGGLE_OPTIONS_MENU = 'ui/TOGGLE_OPTIONS_MENU';
 export const SET_ACTIVE_PANEL = 'ui/SET_ACTIVE_PANEL';
+export const SHOW_TOAST = 'ui/SHOW_TOAST';
