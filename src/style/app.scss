@@ -255,19 +255,10 @@ button {
       }
     }
 
-    .fontsize-selector {
-      @extend .language-selector;
-      font-weight: 700;
-
-      option {
-        padding: 5px 10px;
-      }
-    }
-
-    .logged-in-user-menu {
+    .dropdown {
       position: relative;
 
-      .logged-in-user-box {
+      .dropdown-header {
         font-size: 1.142rem;
         font-weight: 600;
         background: $overlay-dark;
@@ -278,9 +269,10 @@ button {
       }
 
       .floating-menu {
+        font-size: 0.7857rem;
         position: absolute;
         width: 100%;
-        bottom: -6rem;
+        top: 2.5rem;
         left: 0;
         background: $overlay-dark;
         border-radius: 5px;
@@ -302,6 +294,7 @@ button {
         &__option {
           display: flex;
           align-items: center;
+          min-width: 50rem;
 
           &:hover {
             color: $accent-color-green;
@@ -340,6 +333,52 @@ button {
 
       .language-selector {
         font-size: 0.857rem;
+      }
+
+      .fontsize-selector {
+        position: relative;
+
+        .logged-in-user-box {
+          font-size: 1.142rem;
+          font-weight: 600;
+          background: $overlay-dark;
+          color: $primary-light;
+          border-radius: 5px;
+          padding: 5px 20px;
+          cursor: pointer;
+        }
+
+        .floating-menu {
+          position: absolute;
+          width: 100%;
+          bottom: -6rem;
+          left: 0;
+          background: $overlay-dark;
+          border-radius: 5px;
+          padding: 10px 15px;
+          font-size: 1rem;
+          z-index: 10000;
+          color: $primary-light;
+
+          &--hidden {
+            display: none;
+          }
+
+          a,
+          button {
+            cursor: pointer;
+            color: $primary-light;
+          }
+
+          &__option {
+            display: flex;
+            align-items: center;
+
+            &:hover {
+              color: $accent-color-green;
+            }
+          }
+        }
       }
 
       .logged-in-user-menu {

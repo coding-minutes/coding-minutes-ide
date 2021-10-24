@@ -35,7 +35,7 @@ const initialState: EditorState = {
   stdout: '',
   returnCode: null,
   languages: {},
-  fontSize: FONTSIZE_MAP.SMALL,
+  fontSize: FONTSIZE_MAP['.50x'],
   filename: 'Untitled',
 };
 

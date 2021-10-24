@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
 import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
-import { setActiveModal, setActivePanel, setToast, toggleOptionsMenu } from '~/store/action/ui';
+import { setActiveModal, setActivePanel, setToast } from '~/store/action/ui';
 import { LOGIN_MODAL } from '~/constants/modal';
 import {
   getCurrentSource,
@@ -15,9 +15,10 @@ import {
 import { clearJwt } from '~/utils/jwt';
 import { saveUpdateCode } from '~/tasks/save-update-code';
 import { setFilename } from '~/store/action/editor';
-import { getActivePanel, isOptionsMenuOpen } from '~/store/getters/ui';
+import { getActivePanel } from '~/store/getters/ui';
 import { IO_PANEL, SAVELIST_PANEL } from '~/constants/panel';
 import { FontsizePicker } from '~/components/editor/fontsize-picker';
+import { Dropdown } from '~/components/base/dropdown';
 
 export const Navbar: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
@@ -33,18 +34,12 @@ export const Navbar: React.FC = () => {
     input: useSelector(getStdin()),
     title: filename,
   };
-  const isMenuOpen = useSelector(isOptionsMenuOpen());
   const activePanel = useSelector(getActivePanel());
 
   const history = useHistory();
 
-  function toggleMenu() {
-    dispatch(toggleOptionsMenu());
-  }
-
   function changePanel(panel) {
     dispatch(setActivePanel(panel));
-    toggleMenu();
   }
 
   const logout = () => {
@@ -144,37 +139,11 @@ export const Navbar: React.FC = () => {
             <FontsizePicker />
             <LanguagePicker />
             {isLoggedIn && (
-              <div className="logged-in-user-menu">
-                <div
-                  className="row no-gutters align-items-center justify-content-between logged-in-user-box"
-                  onClick={toggleMenu}
-                >
-                  <div className="">
-                    Hi, {user.first_name} {user.last_name}
-                  </div>
-                </div>
-                {isMenuOpen && (
-                  <div className="floating-menu">
-                    {activePanel != SAVELIST_PANEL && (
-                      <a
-                        className="row no-gutters align-items-center mb-3 floating-menu__option"
-                        onClick={() => changePanel(SAVELIST_PANEL)}
-                      >
-                        <img
-                          src="https://minio.codingminutes.com/assets/saved-codes.svg"
-                          className="mr-2"
-                        />
-                        <div>Saved Codes</div>
-                      </a>
-                    )}
-                    {activePanel != IO_PANEL && (
-                      <a
-                        className="row no-gutters align-items-center mb-3 floating-menu__option"
-                        onClick={() => changePanel(IO_PANEL)}
-                      >
-                        <div>I/O Pane</div>
-                      </a>
-                    )}
+              <Dropdown
+                title={`Hi, ${user.first_name} ${user.last_name}`}
+                onChange={changePanel}
+                PermanentOption={
+                  <>
                     <button onClick={logout} className="floating-menu__option">
                       <img
                         src="https://minio.codingminutes.com/assets/logout.svg"
@@ -182,9 +151,33 @@ export const Navbar: React.FC = () => {
                       />
                       Log Out
                     </button>
-                  </div>
-                )}
-              </div>
+                  </>
+                }
+                hideSelected={true}
+                selected={activePanel || IO_PANEL}
+                options={[
+                  {
+                    value: SAVELIST_PANEL,
+                    Element: (
+                      <>
+                        <img
+                          src="https://minio.codingminutes.com/assets/saved-codes.svg"
+                          className="mr-2"
+                        />
+                        <div>Saved Codes</div>
+                      </>
+                    ),
+                  },
+                  {
+                    value: IO_PANEL,
+                    Element: (
+                      <>
+                        <div>I/O Pane</div>
+                      </>
+                    ),
+                  },
+                ]}
+              />
             )}
             {!isLoggedIn && (
               <button className="button-primary" onClick={toggleOverlay}>

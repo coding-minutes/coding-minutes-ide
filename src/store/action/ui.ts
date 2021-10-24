@@ -2,7 +2,6 @@ import {
   TOGGLE_IO_PANE,
   SET_ACTIVE_MODAL,
   TOGGLE_BANNER,
-  TOGGLE_OPTIONS_MENU,
   SET_ACTIVE_PANEL,
   SET_TOAST,
 } from '~/store/action-types/ui';
@@ -19,10 +18,6 @@ export const setActiveModal = (modalName?: string) => ({
 
 export const toggleBanner = () => ({
   type: TOGGLE_BANNER,
-});
-
-export const toggleOptionsMenu = () => ({
-  type: TOGGLE_OPTIONS_MENU,
 });
 
 export const setActivePanel = (panel?: string) => ({
