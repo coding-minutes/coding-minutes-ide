@@ -1,10 +1,10 @@
 {
   "SUPER_SALE": {
-    "content": "🎉 Super Sale. <span className='banner--green-text'>All Courses @ Rs.490 </span> 🎉",
+    "content": "🎉 Super Sale. <span class='banner--green-text'>All Courses @ Rs.490 </span> 🎉",
     "link": "https://codingminutes.com/#course_gallery"
   },
   "IDE_NEW_FEATURES": {
-    "content": "🎉 New features in <span className='banner--green-text'>IDE</span> coming soon. ",
+    "content": "🎉 New features in <span class='banner--green-text'>IDE</span> coming soon. ",
     "link": "https://ide.codingminutes.com/"
   }
 }

@@ -23,13 +23,27 @@ export const Dropdown: React.FC<Props> = ({
   className,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const ref = React.useRef(null);
 
   function toggleMenu() {
     setIsMenuOpen((prev) => !prev);
   }
 
+  function handleOutsideClick(event) {
+    if (!ref.current?.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [ref]);
+
   return (
-    <div className={'dropdown ' + className}>
+    <div className={'dropdown ' + className} ref={ref}>
       <div
         className="row no-gutters align-items-center justify-content-between dropdown-header"
         onClick={toggleMenu}
@@ -44,6 +58,7 @@ export const Dropdown: React.FC<Props> = ({
             }
             return (
               <a
+                key={option.value}
                 className={
                   'row no-gutters align-items-center mb-3 floating-menu__option ' +
                   (option.value === selected ? 'active' : '')
