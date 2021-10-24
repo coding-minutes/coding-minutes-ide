@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Props {
-  title: string;
+  title: React.ReactNode | string | null;
   options: Array<{
     value: string;
     Element: React.ReactNode | null;

@@ -15,21 +15,19 @@ export const FontsizePicker: React.FC<Props> = () => {
     dispatch(setFontSize(value));
   }
 
-  console.log(FONTSIZE_MAP);
-
   const key = Object.keys(FONTSIZE_MAP).find((size) => FONTSIZE_MAP[size] === fontSize);
 
   return (
     <Dropdown
-      title={key}
+      title={<span className="green">{key}</span>}
       onChange={changeFontsize}
       selected={fontSize}
-      className={'fontsize'}
+      className={'fontsize-selector'}
       options={Object.keys(FONTSIZE_MAP).map((size) => ({
         value: FONTSIZE_MAP[size],
         Element: (
-          <div>
-            <span>Aa {FONTSIZE_MAP[size]}</span>
+          <div className="fontsize-option">
+            <span>Aa ({FONTSIZE_MAP[size]})</span>
             <span>{size}</span>
           </div>
         ),

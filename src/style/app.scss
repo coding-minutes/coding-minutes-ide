@@ -271,9 +271,9 @@ button {
       .floating-menu {
         font-size: 0.7857rem;
         position: absolute;
-        width: 100%;
+        min-width: 100%;
         top: 2.5rem;
-        left: 0;
+        right: 0;
         background: $overlay-dark;
         border-radius: 5px;
         padding: 10px 15px;
@@ -294,11 +294,27 @@ button {
         &__option {
           display: flex;
           align-items: center;
-          min-width: 50rem;
 
           &:hover {
             color: $accent-color-green;
           }
+        }
+      }
+    }
+
+    .fontsize-selector {
+      .fontsize-option {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 3px;
+        font-weight: 700;
+        width: 8rem;
+        font-size: 1rem;
+      }
+
+      .active {
+        .fontsize-option {
+          color: $accent-color-green;
         }
       }
     }
@@ -855,6 +871,10 @@ button {
 }
 
 .top-banner .banner--green-text {
+  color: $accent-color-green;
+}
+
+.green {
   color: $accent-color-green;
 }
 
