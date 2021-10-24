@@ -64,6 +64,12 @@ export const uiReducer = (state: UIState = initialState, action): UIState => {
         ...state,
         toast: action.payload,
       };
+
+    case SET_TOAST:
+      return {
+        ...state,
+        toast: action.payload,
+      };
     default:
       return state;
   }
