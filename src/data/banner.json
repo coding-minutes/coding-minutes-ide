@@ -1,10 +1,10 @@
 {
-  "SUPER_SALE": {
-    "content": "🎉 Super Sale. <span className='banner--green-text'>All Courses @ Rs.490 </span> 🎉",
+  "BLACK_FRIDAY": {
+    "content": "🎉 Biggest BLACK FRIDAY Sale - all our courses @ <span class='banner--green-text'>Rs.360/-</span> 🎉",
     "link": "https://codingminutes.com/#course_gallery"
   },
   "IDE_NEW_FEATURES": {
-    "content": "🎉 New features in <span className='banner--green-text'>IDE</span> coming soon. ",
-    "link": "https://ide.codingminutes.com/"
+    "content": "Competitive Programming Course coming soon 🔥, <span class='banner--green-text'>Learn More!</span>",
+    "link": "https://codingminutes.com/competitive-programming-essentials.html"
   }
 }
