@@ -1,10 +1,10 @@
 {
   "SANTA": {
-    "content": "🎉 End of year sale, grab all courses at Rs 360. Use code : <span class='banner--green-text'>SANTA360</span> 🎉",
+    "content": "Start your new year with Coding, use code <span class='banner--green-text'>'WELCOME22'</span> on all courses! 🎉",
     "link": "https://codingminutes.com/#course_gallery"
   },
   "COMPETITIVE_PROGRAMMING_ESSENTIALS": {
-    "content": "<span class='banner--green-text'>Competitive Programming Essentials</span> is now OUT, Are you IN ?",
-    "link": "https://codingminutes.com/competitive-programming-essentials.html"
+    "content": "Kickstart Coding, enroll in <span class='banner--green-text'>Coding Essentials Course</span> for <span class='banner--green-text'>FREE!</span> ",
+    "link": "https://www.udemy.com/course/learn-coding-for-beginners/?referralCode=B9C51C703049157C1298"
   }
 }
