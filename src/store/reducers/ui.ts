@@ -32,7 +32,7 @@ export interface UIState {
 const initialState: UIState = {
   io_pane_open: true,
   active_modal: null,
-  isBannerVisible: true,
+  isBannerVisible: false,
   isOptionsMenuOpen: false,
   active_panel: '',
   toast: null,
