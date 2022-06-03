@@ -9,7 +9,7 @@ export const ScreenSizeModal: React.FC = () => {
   const dispatch = useDispatch();
 
   return (
-    <BaseModal name={SCREEN_SIZE_MODAL} className="d-md-none d-flex">
+    <BaseModal name={SCREEN_SIZE_MODAL} style="d-md-none d-flex">
       <div className="overlay__modal__title mb-3">SORRY :(</div>
       <img
         src="https://minio.codingminutes.com/assets/cm-logo-oneline.svg"
