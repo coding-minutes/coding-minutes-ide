@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, batch } from 'react-redux';
 import { LanguagePicker } from '~/components/editor/language-picker';
 import { getIsLoggedIn, getUser } from '~/store/getters/auth';
 import { logoutUser } from '~/store/action/auth';
@@ -22,7 +22,6 @@ import { FontsizePicker } from '~/components/editor/fontsize-picker';
 export const Navbar: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
-  const toggleOverlay = () => dispatch(setActiveModal(LOGIN_MODAL));
   const isLoggedIn = useSelector(getIsLoggedIn());
   const user = useSelector(getUser());
   const currentLanguage = useSelector(getSelectedLanguage());
@@ -35,16 +34,26 @@ export const Navbar: React.FC = () => {
   };
   const isMenuOpen = useSelector(isOptionsMenuOpen());
   const activePanel = useSelector(getActivePanel());
-
+  
   const history = useHistory();
 
+  
   function toggleMenu() {
     dispatch(toggleOptionsMenu());
   }
 
+  const toggleOverlay = () => {
+    batch(() => {
+      toggleMenu();
+      dispatch(setActiveModal(LOGIN_MODAL));
+    });
+  }
+
   function changePanel(panel) {
-    dispatch(setActivePanel(panel));
-    toggleMenu();
+    batch(() => {
+      dispatch(setActivePanel(panel));
+      toggleMenu();
+    });
   }
 
   const logout = () => {
