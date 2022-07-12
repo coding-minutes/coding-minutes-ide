@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 import { useTask } from 'react-use-task';
 
 import { pollSubmission, Submission } from '~/components/editor/run-fab/actions';
@@ -44,8 +44,10 @@ export const RunFAB = (props: RunFabProps) => {
       const submission: Submission = yield pollSubmission(submissionId);
 
       if (submission.time || submission.compile_output || submission.stderr || submission.stdout) {
-        setOutput(submission.compile_output || submission.stderr || submission.stdout);
-        setCode(submission.stderr || submission.compile_output ? 1 : 0);
+        batch(() => {
+          setOutput(submission.compile_output || submission.stderr || submission.stdout);
+          setCode(submission.stderr || submission.compile_output ? 1 : 0);
+        });
         return;
       }
     }

@@ -2,12 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { BaseModal } from '~/components/base/modal';
 import { SCREEN_SIZE_MODAL } from '~/constants/modal';
-import Config from '~/config';
-import { setActiveModal } from '~/store/action/ui';
 
 export const ScreenSizeModal: React.FC = () => {
-  const dispatch = useDispatch();
-
   return (
     <BaseModal name={SCREEN_SIZE_MODAL} style="d-md-none d-flex">
       <div className="overlay__modal__title mb-3">SORRY :(</div>

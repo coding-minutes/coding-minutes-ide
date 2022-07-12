@@ -16,6 +16,8 @@ $accent-color-green: #7ac25b;
 $accent-color-purple: #5848ea;
 $accent-color-pink: #9549eb;
 
+$secondary-color-green: #6cc644;
+
 $accent-gradient-purple: linear-gradient(to right, $accent-color-purple, $accent-color-pink);
 $button-gradient: linear-gradient(
   to right,
@@ -777,8 +779,8 @@ button {
     }
 
     &--github {
-      background: #6cc644;
-      border: 1px solid #6cc644;
+      background: $secondary-color-green;
+      border: 1px solid $secondary-color-green;
     }
 
     &--linkedin {
