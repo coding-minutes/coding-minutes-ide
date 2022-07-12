@@ -7,7 +7,7 @@ import { LOGIN_MODAL } from '~/constants/modal';
 import { loginUser } from '~/store/action/auth';
 import { BaseModal } from '~/components/base/modal';
 import Config from '~/config';
-import { loginWithToken, githubLoginWithCode } from '~/services/auth';
+import { loginWithGoogle, loginWithGithub } from '~/services/auth';
 import { setActiveModal } from '~/store/action/ui';
 import { setJwt } from '~/utils/jwt';
 
@@ -19,7 +19,7 @@ export const LoginModal: React.FC = () => {
     try {
       setLoading(true);
       const token = response.getAuthResponse().id_token;
-      const res = await loginWithToken(token);
+      const res = await loginWithGoogle(token);
       const { jwt } = res;
 
       const basicProfile = response.getBasicProfile();
@@ -50,7 +50,7 @@ export const LoginModal: React.FC = () => {
   const loginGithubSuccess = async (code, params) => {
     try {
       setLoading(true);
-      const res = await githubLoginWithCode(code);
+      const res = await loginWithGithub(code);
       const { jwt } = res;
       const decoded :any = jwt_decode(jwt);
 
