@@ -23,6 +23,7 @@ jobs:
           API_HOST: 'https://ide-backend.codingminutes.com'
           NODE_ENV: 'production'
           REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_GITHUB_CLIENT_ID: ${{ secrets.REACT_APP_GITHUB_CLIENT_ID }}
       - name: Upload Build
         uses: appleboy/scp-action@master
         with:
